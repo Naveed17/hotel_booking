@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -10,7 +12,6 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
     "esModuleInterop": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
