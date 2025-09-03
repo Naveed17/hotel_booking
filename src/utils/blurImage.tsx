@@ -14,10 +14,10 @@ export default function ImageBlur({ src, alt, width = 40, height = 40, fill, onE
         placeholder="blur"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
         {...(fill
-          ? { fill: true }
+          ? { fill: true, sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' }
           : { width, height }
         )}
-        style={{ borderRadius: '50%', objectFit: 'cover', ...props.style }}
+        style={{ objectFit: 'cover', ...props.style }}
         className={loaded ? 'unblur' : ''}
         onLoad={() => setLoaded(true)}
         onError={onError}

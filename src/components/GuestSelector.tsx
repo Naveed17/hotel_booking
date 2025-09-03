@@ -4,6 +4,7 @@ import { Users, ChevronDown, Plus, Minus } from 'lucide-react';
 interface GuestSelectorProps {
   value: string;
   onChange: (value: string) => void;
+  className?: string;
 }
 
 export function GuestSelector({ value, onChange }: GuestSelectorProps) {
@@ -33,21 +34,21 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
 
   const incrementAdults = () => setAdults(prev => Math.min(prev + 1, 10));
   const decrementAdults = () => setAdults(prev => Math.max(prev - 1, 1));
-  
+
   const incrementChildren = () => setChildren(prev => Math.min(prev + 1, 10));
   const decrementChildren = () => setChildren(prev => Math.max(prev - 1, 0));
-  
+
   const incrementRooms = () => setRooms(prev => Math.min(prev + 1, 5));
   const decrementRooms = () => setRooms(prev => Math.max(prev - 1, 1));
 
   return (
     <div className="relative" ref={containerRef}>
-      <div 
+      <div
         className="relative cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
-        <input 
+        <input
           type="text"
           value={value}
           readOnly
@@ -55,7 +56,7 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
         />
         <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
       </div>
-      
+
       {isOpen && (
         <div className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-lg border border-gray-200 p-6 z-50 min-w-[280px]">
           {/* Adults */}
@@ -82,7 +83,7 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
               </button>
             </div>
           </div>
-          
+
           {/* Children */}
           <div className="flex items-center justify-between py-3 border-t border-gray-100">
             <div>
@@ -107,7 +108,7 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
               </button>
             </div>
           </div>
-          
+
           {/* Rooms */}
           <div className="flex items-center justify-between py-3 border-t border-gray-100">
             <div>
@@ -131,7 +132,7 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
               </button>
             </div>
           </div>
-          
+
           {/* Done Button */}
           <div className="pt-4 border-t border-gray-100">
             <button

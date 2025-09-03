@@ -8,6 +8,7 @@ import {
   useSelector,
   useStore,
 } from "react-redux";
+import { appDataReducer } from "@redux/appData";
 
 const createNoopStorage = () => {
   return {
@@ -32,6 +33,7 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   root: appReducer,
+  appData: appDataReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

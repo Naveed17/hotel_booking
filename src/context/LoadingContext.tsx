@@ -1,6 +1,8 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useAppDispatch } from "@lib/redux/store";
+import { setAppData } from "@lib/redux/appData";
 
 interface LoadingContextType {
     loading: boolean;
@@ -18,9 +20,19 @@ export const LoadingProvider = ({ children }: { children: React.ReactNode }) => 
     const [loading, setLoading] = useState(false);
     const [showOverlay, setShowOverlay] = useState(false);
     const [fadeClass, setFadeClass] = useState("opacity-0");
-    const router = useRouter();
     const pathname = usePathname();
-
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        const load = async () => {
+            setLoading(true);
+            try {
+                await dispatch(setAppData());
+            } finally {
+                setLoading(false);
+            }
+        };
+        load();
+    }, [dispatch]);
     // Handle fade-in and fade-out
     useEffect(() => {
         if (loading) {

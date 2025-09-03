@@ -1,4 +1,6 @@
+'use client'
 import { HotelCard } from '@components/core/components'
+import { useAppSelector } from '@lib/redux/store';
 import React from 'react'
 const hotelCards = [
     {
@@ -113,6 +115,8 @@ const hotelCards = [
     },
 ];
 function FeaturedHotels() {
+    const { data } = useAppSelector((state) => state?.appData);
+    const featured_hotels = data?.featured_hotels || [];
     return (
 
         <section id="hotels" className="py-20 px-4 bg-gray-50">
@@ -129,7 +133,7 @@ function FeaturedHotels() {
 
                 {/* Hotel Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {hotelCards.map((hotel) => (
+                    {featured_hotels.map((hotel: any) => (
                         <React.Fragment key={hotel.id}>
                             <HotelCard hotel={hotel} />
                         </React.Fragment>

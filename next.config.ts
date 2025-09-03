@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "toptiertravel.vip",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -182,3 +182,7 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.clip-half {
+    clip-path: inset(0 50% 0 0);
+}

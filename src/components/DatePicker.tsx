@@ -5,9 +5,10 @@ interface DatePickerProps {
   placeholder: string;
   value: string;
   onChange: (date: string) => void;
+  className?: string;
 }
 
-export function DatePicker({ placeholder, value, onChange }: DatePickerProps) {
+export function DatePicker({ placeholder, value, onChange, className }: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,22 +38,22 @@ export function DatePicker({ placeholder, value, onChange }: DatePickerProps) {
     const lastDay = new Date(year, month + 1, 0);
     const startDate = new Date(firstDay);
     startDate.setDate(startDate.getDate() - firstDay.getDay());
-    
+
     const days = [];
     const current = new Date(startDate);
-    
+
     for (let i = 0; i < 42; i++) {
       days.push(new Date(current));
       current.setDate(current.getDate() + 1);
     }
-    
+
     return days;
   };
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('en-US', {
       month: '2-digit',
-      day: '2-digit', 
+      day: '2-digit',
       year: 'numeric'
     });
   };
@@ -83,12 +84,12 @@ export function DatePicker({ placeholder, value, onChange }: DatePickerProps) {
 
   return (
     <div className="relative" ref={containerRef}>
-      <div 
+      <div
         className="relative cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
-        <input 
+        <input
           type="text"
           value={value}
           placeholder={placeholder}
@@ -96,12 +97,12 @@ export function DatePicker({ placeholder, value, onChange }: DatePickerProps) {
           className="w-full pl-10 h-11 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer"
         />
       </div>
-      
+
       {isOpen && (
         <div className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-lg border border-gray-200 p-4 z-50 min-w-[300px]">
           {/* Calendar Header */}
           <div className="flex items-center justify-between mb-4">
-            <button 
+            <button
               onClick={goToPreviousMonth}
               className="p-1 hover:bg-gray-100 rounded"
             >
@@ -110,14 +111,14 @@ export function DatePicker({ placeholder, value, onChange }: DatePickerProps) {
             <h3 className="font-semibold text-gray-900">
               {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
             </h3>
-            <button 
+            <button
               onClick={goToNextMonth}
               className="p-1 hover:bg-gray-100 rounded"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
-          
+
           {/* Days of Week */}
           <div className="grid grid-cols-7 gap-1 mb-2">
             {daysOfWeek.map(day => (
@@ -126,7 +127,7 @@ export function DatePicker({ placeholder, value, onChange }: DatePickerProps) {
               </div>
             ))}
           </div>
-          
+
           {/* Calendar Days */}
           <div className="grid grid-cols-7 gap-1">
             {days.map((date, index) => (
