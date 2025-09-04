@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Button } from "@components/ui/button";
-export default function Header() {
 
+import { Button } from "@components/ui/button";
+export default function Header({ ...props }: { dictionary: any }): React.JSX.Element {
+    const { dictionary } = props;
     return (
         <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,7 +16,7 @@ export default function Header() {
                     {/* Navigation */}
                     <nav className="hidden md:flex items-center space-x-8">
                         <a href="#hotels" className="text-travel-gray-600 hover:text-travel-blue transition-colors font-medium">
-                            Hotels
+                            {dictionary?.header?.hotels}
                         </a>
                         <a href="#contact" className="text-travel-gray-600 hover:text-travel-blue transition-colors font-medium">
                             Contact

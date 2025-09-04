@@ -2,7 +2,10 @@ import { THEME_ENUM } from "@src/constants/theme.constant";
 import { Mode } from "@src/@types/theme";
 
 export type ThemeConfig = {
-  mode: Mode;
+  direction: "ltr" | "rtl";
+  locale: string;
+  currency: string;
+  country: string;
 };
 
 /**
@@ -10,5 +13,8 @@ export type ThemeConfig = {
  * we recommend to use the configuration that generated from demo.
  */
 export const themeConfig: ThemeConfig = {
-  mode: THEME_ENUM.MODE_LIGHT,
+  direction: THEME_ENUM.THEME_DIR,
+  locale: THEME_ENUM.THEME_LOCALE,
+  currency: THEME_ENUM.THEME_CURRENCY,
+  country: THEME_ENUM.THEME_COUNTRY,
 };

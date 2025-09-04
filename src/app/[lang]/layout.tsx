@@ -1,12 +1,12 @@
 import * as React from 'react'
 import 'nprogress/nprogress.css';
-
+import { locales } from '../../../next-intl'
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '@src/css/app.css'
-import { Urbanist } from 'next/font/google'
+import { Noto_Kufi_Arabic, Urbanist } from 'next/font/google'
 import AppProvider from '@lib/appProvider'
 import { fetchAppData } from '@src/actions';
 import { Metadata } from 'next/types';
@@ -19,6 +19,11 @@ const FontUrbanist = Urbanist({
   subsets: ['latin'],
   display: 'swap',
 })
+const notoKufiArabic = Noto_Kufi_Arabic({
+  weight: ['400', '700'], // only supported weights
+  subsets: ['arabic'],
+  display: 'swap',
+})
 export const generateMetadata = async (): Promise<Metadata> => {
   const { data }: any = await fetchAppData();
   const meta_data = data?.app;
@@ -29,12 +34,12 @@ export const generateMetadata = async (): Promise<Metadata> => {
     };
   }
   const {
-    agency_name,
-    meta_title,
-    domain,
+    business_name,
+    home_title,
+    site_url,
     meta_description,
-    logo,
-    favicon,
+    header_logo_img,
+    favicon_img,
   } = meta_data;
 
 
@@ -49,28 +54,28 @@ export const generateMetadata = async (): Promise<Metadata> => {
       },
     },
     icons: {
-      icon: favicon,
-      shortcut: logo,
-      apple: logo,
+      icon: favicon_img,
+      shortcut: favicon_img,
+      apple: favicon_img,
     },
     keywords: 'some keyword',
-    title: meta_title,
+    title: home_title || business_name,
     authors: [],
     robots: '',
-    applicationName: agency_name,
-    creator: agency_name,
-    publisher: agency_name,
+    applicationName: business_name,
+    creator: business_name,
+    publisher: business_name,
     generator: 'Next.js',
     referrer: 'origin-when-cross-origin',
     description: meta_description,
     openGraph: {
-      title: domain,
+      title: home_title || business_name,
       description: meta_description,
       url: process.env.NEXT_PUBLIC_SITE_URL!,
-      siteName: domain,
+      siteName: site_url || business_name,
       images: [
         {
-          url: logo,
+          url: header_logo_img,
           width: 1200,
           height: 630,
         },
@@ -80,19 +85,24 @@ export const generateMetadata = async (): Promise<Metadata> => {
     },
   };
 };
-
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ lang: locale }))
+}
 export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: Promise<{ lang: 'en' | 'ar' }>
 }) {
+  const { lang } = await params
 
+  const isArabic = lang === 'ar'
+  const fontClass = isArabic ? notoKufiArabic.className : FontUrbanist.className
 
-
-  const fontClass = FontUrbanist.className
 
   return (
-    <html lang="en" dir="ltr">
+    <html lang={lang} dir={isArabic ? 'rtl' : 'ltr'}>
       <body className={`${fontClass}`}>
         <AppProvider>{children}</AppProvider>
       </body>

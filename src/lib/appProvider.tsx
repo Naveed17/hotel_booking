@@ -13,10 +13,6 @@ export default function AppProvider({ children }: { children?: React.ReactNode }
         [ThemeProvider],
         [LoadingProvider],
 
-
-
-
-
     ]), [])
     return (
         <>

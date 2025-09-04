@@ -1,23 +1,16 @@
 "use client";
 import { createContext, useContext } from "react";
-import type { TypeAttributes } from "@src/@types/common";
 
 export type Config = {
-  mode: "light" | "dark";
-  controlSize?: TypeAttributes.ControlSize;
-  ui?: {
-    card?: {
-      cardBordered?: boolean;
-    };
-    button?: {
-      disableClickFeedback?: boolean;
-    };
-  };
+  direction: "ltr" | "rtl";
+  locale: string;
+  currency: string;
 };
 
 export const defaultConfig: Config = {
-  mode: "light",
-  controlSize: "md",
+  direction: "ltr",
+  locale: "en",
+  currency: "USD",
 } as const;
 
 export const ConfigContext = createContext<Config>(defaultConfig);

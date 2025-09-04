@@ -1,16 +1,25 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-
 import cn from "@src/utils/classNames";
 
+// lucide icons
+import { AlertCircle, CheckCircle2, Info, TriangleAlert } from "lucide-react";
+
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
+  "relative w-full rounded-lg border px-4 py-3 flex items-start gap-2",
   {
     variants: {
       variant: {
-        default: "bg-background text-foreground",
+        default:
+          "bg-background text-foreground border border-gray-300 [&>svg]:text-foreground",
         destructive:
-          "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
+          "bg-red-50 border-red-500 text-red-600 dark:bg-red-900/20 dark:border-red-700 dark:text-red-400 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
+        success:
+          "bg-green-50 border-green-500 text-green-700 dark:bg-green-900/20 dark:border-green-700 dark:text-green-400 [&>svg]:text-green-600 dark:[&>svg]:text-green-400",
+        warning:
+          "bg-yellow-50 border-yellow-500 text-yellow-700 dark:bg-yellow-900/20 dark:border-yellow-700 dark:text-yellow-400 [&>svg]:text-yellow-600 dark:[&>svg]:text-yellow-400",
+        info:
+          "bg-blue-50 border-blue-500 text-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:text-blue-400 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400",
       },
     },
     defaultVariants: {
@@ -19,16 +28,27 @@ const alertVariants = cva(
   },
 );
 
+const icons: Record<string, React.ReactNode> = {
+  default: <Info className="h-5 w-5 shrink-0 mt-0.5" />,
+  destructive: <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />,
+  success: <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5" />,
+  warning: <TriangleAlert className="h-5 w-5 shrink-0 mt-0.5" />,
+  info: <Info className="h-5 w-5 shrink-0 mt-0.5" />,
+};
+
 const Alert = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
->(({ className, variant, ...props }, ref) => (
+>(({ className, variant = "default", children, ...props }, ref) => (
   <div
     ref={ref}
     role="alert"
     className={cn(alertVariants({ variant }), className)}
     {...props}
-  />
+  >
+    {icons[variant as string] || icons.default}
+    <div className="flex flex-col">{children}</div>
+  </div>
 ));
 Alert.displayName = "Alert";
 

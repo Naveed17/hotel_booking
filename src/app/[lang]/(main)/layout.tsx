@@ -1,0 +1,13 @@
+import Main from '@components/main/layout'
+import { getDictionary } from '@src/get-dictionary';
+import React from 'react'
+const MainLayout = async ({ children, params }: { children: React.ReactNode; params: Promise<{ lang: 'en' | 'ar' }> }) => {
+    const { lang } = await params
+    const dict = await getDictionary(lang)
+    return (
+        <Main dictionary={dict}>
+            <main>{children}</main>
+        </Main>
+    )
+}
+export default MainLayout

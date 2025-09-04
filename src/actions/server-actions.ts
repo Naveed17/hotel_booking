@@ -25,3 +25,30 @@ export const fetchAppData = async () => {
     return { error: (error as Error).message || "An error occurred" };
   }
 };
+export const newsLetter = async ({
+  name = "subscriber",
+  email,
+}: {
+  email: string;
+  name?: string;
+}) => {
+  const formData = new FormData();
+  formData.append("email", email);
+  formData.append("name", name);
+
+  try {
+    const response = await fetch(`${baseUrl}/newsletter-subscribe`, {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json().catch(() => null);
+
+    if (!response.ok || data?.status === false) {
+      return { error: data?.message || "Something went wrong" };
+    }
+
+    return data;
+  } catch (error) {
+    return { error: (error as Error).message || "An error occurred" };
+  }
+};
