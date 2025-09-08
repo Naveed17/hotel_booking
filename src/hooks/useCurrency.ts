@@ -1,6 +1,6 @@
 "use client";
 import { useAppSelector, useAppDispatch } from "@lib/redux/store";
-import { setLocale } from "@lib/redux/base";
+import { setCurrency } from "@lib/redux/base";
 import { useEffect } from "react";
 
 const useCurrency = () => {
@@ -16,7 +16,7 @@ const useCurrency = () => {
   const currency = currentCurrency ? currentCurrency : defaultCurrency?.name;
   useEffect(() => {
     if (currency) {
-      dispatch(setLocale(currency));
+      dispatch(setCurrency(currency));
     }
   }, [currency, dispatch]);
   return { currency };

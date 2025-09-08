@@ -2,13 +2,15 @@
 import React from 'react'
 import { useAppSelector } from '@lib/redux/store';
 import { FeaturedCard } from '@components/core/components';
+import Container from '@components/core/container';
+
 
 function FeaturedDestination() {
     const { data } = useAppSelector((state) => state?.appData);
     const featured_tours = data?.featured_tours || [];
     return (
         <section id="destinations" className="py-20 px-4">
-            <div className="max-w-7xl mx-auto">
+            <Container>
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-travel-gray-900 mb-4 font-urbanist">
@@ -27,7 +29,7 @@ function FeaturedDestination() {
                         </React.Fragment>
                     ))}
                 </div>
-            </div>
+            </Container>
         </section>
     )
 }

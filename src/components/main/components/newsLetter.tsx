@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Alert } from "@components/ui/alert";
 import { AnimatePresence, motion } from "framer-motion";
+import Container from "@components/core/container";
 
 // ✅ Zod validation schema
 const newsletterSchema = z.object({
@@ -64,7 +65,7 @@ const Newsletter = (): React.JSX.Element => {
 
     return (
         <section className="py-20 px-4">
-            <div className="max-w-7xl mx-auto">
+            <Container>
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     {/* Newsletter Image */}
                     <div className="lg:w-1/2">
@@ -174,7 +175,7 @@ const Newsletter = (): React.JSX.Element => {
                         </form>
                     </div>
                 </div>
-            </div>
+            </Container>
         </section>
     );
 };

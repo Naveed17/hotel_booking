@@ -1,17 +1,19 @@
 import { Star } from "lucide-react";
 import React from "react";
 
-function renderStars(rating: number) {
+function renderStars(rating: number, size: number = 4) {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
+
+    const sizeClass = `w-${size} h-${size}`;
 
     // full stars
     for (let i = 0; i < fullStars; i++) {
         stars.push(
             <Star
                 key={`full-${i}`}
-                className="w-4 h-4 fill-travel-orange text-travel-orange"
+                className={`${sizeClass} fill-travel-orange text-travel-orange`}
             />
         );
     }
@@ -19,23 +21,24 @@ function renderStars(rating: number) {
     // half star
     if (hasHalfStar) {
         stars.push(
-            <div key="half" className="relative w-4 h-4">
+            <div key="half" className={`relative ${sizeClass}`}>
                 {/* left side filled */}
-                <Star className="w-4 h-4 text-travel-orange absolute left-0 top-0 clip-half" />
+                <Star className={`${sizeClass} text-travel-orange absolute left-0 top-0 clip-half`} />
                 {/* right side gray */}
-                <Star className="w-4 h-4 text-gray-300 absolute left-0 top-0" />
+                <Star className={`${sizeClass} text-gray-300 absolute left-0 top-0`} />
             </div>
         );
     }
 
-    // empty stars (if you want always 5)
+    // empty stars
     const total = hasHalfStar ? fullStars + 1 : fullStars;
     for (let i = total; i < 5; i++) {
         stars.push(
-            <Star key={`empty-${i}`} className="w-4 h-4 text-gray-300" />
+            <Star key={`empty-${i}`} className={`${sizeClass} text-gray-300`} />
         );
     }
 
     return stars;
 }
+
 export default renderStars;

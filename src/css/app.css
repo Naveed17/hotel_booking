@@ -7,6 +7,7 @@
 /* Define your custom colors using CSS custom properties */
 @theme {
     --color-travel-blue: #163c8c;
+    --text-primary: #112233CC;
     --color-travel-blue-50: #e5ecff;
     --color-travel-blue-100: #c7d5ff;
     --color-travel-blue-200: #9fb5ff;
@@ -17,7 +18,7 @@
     --color-travel-blue-700: #0e2454;
     --color-travel-blue-800: #0a1838;
     --color-travel-blue-900: #060c1c;
-
+    --color-bg-page: #F9FAFB;
     --color-travel-gray: #5b697e;
     --color-travel-gray-light: #E4E4E4;
     --color-travel-gray-soft: #F5F5F5;
@@ -45,6 +46,8 @@
     --radius-4xl: 2rem;
     --radius-5xl: 2.5rem;
     --radius-6xl: 3rem;
+    --filter-bg: 240 9% 97%;
+
 
     /* Design system colors */
     --color-border: 214.3 31.8% 91.4%;
@@ -111,12 +114,18 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-
+    color: var(--text-primary)
 }
 
 body {
     overscroll-behavior: none;
     overscroll-behavior-y: contain;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-travel-blue);
 }
 
 #nprogress {
@@ -173,6 +182,72 @@ body {
     position: absolute;
 }
 
+.range-thumb {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2rem;
+    position: absolute;
+    top: 0;
+    background: none;
+    pointer-events: none;
+}
+
+.range-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    background: var(--color-travel-blue);
+    border: 2px solid var(--color-travel-blue);
+    /* emerald-500 */
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    position: relative;
+    z-index: 3;
+    margin-top: -12px;
+}
+
+.range-thumb::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    background: var(--color-travel-blue);
+    border: 2px solid var(--color-travel-blue);
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    position: relative;
+    z-index: 3;
+}
+
+.filter-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: hsl(var(--filter-bg));
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
 @keyframes nprogress-spinner {
     0% {
         transform: rotate(0deg);
@@ -185,4 +260,34 @@ body {
 
 .clip-half {
     clip-path: inset(0 50% 0 0);
+}
+
+@layer utilities {
+    @keyframes slide-in-from-right {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-out-to-right {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(100%);
+        }
+    }
+
+    .animate-slide-in-from-right {
+        animation: slide-in-from-right 0.3s ease-out forwards;
+    }
+
+    .animate-slide-out-to-right {
+        animation: slide-out-to-right 0.3s ease-in forwards;
+    }
 }

@@ -18,6 +18,7 @@ import { Alert } from "@components/ui/alert";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAppSelector } from "@lib/redux/store";
 import useLocale from "@hooks/useLocale";
+import Container from "@components/core/container";
 const newsletterSchema = z.object({
     email: z.string().email("Please enter a valid email address"),
 });
@@ -75,7 +76,7 @@ const Footer = (): React.JSX.Element => {
 
     return (
         <footer className="bg-white border-t border-gray-100 py-16 px-4">
-            <div className="max-w-7xl mx-auto">
+            <Container className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
                     {/* Company Info */}
                     <div className="md:col-span-2">
@@ -216,15 +217,15 @@ const Footer = (): React.JSX.Element => {
 
                         {/* Social Media */}
                         <div className="flex items-center gap-4">
-                            <Link href="#" className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Facebook className="w-5 h-5" /></Link>
-                            <Link href="#" className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Twitter className="w-5 h-5" /></Link>
-                            <Link href="#" className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Instagram className="w-5 h-5" /></Link>
-                            <Link href="#" className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Linkedin className="w-5 h-5" /></Link>
-                            <Link href="#" className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Youtube className="w-5 h-5" /></Link>
+                            <a href={data?.app?.social_facebook || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Facebook className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_twitter || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Twitter className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_instagram || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Instagram className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_linkedin || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Linkedin className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_youtube || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Youtube className="w-5 h-5" /></a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Container>
         </footer>
     );
 };

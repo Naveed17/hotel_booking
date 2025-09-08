@@ -30,8 +30,8 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "hsl(var(--color-primary-foreground))",
+          foreground: "hsl(var(--color-primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -69,6 +69,7 @@ export default {
         },
         "travel-gray-light": "rgb(var(--color-travel-gray-light)",
         "travel-gray-soft": "rgb(var(--color-travel-gray-soft)",
+        "page-gray": "rgb(var(--color-bg-page)",
         // Travel brand colors
         "travel-blue": {
           DEFAULT: "#163C8C",
@@ -130,5 +131,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar-hide")],
 } satisfies Config;

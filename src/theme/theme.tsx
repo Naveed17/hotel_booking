@@ -7,7 +7,6 @@ const Theme = (props: CommonProps) => {
     const direction = useAppSelector(state => state.root.direction);
     const locale = useAppSelector(state => state.root.locale);
     const currency = useAppSelector(state => state.root.currency);
-
     return (
         <ConfigProvider
             value={{

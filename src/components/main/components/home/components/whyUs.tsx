@@ -1,3 +1,5 @@
+import Container from "@components/core/container";
+
 const whyChooseUsFeatures = [
     {
         title: "Best Price Guarantee",
@@ -22,7 +24,7 @@ const WhyUs = (): React.JSX.Element => {
     return (
 
         <section className="py-20 px-4" >
-            <div className="max-w-7xl mx-auto">
+            <Container>
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-travel-gray-900 mb-4 font-urbanist">
@@ -63,7 +65,7 @@ const WhyUs = (): React.JSX.Element => {
                         </article>
                     ))}
                 </div>
-            </div>
+            </Container>
         </section>
     )
 }

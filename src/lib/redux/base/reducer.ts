@@ -11,7 +11,7 @@ interface State {
 const initialState: State = {
   direction: "ltr",
   locale: "en",
-  currency: "",
+  currency: "USD",
 };
 
 export const appReducer = createReducer(initialState, (builder) => {

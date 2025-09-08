@@ -26,10 +26,12 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
   }, []);
 
   useEffect(() => {
-    const totalGuests = adults + children;
-    const guestText = totalGuests === 1 ? 'Guest' : 'Guests';
+    const totalAdults = adults;
+    const adultText = totalAdults === 1 ? 'Adult' : 'Adults';
+    const totalChildren = children;
+    const childText = totalChildren === 1 ? 'Child' : 'Children';
     const roomText = rooms === 1 ? 'Room' : 'Rooms';
-    onChange(`${totalGuests} ${guestText}, ${rooms} ${roomText}`);
+    onChange(`${totalAdults} ${adultText}, ${totalChildren} ${childText}, ${rooms} ${roomText}`);
   }, [adults, children, rooms, onChange]);
 
   const incrementAdults = () => setAdults(prev => Math.min(prev + 1, 10));

@@ -11,6 +11,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Container from "@components/core/container";
 
 const testimonials = [
   {
@@ -56,7 +57,7 @@ const Testimonial = (): React.JSX.Element => {
 
   return (
     <section className="py-20 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+      <Container>
         {/* Section Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12">
           <div>
@@ -119,7 +120,7 @@ const Testimonial = (): React.JSX.Element => {
             ))}
           </Swiper>
         </div>
-      </div>
+      </Container>
 
       {/* Custom Styles */}
       <style jsx global>{`

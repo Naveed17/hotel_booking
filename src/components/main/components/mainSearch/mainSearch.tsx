@@ -13,8 +13,10 @@ import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { debounce } from 'lodash';
 import { useForm, Controller } from 'react-hook-form';
+import { useParams, useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import dayjs from "dayjs";
 
 interface Destination {
     id: string;
@@ -49,7 +51,8 @@ const searchFormSchema = z.object({
         message: "Check-in date must be today or later"
     }),
     checkOut: z.string().min(1, "Check-out date is required"),
-    guests: z.string().min(1, "Please select number of guests")
+    guests: z.string().min(1, "Please select number of guests"),
+    children: z.string().optional()
 }).refine((data) => {
     if (data.checkIn && data.checkOut) {
         const checkInDate = new Date(data.checkIn);
@@ -105,13 +108,14 @@ const popularDestinations: Destination[] = [
 
 function MainSearch() {
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const router = useRouter()
     const [query, setQuery] = useState("");
     const [isOpen, setIsOpen] = useState(false);
+    const [loading, setLoading] = useState(false)
     const searchValueRef = useRef("");
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [, forceRender] = useState(0);
-
-
+    const params = useParams(); // includes locale if using i18n routing
     const {
         control,
         handleSubmit,
@@ -131,7 +135,8 @@ function MainSearch() {
             },
             checkIn: "",
             checkOut: "",
-            guests: "2 Guests, 1 Room"
+            guests: "2 Guests, 1 Room",
+            children: "0"
         }
     });
 
@@ -182,9 +187,18 @@ function MainSearch() {
 
 
     const onSubmit = async (data: SearchFormData) => {
+
+        const city = data.destination.city.toLocaleLowerCase();
+        const checkIn = dayjs(data.checkIn, "MM/DD/YYYY").format("DD-MM-YYYY");
+        const checkOut = dayjs(data.checkOut, "MM/DD/YYYY").format("DD-MM-YYYY");
+        const rooms = data.guests.split(" ")[2];
+        const adults = data.guests.split(" ")[0];
+        const children = data.children;
+        setLoading(true);
         try {
-            console.log("Form submitted with data:", data);
-            alert(`Searching for homes in ${data.destination.city}, ${data.destination.country} from ${data.checkIn} to ${data.checkOut} for ${data.guests}`);
+            const locale = params?.locale ?? "en"; // fallback to default if needed
+            const url = `/${locale}/hotels/${city}/${checkIn}/${checkOut}/${rooms}/${adults}/${children}/${data.destination.country_code}`;
+            router.push(url);
         } catch (error) {
             console.error("Search submission error:", error);
         }
@@ -374,7 +388,15 @@ function MainSearch() {
                             render={({ field }) => (
                                 <GuestSelector
                                     value={field.value}
-                                    onChange={field.onChange}
+                                    onChange={(value) => {
+                                        const guests = value.split(',')
+                                        const adults = parseInt(guests[0]);   // "3"
+                                        const children = parseInt(guests[1]); // "4"
+                                        const rooms = parseInt(guests[2]);    // "1"
+                                        setValue('guests', `${adults + children} ${adults + children === 1 ? 'Guest' : 'Guests'}, ${rooms} ${rooms === 1 ? 'Room' : 'Rooms'}`)
+                                        setValue('children', `${children}`)
+
+                                    }}
                                     className={errors.guests ? 'border-red-500' : ''}
                                 />
                             )}
@@ -388,10 +410,10 @@ function MainSearch() {
                     <div className="md:self-end">
                         <button
                             type="submit"
-                            disabled={isSubmitting}
+                            disabled={isSubmitting || loading}
                             className="w-full h-11 bg-travel-blue hover:bg-travel-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
                         >
-                            {isSubmitting ? (
+                            {isSubmitting || loading ? (
                                 <>
                                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                                     Searching...

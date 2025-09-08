@@ -1,5 +1,6 @@
 "use server";
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { siteUrl } from "./actions";
 export const fetchAppData = async () => {
   try {
     const response = await fetch(`${baseUrl}/app`, {
@@ -49,6 +50,99 @@ export const newsLetter = async ({
 
     return data;
   } catch (error) {
+    return { error: (error as Error).message || "An error occurred" };
+  }
+};
+export const hotels_search = async (slug: string[]) => {
+  const keys = [
+    "city",
+    "checkin",
+    "checkout",
+    "rooms",
+    "adults",
+    "childs",
+    "nationality",
+    "language",
+    "currency",
+    "child_age",
+    "module_name",
+    "pagination",
+  ];
+
+  const payload = keys.reduce((acc, key, index) => {
+    // Fill from slug if exists
+    acc[key] = slug[index] ?? "";
+
+    // Override defaults based on key
+    switch (key) {
+      case "language":
+        acc[key] = slug[index] ?? "en";
+        break;
+      case "currency":
+        acc[key] = slug[index] ?? "usd";
+        break;
+      case "module_name":
+        acc[key] = "hotels";
+        break;
+      case "pagination":
+        acc[key] = "1";
+        break;
+      case "child_age":
+        acc[key] = "0";
+        break;
+    }
+
+    return acc;
+  }, {} as Record<string, string>);
+
+  const formData = new FormData();
+  Object.entries(payload).forEach(([key, value]) => {
+    formData.append(key, value);
+  });
+
+  try {
+    const response = await fetch(`${baseUrl}/hotel_search`, {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json().catch(() => null);
+    if (!response.ok || data?.status === false) {
+      return { error: data?.message || "Something went wrong" };
+    }
+    return data;
+  } catch (error) {
+    return { error: (error as Error).message || "An error occurred" };
+  }
+};
+export const hotels_filter = async ({
+  filter,
+  slug,
+}: {
+  filter: any;
+  slug: any;
+}) => {
+  try {
+    const response = await fetch(`${siteUrl}/api/hotels/filter`, {
+      method: "POST",
+      body: JSON.stringify({
+        filter,
+        slug,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+
+    const data = await response.json().catch(() => null);
+
+    if (!response.ok || data?.status === false) {
+      return { error: data?.message || "Something went wrong" };
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Flight listing error:", error); // Added error logging
     return { error: (error as Error).message || "An error occurred" };
   }
 };

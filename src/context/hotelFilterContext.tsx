@@ -1,0 +1,203 @@
+"use client";
+
+import React, {
+    createContext,
+    useContext,
+    useState,
+    ReactNode,
+    useMemo,
+    useEffect,
+} from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { hotels_filter, hotels_search } from "@src/actions";
+
+// ===== Types =====
+export type PriceRange = { min: number; max: number };
+export type HotelFilters = {
+    search: string;
+    price: PriceRange;
+    stars: number[];
+    guestRating: number | null;
+    amenities: string[];
+    quickFilter: string;
+    sort: string;
+};
+export type HotelFiltersContextValue = {
+    filters: HotelFilters;
+    setSearch: (search: string) => void;
+    setFilters: React.Dispatch<React.SetStateAction<HotelFilters>>;
+    setPriceRange: (min: number, max: number) => void;
+    toggleStar: (star: number) => void;
+    setGuestRating: (rating: number | null) => void;
+    toggleAmenity: (amenity: string) => void;
+    resetFilters: () => void;
+    applyFilter: () => void;
+    data: any[] | undefined;
+    isLoading: boolean;
+    total: number;
+    setQuickFilter: (filter: string) => void;
+    setSort: (sort: string) => void;
+    priceRange: PriceRange;
+};
+
+export interface HotelFiltersProviderProps {
+    children: ReactNode;
+    slug: string[];
+}
+
+// ===== Initial State =====
+const initialFilters: HotelFilters = {
+    search: "",
+    price: { min: 0, max: 0 },
+    stars: [],
+    guestRating: null,
+    amenities: [],
+    quickFilter: '',
+    sort: "",
+};
+
+// ===== Context =====
+const HotelFiltersContext = createContext<
+    HotelFiltersContextValue | undefined
+>(undefined);
+
+// ===== Hook =====
+export const useHotelFilters = (): HotelFiltersContextValue => {
+    const context = useContext(HotelFiltersContext);
+    if (!context) {
+        throw new Error("useHotelFilters must be used within a HotelFiltersProvider");
+    }
+    return context;
+};
+
+// ===== Provider =====
+export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
+    children,
+    slug,
+}) => {
+    const [filters, setFilters] = useState<HotelFilters>(initialFilters);
+    const [useFilter, setUseFilter] = useState(false);
+
+    // ===== Initial Hotels (search) =====
+    const {
+        data: initialHotels,
+        isLoading: isInitialLoading,
+        refetch,
+    } = useQuery({
+        queryKey: ["hotels", slug],
+        queryFn: () => hotels_search(slug),
+        select: (res) => ({
+            data: res?.response ?? [],     // normalize to "data"
+            total: res?.total ?? res?.response?.length ?? 0, // normalize to "total"
+        }),
+    });
+
+    // ===== Filtered Hotels =====
+    const { mutate, data: filteredHotels, isPending } = useMutation({
+        mutationFn: hotels_filter,
+        onSuccess: (res) => {
+            return {
+                data: res?.data ?? [],
+                total: res?.total_records ?? res?.data?.length ?? 0,
+            };
+        },
+    });
+
+
+    const setSearch = (search: string) =>
+        setFilters((prev) => ({ ...prev, search }));
+
+    const setPriceRange = (min: number, max: number) =>
+        setFilters((prev) => ({ ...prev, price: { min, max } }));
+
+    const toggleStar = (star: number) =>
+        setFilters((prev) => ({
+            ...prev,
+            stars: prev.stars.includes(star)
+                ? prev.stars.filter((s) => s !== star)
+                : [...prev.stars, star],
+        }));
+
+    const setGuestRating = (rating: number | null) =>
+        setFilters((prev) => ({ ...prev, guestRating: rating }));
+
+    const toggleAmenity = (amenity: string) =>
+        setFilters((prev) => ({
+            ...prev,
+            amenities: prev.amenities.includes(amenity)
+                ? prev.amenities.filter((a) => a !== amenity)
+                : [...prev.amenities, amenity],
+        }));
+
+
+
+
+    const applyFilter = () => {
+        setUseFilter(true);
+        mutate({ slug, filter: filters });
+    };
+
+    const setQuickFilter = (quickFilter: string) => {
+        setFilters((prev) => {
+            const newFilters = { ...prev, quickFilter };
+            applyFilterWith(newFilters);
+            return newFilters;
+        });
+    };
+
+    const setSort = (sort: string) => {
+        setFilters((prev) => {
+            const newFilters = { ...prev, sort };
+            applyFilterWith(newFilters);
+            return newFilters;
+        });
+    };
+
+    const applyFilterWith = (newFilters: HotelFilters) => {
+        setUseFilter(true);
+        mutate({ slug, filter: newFilters });
+    };
+    const hotelsData = initialHotels?.data ?? [];
+
+    const prices = hotelsData.map((h: any) => Number(h?.actual_price)).filter(Number.isFinite);
+
+    const priceRange = {
+        min: Math.min(...prices),
+        max: Math.max(...prices),
+    };
+    const resetFilters = () => {
+        setUseFilter(false);
+        setFilters({
+            ...initialFilters,
+            price: priceRange,
+        })
+
+        refetch();
+    };
+    const contextValue: HotelFiltersContextValue = useMemo(
+        () => ({
+            filters,
+            setSearch,
+            setFilters,
+            setPriceRange,
+            toggleStar,
+            setGuestRating,
+            toggleAmenity,
+            resetFilters,
+            applyFilter,
+            setQuickFilter,
+            setSort,
+            priceRange,
+            data: useFilter ? filteredHotels?.data ?? [] : initialHotels?.data ?? [],
+            total: useFilter ? filteredHotels?.total ?? 0 : initialHotels?.total ?? 0,
+            isLoading: isPending || isInitialLoading,
+        }),
+        [filters, filteredHotels, useFilter, initialHotels, isPending, isInitialLoading]
+    );
+
+    return (
+        <HotelFiltersContext.Provider value={contextValue}>
+            {children}
+        </HotelFiltersContext.Provider>
+    );
+};
