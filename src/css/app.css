@@ -6,6 +6,12 @@
 
 /* Define your custom colors using CSS custom properties */
 @theme {
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
     --color-travel-blue: #163c8c;
     --text-primary: #112233CC;
     --color-travel-blue-50: #e5ecff;
@@ -32,11 +38,15 @@
     --color-travel-gray-700: #343a40;
     --color-travel-gray-800: #212529;
     --color-travel-gray-900: #0f172b;
-
     --color-travel-green: #00a63e;
     --color-travel-orange: #fe9a00;
     --color-travel-purple: #8b5cf6;
-
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
     /* Font families */
     --font-family-urbanist: "Urbanist", sans-serif;
     --font-family-inter: "Inter", sans-serif;

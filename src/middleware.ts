@@ -1,10 +1,11 @@
 import createMiddleware from "next-intl/middleware";
 import { locales, defaultLocale } from "../next-intl";
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { updateSession } from "@lib/auth/session";
 
 export default async function middleware(request: NextRequest) {
   const hostname = request.nextUrl.hostname;
-
+  await updateSession(request);
   // Use next-intl's middleware to handle locales
   const intlMiddleware = createMiddleware({
     locales,

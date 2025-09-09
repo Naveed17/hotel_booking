@@ -1,17 +1,19 @@
 import { createReducer, PayloadAction } from "@reduxjs/toolkit";
-import { setDirection, setLocale, setCurrency } from "./actions";
+import { setDirection, setLocale, setCurrency, setCountry } from "./actions";
 
 // 2. Destination interface is used here to type the destination property in the State interface
 interface State {
   direction: "ltr" | "rtl";
   locale: string;
   currency: string;
+  country: string;
 }
 
 const initialState: State = {
   direction: "ltr",
   locale: "en",
   currency: "USD",
+  country: "",
 };
 
 export const appReducer = createReducer(initialState, (builder) => {
@@ -23,7 +25,9 @@ export const appReducer = createReducer(initialState, (builder) => {
     .addCase(setLocale, (state, action: PayloadAction<string>) => {
       state.locale = action.payload;
     })
-
+    .addCase(setCountry, (state, action: PayloadAction<string>) => {
+      state.country = action.payload;
+    })
     .addCase(setCurrency, (state, action: PayloadAction<string>) => {
       state.currency = action.payload;
     });
