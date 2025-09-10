@@ -13,22 +13,14 @@ const useLocale = () => {
 
   // Get first segment from path
   const segments = pathname.split("/").filter(Boolean);
-  const urlLocale = segments[0];
+  const urlLocale = segments[0] || "en";
 
   // Find language by code
   const foundLang = languages?.find(
     (lang: any) => lang.language_code === urlLocale
   );
-  // Find default language
-  const defaultLang = languages?.find((lang: any) => lang.default === "1");
 
-  const locale = foundLang
-    ? foundLang.language_code
-    : defaultLang
-    ? defaultLang.language_code
-    : currentLang;
-
-  // Set locale in Redux if changed
+  const locale = foundLang ? foundLang.language_code : currentLang;
   useEffect(() => {
     if (locale && locale !== currentLang) {
       dispatch(setLocale(locale));

@@ -173,12 +173,12 @@ export default function LoginForm() {
               Remember me
             </label>
           </div>
-          <a
-            href="https://toptiertravel.site/agents/login-forget-password"
+          <Link
+            href="/auth/forget-password"
             className="text-sm font-medium text-travel-blue-600 hover:text-travel-blue-500"
           >
             Reset password
-          </a>
+          </Link>
         </div>
 
         {/* Submit */}

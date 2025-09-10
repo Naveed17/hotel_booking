@@ -2,14 +2,18 @@
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 import { createSession, getSession, logout } from "@lib/auth/session";
 import { siteUrl } from "./actions";
-export const fetchAppData = async () => {
+export const fetchAppData = async (payload: {
+  language: string;
+  currency: string;
+}) => {
+  console.log(payload, "payload");
   try {
     const response = await fetch(`${baseUrl}/app`, {
       method: "POST",
       body: JSON.stringify({
         api_key: "api_key001",
-        language: "en",
-        currency: "usd",
+        language: payload?.language,
+        currency: payload?.currency,
       }),
       headers: {
         Accept: "application/json",
@@ -219,6 +223,25 @@ export const fetchCountries = async () => {
   try {
     const response = await fetch(`${baseUrl}/countries`, {
       method: "POST",
+    });
+
+    const data = await response.json().catch(() => null);
+    if (!response.ok || data?.status === false) {
+      return { error: data?.message || "Something went wrong" };
+    }
+
+    return data;
+  } catch (error) {
+    return { error: (error as Error).message || "An error occurred" };
+  }
+};
+export const forget_password = async (email: string) => {
+  const formData = new FormData();
+  formData.append("email", email);
+  try {
+    const response = await fetch(`${baseUrl}/forget_password`, {
+      method: "POST",
+      body: formData,
     });
 
     const data = await response.json().catch(() => null);

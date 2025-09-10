@@ -4,6 +4,7 @@ import React from "react";
 
 const TestimonialCard = ({ ...props }): React.JSX.Element => {
     const { testimonial } = props;
+    const rating = Math.round(Number(testimonial.ratings));
     return (
         <article key={testimonial.id} className="flex-shrink-0 w-full max-w-4xl bg-white border-none rounded-2xl overflow-hidden shadow-sm">
             <div className="flex flex-col md:flex-row">
@@ -13,7 +14,7 @@ const TestimonialCard = ({ ...props }): React.JSX.Element => {
                     <div className="flex items-center gap-4 mb-6">
                         <div className="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
                             <img
-                                src={testimonial.avatar}
+                                src={testimonial.profile_photo}
                                 alt={testimonial.name}
                                 className="w-full h-full object-cover"
                             />
@@ -27,7 +28,7 @@ const TestimonialCard = ({ ...props }): React.JSX.Element => {
 
                     {/* Rating */}
                     <div className="flex items-center gap-1 mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
+                        {[...Array(rating)].map((_, i) => (
                             <Star key={i} className="w-4 h-4 fill-travel-orange text-travel-orange" />
                         ))}
                     </div>
@@ -37,14 +38,14 @@ const TestimonialCard = ({ ...props }): React.JSX.Element => {
                         {testimonial.title}
                     </h3>
                     <p className="text-travel-gray-600 leading-relaxed">
-                        {testimonial.content}
+                        {testimonial.description}
                     </p>
                 </div>
 
                 {/* Room Image */}
                 <div className="md:w-1/2 relative">
                     <img
-                        src={testimonial.roomImage}
+                        src={testimonial.photo}
                         alt="Hotel room"
                         className="w-full h-full object-cover"
                     />

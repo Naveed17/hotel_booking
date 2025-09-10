@@ -3,6 +3,8 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useAppDispatch } from "@lib/redux/store";
 import { setAppData } from "@lib/redux/appData";
+import useCurrency from "@hooks/useCurrency";
+import useLocale from "@hooks/useLocale";
 
 interface LoadingContextType {
     loading: boolean;
@@ -20,19 +22,21 @@ export const LoadingProvider = ({ children }: { children: React.ReactNode }) => 
     const [loading, setLoading] = useState(false);
     const [showOverlay, setShowOverlay] = useState(false);
     const [fadeClass, setFadeClass] = useState("opacity-0");
+    const { currency } = useCurrency();
+    const { locale } = useLocale()
     const pathname = usePathname();
     const dispatch = useAppDispatch();
     useEffect(() => {
         const load = async () => {
             setLoading(true);
             try {
-                await dispatch(setAppData());
+                await dispatch(setAppData({ currency, language: locale }));
             } finally {
                 setLoading(false);
             }
         };
         load();
-    }, [dispatch]);
+    }, [dispatch, currency, locale]);
     // Handle fade-in and fade-out
     useEffect(() => {
         if (loading) {

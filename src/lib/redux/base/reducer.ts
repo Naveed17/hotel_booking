@@ -12,7 +12,7 @@ interface State {
 const initialState: State = {
   direction: "ltr",
   locale: "en",
-  currency: "USD",
+  currency: "usd",
   country: "",
 };
 

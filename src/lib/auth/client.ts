@@ -1,6 +1,11 @@
 "use client";
 
-import { getUser as userData, signIn, signOut } from "@src/actions";
+import {
+  getUser as userData,
+  signIn,
+  signOut,
+  forget_password,
+} from "@src/actions";
 export interface SignInWithPasswordParams {
   email: string;
   password: string;
@@ -24,8 +29,14 @@ class AuthClient {
     return {};
   }
 
-  async resetPassword(_: ResetPasswordParams): Promise<{ error?: string }> {
-    return { error: "Password reset not implemented" };
+  async resetPassword(
+    payload: ResetPasswordParams
+  ): Promise<{ error?: string; message?: string }> {
+    const response = await forget_password(payload.email);
+    if (response.error) {
+      return { error: response.error };
+    }
+    return {};
   }
 
   async updatePassword(_: ResetPasswordParams): Promise<{ error?: string }> {

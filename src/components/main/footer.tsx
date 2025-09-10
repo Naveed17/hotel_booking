@@ -19,6 +19,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useAppSelector } from "@lib/redux/store";
 import useLocale from "@hooks/useLocale";
 import Container from "@components/core/container";
+import LocaleCurrencySelectors from "./components/localeCurrencySelectors";
 const newsletterSchema = z.object({
     email: z.string().email("Please enter a valid email address"),
 });
@@ -204,16 +205,7 @@ const Footer = (): React.JSX.Element => {
 
                     <div className="flex items-center gap-6">
                         {/* Language & Currency */}
-                        <div className="flex items-center gap-4 text-travel-gray-600">
-                            <div className="flex items-center gap-1">
-                                <span>English</span>
-                                <ChevronDown className="w-3 h-3" />
-                            </div>
-                            <div className="flex items-center gap-1">
-                                <span>USD</span>
-                                <ChevronDown className="w-3 h-3" />
-                            </div>
-                        </div>
+                        <LocaleCurrencySelectors />
 
                         {/* Social Media */}
                         <div className="flex items-center gap-4">

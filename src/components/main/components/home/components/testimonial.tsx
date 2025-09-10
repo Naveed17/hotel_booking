@@ -12,48 +12,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Container from "@components/core/container";
+import { useAppSelector } from "@lib/redux/store";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "James R., New York",
-    title: "Flawless from start to finish!",
-    content: "Booked my entire trip in minutes. The hotel was exactly as shown — beautiful, clean, and perfectly located. Highly recommended!",
-    rating: 5,
-    avatar: "https://api.builder.io/api/v1/image/assets/TEMP/cb95930f9f8be0a0839ef1413d2f54b11945c542?width=816",
-    roomImage: "https://api.builder.io/api/v1/image/assets/TEMP/cb95930f9f8be0a0839ef1413d2f54b11945c542?width=816"
-  },
-  {
-    id: 2,
-    name: "Hamza A., Pakistan",
-    title: "Flawless from start to finish!",
-    content: "Booked my entire trip in minutes. The hotel was exactly as shown — beautiful, clean, and perfectly located. Highly recommended!",
-    rating: 5,
-    avatar: "https://api.builder.io/api/v1/image/assets/TEMP/27743ca378b26f676be8a25d6c2c98953eef1054?width=816",
-    roomImage: "https://api.builder.io/api/v1/image/assets/TEMP/27743ca378b26f676be8a25d6c2c98953eef1054?width=816"
-  },
-  {
-    id: 3,
-    name: "Sarah L., London",
-    title: "Amazing experience!",
-    content: "The booking process was seamless and the hotel exceeded all expectations. Will definitely use this service again for future travels.",
-    rating: 5,
-    avatar: "https://api.builder.io/api/v1/image/assets/TEMP/cb95930f9f8be0a0839ef1413d2f54b11945c542?width=816",
-    roomImage: "https://api.builder.io/api/v1/image/assets/TEMP/cb95930f9f8be0a0839ef1413d2f54b11945c542?width=816"
-  },
-  {
-    id: 4,
-    name: "Michael T., Toronto",
-    title: "Perfect vacation planning!",
-    content: "From booking to checkout, everything was smooth. The hotel staff was friendly and the amenities were top-notch. Couldn't ask for more!",
-    rating: 5,
-    avatar: "https://api.builder.io/api/v1/image/assets/TEMP/27743ca378b26f676be8a25d6c2c98953eef1054?width=816",
-    roomImage: "https://api.builder.io/api/v1/image/assets/TEMP/27743ca378b26f676be8a25d6c2c98953eef1054?width=816"
-  }
-];
 
 const Testimonial = (): React.JSX.Element => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const testimonials = useAppSelector((state) => state?.appData.data?.testimonials);
 
   return (
     <section className="py-20 px-4 bg-gray-50">
@@ -113,7 +77,7 @@ const Testimonial = (): React.JSX.Element => {
             }}
             className="!pb-12"
           >
-            {testimonials.map((testimonial) => (
+            {testimonials?.filter((t: any) => t.status === "1")?.map((testimonial: any) => (
               <SwiperSlide key={testimonial.id}>
                 <TestimonialCard testimonial={testimonial} />
               </SwiperSlide>
