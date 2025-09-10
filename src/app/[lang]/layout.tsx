@@ -25,7 +25,7 @@ const notoKufiArabic = Noto_Kufi_Arabic({
   display: 'swap',
 })
 export const generateMetadata = async (): Promise<Metadata> => {
-  const { data }: any = await fetchAppData();
+  const { data }: any = await fetchAppData({ language: 'en', currency: 'usd' });
   const meta_data = data?.app;
   if (!meta_data) {
     return {
