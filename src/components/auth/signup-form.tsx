@@ -44,7 +44,7 @@ const Signup = () => {
 function SignUpForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const { countries, selectedCountry } = useCountries();
+    const { countries, isLoading: country_loading } = useCountries();
     const {
         handleSubmit,
         control,
@@ -77,11 +77,12 @@ function SignUpForm() {
     });
     const onSubmit = async (data: SignUpFormData) => {
         setIsLoading(true);
+        const country_code = countries.find((c: any) => c.value === data.country).code;
         const payload = {
             first_name: data.firstName,
             last_name: data.lastName,
             phone: data.phone,
-            phone_country_code: data.country,
+            phone_country_code: country_code,
             email: data.email,
             password: data.password,
             user_type: 'Customer'
@@ -89,11 +90,7 @@ function SignUpForm() {
         mutate(payload);
         setIsLoading(false);
     };
-    useEffect(() => {
-        if (selectedCountry) {
-            setValue("country", selectedCountry.code, { shouldValidate: true });
-        }
-    }, [selectedCountry, setValue]);
+
     return (
         <div className="w-full max-w-sm mx-auto">
             {/* Header */}
@@ -185,15 +182,21 @@ function SignUpForm() {
                                         </div>
 
                                         {/* Filtered Items */}
-                                        {filteredCountries?.length > 0 ? (
-                                            filteredCountries?.map((country, idx) => (
-                                                <SelectItem key={`${country.value}-${idx}`} value={country.value}>
-                                                    {country.label}
-                                                </SelectItem>
-                                            ))
-                                        ) : (
-                                            <div className="p-2 text-sm text-gray-500">No results found</div>
-                                        )}
+
+                                        {
+                                            country_loading ? (
+                                                <div className="p-2 text-sm text-gray-500">Loading...</div>
+                                            ) :
+
+                                                filteredCountries?.length > 0 ? (
+                                                    filteredCountries?.map((country, idx) => (
+                                                        <SelectItem key={`${country.value}-${idx}`} value={country.value}>
+                                                            {country.label}
+                                                        </SelectItem>
+                                                    ))
+                                                ) : (
+                                                    <div className="p-2 text-sm text-gray-500">No results found</div>
+                                                )}
                                     </SelectContent>
                                 </Select>
                             );
