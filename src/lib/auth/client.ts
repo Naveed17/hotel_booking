@@ -1,6 +1,5 @@
 "use client";
 
-import type { User } from "@src/@types/user";
 import { getUser as userData, signIn, signOut } from "@src/actions";
 export interface SignInWithPasswordParams {
   email: string;
@@ -10,6 +9,7 @@ export interface SignInWithPasswordParams {
 export interface ResetPasswordParams {
   email: string;
 }
+type User = any;
 
 class AuthClient {
   async signInWithPassword(
