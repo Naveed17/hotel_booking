@@ -64,7 +64,7 @@ const Newsletter = (): React.JSX.Element => {
     };
 
     return (
-        <section className="py-20 px-4">
+        <section className="py-20">
             <Container>
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     {/* Newsletter Image */}

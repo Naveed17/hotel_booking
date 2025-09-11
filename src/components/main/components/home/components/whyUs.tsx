@@ -7,7 +7,7 @@ const WhyUs = (): React.JSX.Element => {
     const router = useRouter();
     return (
 
-        <section className="py-20 px-4" >
+        <section className="py-20" >
             <Container>
                 {/* Section Header */}
                 <div className="text-center mb-12">

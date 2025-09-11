@@ -76,21 +76,100 @@ const Footer = (): React.JSX.Element => {
     };
 
     return (
-        <footer className="bg-white border-t border-gray-100 py-16 px-4">
-            <Container className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
-                    {/* Company Info */}
-                    <div className="md:col-span-2">
-                        <h3 className="text-2xl font-bold text-travel-blue mb-4 font-urbanist">
-                            Top Tier Travel
-                        </h3>
-                        <p className="text-travel-gray-600 mb-6 max-w-md">
-                            Unlock extraordinary stays with our expert-curated hotels and
-                            exclusive access to the world's finest destinations.
+        <footer className="bg-white border-t border-gray-100 pt-16 pb-8">
+
+            {/* Brand Info */}
+            <Container>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                    <h3 className="text-2xl font-bold text-travel-blue mb-4 font-urbanist">
+                        Top Tier Travel
+                    </h3>
+                    <p className="text-travel-gray-600">
+                        Unlock extraordinary stays with our expert-curated hotels and
+                        exclusive access to the world's finest destinations.
+                    </p>
+                </div>
+            </Container>
+            <div className="border-b border-gray-100 mb-24" />
+            <Container>
+                {/* === Top Row: Brand + Newsletter === */}
+
+                {/* === Links Grid === */}
+                <div className="grid grid-cols-1 md:grid-cols-8 gap-12 mb-12">
+                    {/* Left Content (Company Info + Links) */}
+                    <div className="md:col-span-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+                        {/* Explore */}
+                        <div>
+                            <h4 className="font-semibold text-travel-gray-900 mb-6">Explore</h4>
+                            <ul className="space-y-3">
+                                {exploreLinks.map((item: any, i: number) => (
+                                    <li key={i}>
+                                        <Link
+                                            href={`/${item.slug_url}`}
+                                            className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
+                                        >
+                                            {item.page_name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Support */}
+                        <div>
+                            <h4 className="font-semibold text-travel-gray-900 mb-6">Support</h4>
+                            <ul className="space-y-3">
+                                {supportLinks.map((item: any, i: number) => (
+                                    <li key={i}>
+                                        <Link
+                                            href={`/${item.slug_url}`}
+                                            className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
+                                        >
+                                            {item.page_name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Company */}
+                        <div>
+                            <h4 className="font-semibold text-travel-gray-900 mb-6">Company</h4>
+                            <ul className="space-y-3">
+                                {companyLinks.map((item: any, i: number) => (
+                                    <li key={i}>
+                                        <Link
+                                            href={`/${item.slug_url}`}
+                                            className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
+                                        >
+                                            {item.page_name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Downloads */}
+                        <div>
+                            <h4 className="font-semibold text-travel-gray-900 mb-6">Downloads</h4>
+                            <ul className="space-y-3">
+                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">iOS</a></li>
+                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Android</a></li>
+                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Mac</a></li>
+                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Windows</a></li>
+                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Chrome</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* Newsletter (Right Side) */}
+                    <div className="md:col-span-2 flex flex-col items-start">
+                        <h4 className="font-bold text-travel-gray-900 mb-4">Stay Connected</h4>
+                        <p className="text-travel-gray-600 text-sm mb-4 max-w-sm text-left">
+                            Subscribe to get travel tips, exclusive deals, and the latest updates.
                         </p>
 
-                        {/* Newsletter Signup */}
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm space-y-4">
                             <AnimatePresence>
                                 {errors.root && (
                                     <motion.div
@@ -144,81 +223,31 @@ const Footer = (): React.JSX.Element => {
                             </button>
                         </form>
                     </div>
-
-                    {/* Explore Links */}
-                    <div>
-                        <h4 className="font-bold text-travel-gray-900 mb-6">Explore</h4>
-                        <ul className="space-y-4">
-                            {exploreLinks.map((item: any, i: number) => (
-                                <li key={i}>
-                                    <Link
-                                        href={`/${item.slug_url}`}
-                                        className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
-                                    >
-                                        {item.page_name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Support Links */}
-                    <div>
-                        <h4 className="font-bold text-travel-gray-900 mb-6">Support</h4>
-                        <ul className="space-y-4">
-                            {supportLinks.map((item: any, i: number) => (
-                                <li key={i}>
-                                    <Link
-                                        href={`/${item.slug_url}`}
-                                        className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
-                                    >
-                                        {item.page_name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Company Links */}
-                    <div>
-                        <h4 className="font-bold text-travel-gray-900 mb-6">Company</h4>
-                        <ul className="space-y-4">
-                            {companyLinks.map((item: any, i: number) => (
-                                <li key={i}>
-                                    <Link
-                                        href={`/${item.slug_url}`}
-                                        className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
-                                    >
-                                        {item.page_name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
                 </div>
 
-                {/* Footer Bottom */}
-                <div className="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-gray-100">
-                    <p className="text-travel-gray-600 mb-4 sm:mb-0">
-                        © 2025 PHPTARVELS All rights reserved.
+                {/* === Bottom Bar === */}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-gray-100">
+                    <p className="text-sm text-travel-gray-500">
+                        © 2025 PHPTARVELS. All rights reserved.
                     </p>
 
-                    <div className="flex items-center gap-6">
-                        {/* Language & Currency */}
+                    <div className="flex flex-col sm:flex-row items-center gap-6">
+                        {/* Locale & Currency */}
                         <LocaleCurrencySelectors />
 
-                        {/* Social Media */}
+                        {/* Socials */}
                         <div className="flex items-center gap-4">
-                            <a href={data?.app?.social_facebook || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Facebook className="w-5 h-5" /></a>
-                            <a href={data?.app?.social_twitter || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Twitter className="w-5 h-5" /></a>
-                            <a href={data?.app?.social_instagram || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Instagram className="w-5 h-5" /></a>
-                            <a href={data?.app?.social_linkedin || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Linkedin className="w-5 h-5" /></a>
-                            <a href={data?.app?.social_youtube || "#"} className="text-travel-blue hover:text-travel-blue-600 transition-colors"><Youtube className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_facebook || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Facebook className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_twitter || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Twitter className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_instagram || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Instagram className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_linkedin || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Linkedin className="w-5 h-5" /></a>
+                            <a href={data?.app?.social_youtube || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Youtube className="w-5 h-5" /></a>
                         </div>
                     </div>
                 </div>
             </Container>
         </footer>
+
     );
 };
 

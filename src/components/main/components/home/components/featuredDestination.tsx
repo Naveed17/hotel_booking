@@ -9,7 +9,7 @@ function FeaturedDestination() {
     const { data } = useAppSelector((state) => state?.appData);
     const featured_tours = data?.featured_tours || [];
     return (
-        <section id="destinations" className="py-20 px-4">
+        <section id="destinations" className="py-20">
             <Container>
                 {/* Section Header */}
                 <div className="text-center mb-12">

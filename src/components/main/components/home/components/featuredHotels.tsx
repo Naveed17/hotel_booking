@@ -9,7 +9,7 @@ function FeaturedHotels() {
     const featured_hotels = data?.featured_hotels || [];
     return (
 
-        <section id="hotels" className="py-20 px-4 bg-gray-50">
+        <section id="hotels" className="py-20 bg-white">
             <Container>
                 {/* Section Header */}
                 <div className="text-center mb-12">

@@ -20,7 +20,7 @@ const Testimonial = (): React.JSX.Element => {
   const testimonials = useAppSelector((state) => state?.appData.data?.testimonials);
 
   return (
-    <section className="py-20 px-4 bg-gray-50">
+    <section className="py-20 bg-white">
       <Container>
         {/* Section Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12">
@@ -35,20 +35,7 @@ const Testimonial = (): React.JSX.Element => {
             </p>
 
             {/* Custom Navigation Buttons */}
-            <div className="flex gap-2">
-              <button
-                onClick={() => swiperInstance?.slidePrev()}
-                className="w-11 h-11 cursor-pointer bg-white hover:bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center transition-colors shadow-sm"
-              >
-                <ArrowLeft className="w-4 h-4 text-gray-600" />
-              </button>
-              <button
-                onClick={() => swiperInstance?.slideNext()}
-                className="w-11 h-11 cursor-pointer bg-travel-blue-600 hover:bg-travel-blue-700 rounded-full flex items-center justify-center transition-colors shadow-sm"
-              >
-                <ArrowRight className="w-4 h-4 text-white" />
-              </button>
-            </div>
+
           </div>
         </div>
 
@@ -77,12 +64,28 @@ const Testimonial = (): React.JSX.Element => {
             }}
             className="!pb-12"
           >
-            {testimonials?.filter((t: any) => t.status === "1")?.map((testimonial: any) => (
-              <SwiperSlide key={testimonial.id}>
-                <TestimonialCard testimonial={testimonial} />
-              </SwiperSlide>
-            ))}
+            {testimonials
+              ?.filter((t: any) => t.status === "1")
+              ?.map((testimonial: any) => (
+                <SwiperSlide key={testimonial.id}>
+                  <TestimonialCard testimonial={testimonial} />
+                </SwiperSlide>
+              ))}
           </Swiper>
+
+          {/* Centered Arrows */}
+          <button
+            onClick={() => swiperInstance?.slidePrev()}
+            className="hidden md:flex absolute z-50 top-[calc(50%-24px)] -translate-y-1/2 -left-5 w-11 h-11 cursor-pointer bg-white hover:bg-gray-100 border border-gray-200 rounded-full items-center justify-center transition-colors shadow-sm"
+          >
+            <ArrowLeft className="w-4 h-4 text-gray-600" />
+          </button>
+          <button
+            onClick={() => swiperInstance?.slideNext()}
+            className="hidden md:flex absolute z-50 top-[calc(50%-24px)] -translate-y-1/2 -right-5 w-11 h-11 cursor-pointer bg-travel-blue-600 hover:bg-travel-blue-700 rounded-full items-center justify-center transition-colors shadow-sm"
+          >
+            <ArrowRight className="w-4 h-4 text-white" />
+          </button>
         </div>
       </Container>
 
