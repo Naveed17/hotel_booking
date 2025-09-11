@@ -18,14 +18,14 @@ function HotelCard({ ...props }: any): React.JSX.Element {
         <article key={hotel.id} className="group">
             <div className="overflow-hidden rounded-6xl p-3 bg-travel-gray-soft border-none shadow-sm transition-all duration-300 hover:shadow-lg">
                 {/* Hotel Image */}
-                <div className="relative w-full h-64">
+                <div className="relative w-full h-100">
                     <ImageBlur
                         src={hotel.img}
                         alt={hotel.name}
                         fill
                         priority
                         quality={100}
-                        className="object-cover rounded-t-6xl transition-transform duration-300 group-hover:scale-105"
+                        className="object-cover rounded-6xl transition-transform duration-300 group-hover:scale-105"
                     />
                     <button className="absolute top-4 right-4 p-3 bg-white/90 hover:bg-white rounded-full transition-colors shadow-sm">
                         <Heart className="w-5 h-5 text-gray-600" />

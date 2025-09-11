@@ -6,7 +6,6 @@ export const fetchAppData = async (payload: {
   language: string;
   currency: string;
 }) => {
-  console.log(payload, "payload");
   try {
     const response = await fetch(`${baseUrl}/app`, {
       method: "POST",
