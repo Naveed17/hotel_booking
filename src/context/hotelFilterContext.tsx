@@ -21,6 +21,7 @@ export type HotelFilters = {
     amenities: string[];
     quickFilter: string;
     sort: string;
+    suppliers: string[];
 };
 export type HotelFiltersContextValue = {
     filters: HotelFilters;
@@ -38,6 +39,8 @@ export type HotelFiltersContextValue = {
     setQuickFilter: (filter: string) => void;
     setSort: (sort: string) => void;
     priceRange: PriceRange;
+    hotels_suppliers: Record<string, number>[] | any;
+    toggleSupplier: (supplier: string) => void;
 };
 
 export interface HotelFiltersProviderProps {
@@ -54,6 +57,7 @@ const initialFilters: HotelFilters = {
     amenities: [],
     quickFilter: '',
     sort: "",
+    suppliers: [],
 };
 
 // ===== Context =====
@@ -92,6 +96,25 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
         }),
     });
 
+    type HotelsResponse = {
+        data: any[];
+        total: number;
+    };
+    function getSuppliersWithQty(response: HotelsResponse) {
+        if (!response?.data) return [];
+
+        return Object.entries(
+            response.data.reduce((acc, item) => {
+                acc[item.supplier_name] = (acc[item.supplier_name] || 0) + 1;
+                return acc;
+            }, {} as Record<string, number>)
+        ).map(([name, qty]) => ({ name, qty }));
+    }
+
+
+
+    const hotels_suppliers = getSuppliersWithQty(initialHotels as any);
+
     // ===== Filtered Hotels =====
     const { mutate, data: filteredHotels, isPending } = useMutation({
         mutationFn: hotels_filter,
@@ -127,6 +150,13 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
             amenities: prev.amenities.includes(amenity)
                 ? prev.amenities.filter((a) => a !== amenity)
                 : [...prev.amenities, amenity],
+        }));
+    const toggleSupplier = (supplier: string) =>
+        setFilters((prev) => ({
+            ...prev,
+            suppliers: prev.suppliers.includes(supplier)
+                ? prev.suppliers.filter((a) => a !== supplier)
+                : [...prev.suppliers, supplier],
         }));
 
 
@@ -191,6 +221,8 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
             data: useFilter ? filteredHotels?.data ?? [] : initialHotels?.data ?? [],
             total: useFilter ? filteredHotels?.total ?? 0 : initialHotels?.total ?? 0,
             isLoading: isPending || isInitialLoading,
+            hotels_suppliers,
+            toggleSupplier
         }),
         [filters, filteredHotels, useFilter, initialHotels, isPending, isInitialLoading]
     );

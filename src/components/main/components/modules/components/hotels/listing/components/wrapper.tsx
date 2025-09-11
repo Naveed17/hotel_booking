@@ -8,7 +8,10 @@ import { HotelCardLoading } from '@components/core/components';
 import { formatPrice } from '@src/utils/formatNumber';
 import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@components/ui/drawer";
 import { HotelsMap } from '@components/ui/hotelMap';
+import ImageBlur from '@src/utils/blurImage';
+import { useUser } from '@hooks/use-user';
 const Wrapper = (): React.JSX.Element => {
+    const { user } = useUser();
     const [selectedSort, setSelectedSort] = useState("");
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [openMap, setOpenMap] = useState(false)
@@ -129,10 +132,11 @@ const Wrapper = (): React.JSX.Element => {
                                             : "h-60 sm:h-72 lg:h-80 p-2"
                                             }`}
                                     >
-                                        <img
+                                        <ImageBlur
                                             src={hotel.img}
                                             alt={hotel.name}
-                                            className="w-full h-full object-cover rounded-[2rem] lg:rounded-[2.3rem]"
+                                            fill
+                                            className="rounded-[2rem] lg:rounded-[2.3rem]"
                                         />
                                     </motion.div>
 
@@ -147,7 +151,7 @@ const Wrapper = (): React.JSX.Element => {
                                             <div
                                                 className={`flex ${viewMode === "list"
                                                     ? "flex-row items-center"
-                                                    : "flex-col gap-1"
+                                                    : "flex-col gap-1 mt-2"
                                                     } justify-between mb-2`}
                                             >
                                                 <h3
@@ -167,6 +171,18 @@ const Wrapper = (): React.JSX.Element => {
                                                     {hotel.location}
                                                 </span>
                                             </div>
+                                            {user && user.user_type === "Admin" && (
+                                                <div className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-50 px-1.5 py-0.5 text-sm font-semibold">
+                                                    <img
+                                                        src="https://via.placeholder.com/24"
+                                                        alt="supplier"
+                                                        className="h-4 w-4 rounded-full object-cover"
+                                                    />
+                                                    <span>{hotel.supplier_name}</span>
+                                                </div>
+                                            )}
+
+
                                         </div>
 
                                         <div className="space-y-4">

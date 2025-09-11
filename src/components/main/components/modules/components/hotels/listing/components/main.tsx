@@ -115,18 +115,19 @@ export default function ListingLayout({ children, dict }: ListingLayoutProps) {
                     </Container>
                 </div>
                 <Container className="mt-8">
-                    <div className="grid grid-cols-36 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-36 gap-8">
                         {/* Sidebar */}
-                        <aside className="md:col-span-10 col-span-36 mb-6">
+                        <aside className="col-span-1 md:col-span-10 mb-6">
                             <Filter dict={dict} />
                         </aside>
 
                         {/* Main Results */}
-                        <main className="md:col-span-26 col-span-36 mb-4">
+                        <main className="col-span-1 md:col-span-26 mb-4">
                             {children}
                         </main>
                     </div>
                 </Container>
+
             </div>
         </div>
     );

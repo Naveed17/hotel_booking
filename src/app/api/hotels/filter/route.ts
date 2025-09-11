@@ -79,7 +79,6 @@ export async function POST(request: Request) {
     }
 
     let filteredHotels = [...hotels];
-    console.log(filter);
 
     // ==== Apply filters ====
     if (
@@ -141,6 +140,12 @@ export async function POST(request: Request) {
             return false;
           }
         }
+        // Hotels Suppliers
+        if (Array.isArray(filter.suppliers) && filter.suppliers.length > 0) {
+          if (h.supplier_name) {
+            if (!filter.suppliers.includes(h.supplier_name)) return false;
+          }
+        }
         // quick filter
         if (filter.quickFilter) {
           const q = String(filter.quickFilter).toLowerCase();
@@ -192,7 +197,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         data: filteredHotels,
-        total_records: filteredHotels.length,
+        total: filteredHotels.length,
       },
       { status: 200 }
     );

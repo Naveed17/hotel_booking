@@ -28,7 +28,7 @@ function Hero() {
 
     return (
         <motion.section
-            className="relative h-[634px] bg-cover bg-center bg-no-repeat flex items-center justify-center"
+            className="relative pb-5 pt-14 md:pt-0 md:h-[634px] bg-cover bg-center bg-no-repeat flex items-center justify-center"
             style={{
                 backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 46.98%, rgba(0, 0, 0, 0.77) 92.61%), url('https://api.builder.io/api/v1/image/assets/TEMP/8dcf4684796d62a910be9c54b0c2c595edef1e5a?width=2880')`
             }}

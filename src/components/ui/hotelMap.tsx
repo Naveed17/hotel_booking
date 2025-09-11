@@ -47,11 +47,16 @@ export default function HotelsMap() {
             {hotels?.map((hotel: any) => (
                 <Marker
                     key={hotel.hotel_id}
-                    position={[
-                        parseFloat(hotel.latitude),
-                        parseFloat(hotel.longitude),
-                    ]}
+                    position={[parseFloat(hotel.latitude), parseFloat(hotel.longitude)]}
                     icon={getMarkerIcon(hotel.actual_price, hotel.currency)}
+                    eventHandlers={{
+                        mouseover: (e) => {
+                            e.target.openPopup();
+                        },
+                        mouseout: (e) => {
+                            e.target.closePopup();
+                        },
+                    }}
                 >
                     <Popup>
                         <strong>{hotel.name}</strong>
@@ -61,6 +66,7 @@ export default function HotelsMap() {
                         Price: {formatPrice(hotel.actual_price, hotel.currency)}
                     </Popup>
                 </Marker>
+
             ))}
         </MapContainer>
     );

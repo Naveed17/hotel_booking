@@ -37,9 +37,6 @@ function FeaturedCard({ ...props }: any): React.JSX.Element {
                         <button className="flex-1 bg-travel-blue hover:bg-travel-blue-600 text-white rounded-full py-3 px-6 font-semibold transition-colors">
                             Explore Now
                         </button>
-                        <button className="p-3 border border-gray-200 rounded-full hover:bg-gray-50 transition-colors">
-                            <Heart className="w-4 h-4" />
-                        </button>
                     </div>
                 </div>
             </div>

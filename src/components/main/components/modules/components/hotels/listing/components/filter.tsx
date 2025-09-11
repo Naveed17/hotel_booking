@@ -6,6 +6,7 @@ import { useHotelFilters } from '@src/context/hotelFilterContext';
 import { PriceRangeSlider } from '@components/core/components';
 import { Search, Star } from 'lucide-react';
 import { Checkbox } from '@components/ui/checkbox';
+import { useUser } from '@hooks/use-user';
 
 // --- Sub Components ---
 function PriceFilter({
@@ -434,7 +435,42 @@ function AmenitiesFilter({
         </>
     );
 }
+function HotelSuppliersFilter({
+    value,
+    toggle,
+    suppliers
+}: {
+    value: string[];
+    toggle: (amenity: string) => void;
+    suppliers: Record<string, number | any>[];
+}) {
 
+    return (
+        <>
+            <div className="space-y-3">
+                {suppliers.map((supplier, index) => (
+                    <div key={index} className="flex items-center">
+                        <div className="flex items-center gap-2">
+                            <span className="text-sm text-muted">{supplier?.name}</span>
+                        </div>
+                        <Checkbox
+                            checked={value.includes(supplier?.name)}
+                            className='ms-auto'
+                            onCheckedChange={(checked) => {
+                                if (checked) {
+                                    toggle(supplier?.name);
+                                } else {
+                                    toggle(supplier?.name);
+                                }
+                            }}
+                        />
+
+                    </div>
+                ))}
+            </div>
+        </>
+    );
+}
 // --- Main Component ---
 export default function HotelFilters({
     dict,
@@ -444,7 +480,7 @@ export default function HotelFilters({
 
 }) {
 
-
+    const { user } = useUser();
     const {
         filters,
         setPriceRange,
@@ -456,13 +492,9 @@ export default function HotelFilters({
         applyFilter,
         isLoading,
         priceRange,
-        data,
+        hotels_suppliers,
+        toggleSupplier
     } = useHotelFilters();
-
-
-
-
-
     // Debounce price updates to avoid spamming API
     const debouncedSetPriceRange = useMemo(() => {
         const fn = debounce((min: number, max: number) => setPriceRange(min, max), 250);
@@ -526,6 +558,17 @@ export default function HotelFilters({
                     />
                 ),
             },
+            {
+                id: 'hotels_suppliers',
+                label: 'Hotels Suppliers',
+                content: (
+                    <HotelSuppliersFilter
+                        value={filters.suppliers || []}
+                        toggle={toggleSupplier}
+                        suppliers={hotels_suppliers}
+                    />
+                ),
+            },
         ],
         [filters, debouncedSetPriceRange, toggleStar, setGuestRating, toggleAmenity],
     );
@@ -537,28 +580,37 @@ export default function HotelFilters({
 
             {/* Filters */}
             <div className="animate-fadeIn">
-                {(
-                    filterItems.map((filter) => (
-                        <div key={filter.id}>
+                {filterItems.map((filter) => {
+                    if (
+                        filter.id === "hotels_suppliers" &&
+                        !(user && user.user_type === "Admin")
+                    ) {
+                        return null;
+                    }
 
-                            <label className="block text-sm font-semibold text-text-primary mb-3">{filter.label}</label>
+                    return (
+                        <div key={filter.id}>
+                            <label className="mb-3 block text-sm font-semibold text-text-primary">
+                                {filter.label}
+                            </label>
 
                             <AnimatePresence>
-
                                 <motion.div
                                     initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: 'auto', opacity: 1 }}
+                                    animate={{ height: "auto", opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
                                     transition={{ duration: 0.2 }}
                                     className="overflow-hidden px-3 pb-6"
                                 >
                                     {filter.content}
                                 </motion.div>
-
                             </AnimatePresence>
                         </div>
-                    ))
-                )}
+                    );
+                })}
+
+
+
             </div>
             <div className="space-y-3">
                 <button onClick={() => clearAll()} className="w-full py-3 bg-gray-100 text-brand-blue rounded-lg font-medium hover:bg-gray-200 transition-colors">
