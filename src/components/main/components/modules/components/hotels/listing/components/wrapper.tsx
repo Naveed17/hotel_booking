@@ -122,14 +122,14 @@ const Wrapper = (): React.JSX.Element => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                                    className={`bg-white rounded-[2.8rem] lg:rounded-[3rem] border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 ${viewMode === "list" ? "flex flex-col sm:flex-row" : ""
+                                    className={`bg-white rounded-[2.8rem] p-2 lg:rounded-[3rem] border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 ${viewMode === "list" ? "flex flex-col sm:flex-row" : ""
                                         }`}
                                 >
                                     {/* Image Section */}
                                     <motion.div
-                                        className={`relative overflow-hidden rounded-[2.5rem] lg:rounded-[2.8rem] bg-white ${viewMode === "list"
+                                        className={`relative overflow-hidden rounded-[2.5rem] p-2 lg:rounded-[2.8rem] bg-white ${viewMode === "list"
                                             ? "sm:w-80 flex-shrink-0 h-48 sm:h-full"
-                                            : "h-60 sm:h-72 lg:h-80 p-2"
+                                            : "h-60 sm:h-72 lg:h-80"
                                             }`}
                                     >
                                         <ImageBlur
