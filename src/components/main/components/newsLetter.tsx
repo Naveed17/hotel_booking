@@ -70,7 +70,7 @@ const Newsletter = (): React.JSX.Element => {
                     {/* Newsletter Image */}
                     <div className="lg:w-1/2">
                         <img
-                            src="https://api.builder.io/api/v1/image/assets/TEMP/c2d705ffb3e356d78a88075f7eb97b8771651af6?width=1396"
+                            src="/images/Rectangle 817.png"
                             alt="Travel journey"
                             className="w-full h-96 object-cover rounded-6xl"
                         />

@@ -2,6 +2,12 @@
 import Container from "@components/core/container";
 import { useAppSelector } from "@lib/redux/store";
 import { useRouter } from "next/navigation";
+const images = [
+    'png-right-tick-icon-jewelry-purple-white-background 1.png',
+    "34449178_calendar_lima_84 1.png",
+    "144152676_98453b34-9cb4-42bf-8c80-5950a6a7111a 1.png"
+
+]
 const WhyUs = (): React.JSX.Element => {
     const whyChooseUsFeatures = useAppSelector((state) => state?.appData.data?.our_services);
     const router = useRouter();
@@ -38,11 +44,11 @@ const WhyUs = (): React.JSX.Element => {
                                 </div>
 
                                 {/* Background Image */}
-                                <div className="absolute right-0 top-0 h-full w-1/2 opacity-20">
+                                <div className={`absolute  h-full w-1/2 ${index === 0 ? '-right-8 -bottom-8' : 'right-0 -bottom-6'}`}>
                                     <img
-                                        src={feature.background_image}
+                                        src={`/images/${images[index]}`}
                                         alt={feature.title}
-                                        className="w-full h-full object-cover"
+                                        className={`w-full h-full object-contain ${index === 0 ? 'object-cover scale-[.7]' : ''}`}
                                     />
                                 </div>
                             </div>
