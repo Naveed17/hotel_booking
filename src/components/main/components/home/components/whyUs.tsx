@@ -2,12 +2,7 @@
 import Container from "@components/core/container";
 import { useAppSelector } from "@lib/redux/store";
 import { useRouter } from "next/navigation";
-const images = [
-    'png-right-tick-icon-jewelry-purple-white-background 1.png',
-    "34449178_calendar_lima_84 1.png",
-    "144152676_98453b34-9cb4-42bf-8c80-5950a6a7111a 1.png"
 
-]
 const WhyUs = (): React.JSX.Element => {
     const whyChooseUsFeatures = useAppSelector((state) => state?.appData.data?.our_services);
     const router = useRouter();
@@ -29,30 +24,42 @@ const WhyUs = (): React.JSX.Element => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {whyChooseUsFeatures?.map((feature: any, index: number) => (
                         <article key={index} className="group">
-                            <div className="overflow-hidden rounded-2xl bg-travel-blue text-white border-none shadow-lg relative transition-transform duration-300 hover:scale-105">
-                                {/* Feature Content */}
-                                <div className="p-8 relative z-10">
+                            <div className="relative overflow-hidden flex flex-col rounded-2xl bg-travel-blue text-white border-none shadow-lg transition-transform duration-300 hover:scale-105">
+
+                                {/* Content */}
+                                <div className="p-10 flex flex-col flex-grow z-10">
                                     <h3 className="text-2xl font-bold mb-4 font-urbanist">
                                         {feature?.title}
                                     </h3>
-                                    <p className="text-white/80 mb-6 leading-relaxed">
-                                        {feature.description}
-                                    </p>
-                                    <button onClick={() => router.push(`/${feature.slug}`)} className="bg-white text-travel-blue hover:bg-gray-100 rounded-full px-6 py-2 font-medium cursor-pointer transition-colors">
-                                        {feature.button_text}
-                                    </button>
+
+                                    {/* Fixed 3 lines */}
+                                    <div className="text-white/80 mb-8 leading-relaxed line-clamp-3">
+                                        {feature?.description}
+                                    </div>
+
+                                    {/* Button */}
+                                    <div className="mt-auto">
+                                        <button
+                                            onClick={() => router.push(`/${feature.slug}`)}
+                                            className="bg-white text-travel-blue hover:bg-gray-100 rounded-full px-6 py-2 font-medium cursor-pointer transition-colors"
+                                        >
+                                            {feature.button_text}
+                                        </button>
+                                    </div>
                                 </div>
 
-                                {/* Background Image */}
-                                <div className={`absolute  h-full w-1/2 ${index === 0 ? '-right-8 -bottom-8' : 'right-0 -bottom-6'}`}>
+                                {/* Image normalized */}
+                                <div className={`absolute ${index === 0 ? '-bottom-6 -right-6' : '-bottom-2 -right-2'}   w-36 h-36 rounded-full flex items-center justify-center`}>
                                     <img
-                                        src={`/images/${images[index]}`}
+                                        src={feature.background_image}
                                         alt={feature.title}
-                                        className={`w-full h-full object-contain ${index === 0 ? 'object-cover scale-[.7]' : ''}`}
+                                        className={`w-full h-full object-cover ${index === 0 ? 'scale-[0.7]' : ''}`}
                                     />
                                 </div>
                             </div>
                         </article>
+
+
                     ))}
                 </div>
             </Container>

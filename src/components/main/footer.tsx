@@ -82,7 +82,7 @@ const Footer = (): React.JSX.Element => {
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
                     <h3 className="text-2xl font-bold text-travel-blue mb-4 font-urbanist">
-                        Top Tier Travel
+                        Travels Website
                     </h3>
                     <p className="text-travel-gray-600">
                         Unlock extraordinary stays with our expert-curated hotels and
@@ -155,9 +155,6 @@ const Footer = (): React.JSX.Element => {
                             <ul className="space-y-3">
                                 <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">iOS</a></li>
                                 <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Android</a></li>
-                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Mac</a></li>
-                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Windows</a></li>
-                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Chrome</a></li>
                             </ul>
                         </div>
                     </div>
@@ -228,7 +225,7 @@ const Footer = (): React.JSX.Element => {
                 {/* === Bottom Bar === */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-gray-100">
                     <p className="text-sm text-travel-gray-500">
-                        © 2025 PHPTARVELS. All rights reserved.
+                        © 2025 Travels Website. All rights reserved.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-6">

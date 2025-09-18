@@ -1,18 +1,14 @@
 import React from 'react';
+import Link from 'next/link';
 import {
     Heart,
-    Star,
-    Waves,
-    Car,
-    Utensils,
-    Dumbbell
 } from "lucide-react";
 import ImageBlur from '@src/utils/blurImage';
 import { getFeatureIcon } from '@src/utils/featureIcon';
 import renderStars from '@src/utils/renderStars';
 
 function HotelCard({ ...props }: any): React.JSX.Element {
-    const { hotel } = props;
+    const { hotel, lang = 'en' } = props;
 
     return (
         <article key={hotel.id} className="group">
@@ -20,7 +16,7 @@ function HotelCard({ ...props }: any): React.JSX.Element {
                 {/* Hotel Image */}
                 <div className="relative w-full h-100">
                     <ImageBlur
-                        src={hotel.img}
+                        src={hotel.image}
                         alt={hotel.name}
                         fill
                         priority
@@ -81,9 +77,11 @@ function HotelCard({ ...props }: any): React.JSX.Element {
 
                     {/* Action Buttons */}
                     <div className="flex gap-3 mt-6">
-                        <button className="flex-1 bg-travel-blue hover:bg-travel-blue-600 text-white rounded-full py-3 font-semibold transition-colors">
-                            Book now
-                        </button>
+                        <Link href={`/${lang}/hotels/${hotel.hotel_id || hotel.id}`} className="flex-1">
+                            <button className="w-full bg-travel-blue hover:bg-travel-blue-600 text-white rounded-full py-3 font-semibold transition-colors">
+                                View Details
+                            </button>
+                        </Link>
                         <button className="w-12 h-12 flex items-center justify-center bg-white/90 hover:bg-white rounded-full transition-colors shadow-sm">
                             <Heart className="w-5 h-5 text-gray-600" />
                         </button>

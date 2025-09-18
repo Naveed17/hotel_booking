@@ -86,6 +86,7 @@ export default function LocaleCurrencySelectors() {
     const dispatch = useAppDispatch();
     const { locale } = useLocale();
     const { currency } = useCurrency();
+    console.log('currency', currency)
     const [direction, setDirectionHandler] = useDirection();
     const changeLocale = useChangeLocale();
     const handleLanguageChange = (value: string) => {
@@ -103,7 +104,7 @@ export default function LocaleCurrencySelectors() {
     return (
         <div className="flex items-center gap-4 text-travel-gray-600">
             <Dropdown label="Locale" items={locales} value={locale} onChange={(v: string) => handleLanguageChange(v.toLocaleLowerCase())} />
-            <Dropdown label="Currency" items={currencies} value={currency} onChange={(v: string) => dispatch(setCurrency(v.toLocaleLowerCase()))} />
+            <Dropdown label="Currency" items={currencies} value={currency.toLocaleLowerCase()} onChange={(v: string) => dispatch(setCurrency(v.toLocaleLowerCase()))} />
         </div>
     );
 }

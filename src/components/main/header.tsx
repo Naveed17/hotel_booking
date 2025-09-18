@@ -32,7 +32,7 @@ export default function Header({ ...props }: { dictionary: any }): React.JSX.Ele
                     <div className="flex items-center  h-16 sm:h-20">
                         {/* Logo */}
                         <div className="flex-shrink-0">
-                            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold logo">Top Tier Travel</h1>
+                            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold logo">Travel Website</h1>
                         </div>
 
                         {/* Desktop Navigation */}

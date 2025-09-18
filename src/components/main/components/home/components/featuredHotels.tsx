@@ -2,9 +2,12 @@
 import { HotelCard } from '@components/core/components'
 import Container from '@components/core/container';
 import { useAppSelector } from '@lib/redux/store';
+import { useParams } from 'next/navigation';
 import React from 'react'
 
 function FeaturedHotels() {
+    const params = useParams();
+    const lang = params?.lang as string || 'en';
     const { data } = useAppSelector((state) => state?.appData);
     const featured_hotels = data?.featured_hotels || [];
     return (
@@ -25,7 +28,7 @@ function FeaturedHotels() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {featured_hotels.map((hotel: any) => (
                         <React.Fragment key={hotel.id}>
-                            <HotelCard hotel={hotel} />
+                            <HotelCard hotel={hotel} lang={lang} />
                         </React.Fragment>
                     ))}
                 </div>

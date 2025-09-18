@@ -10,8 +10,12 @@ import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@components/u
 import { HotelsMap } from '@components/ui/hotelMap';
 import ImageBlur from '@src/utils/blurImage';
 import { useUser } from '@hooks/use-user';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 const Wrapper = (): React.JSX.Element => {
     const { user } = useUser();
+    const params = useParams();
+    const lang = params?.lang as string || 'en';
     const [selectedSort, setSelectedSort] = useState("");
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [openMap, setOpenMap] = useState(false)
@@ -204,9 +208,11 @@ const Wrapper = (): React.JSX.Element => {
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <button className="w-full bg-travel-blue text-white py-3 rounded-full font-semibold hover:bg-travel-blue/90 transition-colors text-sm lg:text-base">
-                                                    Book now
-                                                </button>
+                                                <Link href={`/${lang}/hotels/${hotel.hotel_id}`} className="w-full">
+                                                    <button className="w-full bg-travel-blue text-white py-3 rounded-full font-semibold hover:bg-travel-blue/90 transition-colors text-sm lg:text-base">
+                                                        View Details
+                                                    </button>
+                                                </Link>
                                                 <button className="p-3 border border-gray-200 rounded-full hover:bg-gray-50 transition-colors">
                                                     <Heart className="w-4 h-4" />
                                                 </button>

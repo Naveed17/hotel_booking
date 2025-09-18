@@ -1,16 +1,15 @@
 "use server";
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 import { createSession, getSession, logout } from "@lib/auth/session";
 import { siteUrl } from "./actions";
+
 export const fetchAppData = async (payload: {
   language: string;
   currency: string;
 }) => {
   try {
-    const response = await fetch(`${baseUrl}/app`, {
+    const response = await fetch(`${siteUrl}/api/mock/app`, {
       method: "POST",
       body: JSON.stringify({
-        api_key: "api_key001",
         language: payload?.language,
         currency: payload?.currency,
       }),
@@ -42,7 +41,7 @@ export const newsLetter = async ({
   formData.append("name", name);
 
   try {
-    const response = await fetch(`${baseUrl}/newsletter-subscribe`, {
+    const response = await fetch(`${siteUrl}/api/mock/newsletter`, {
       method: "POST",
       body: formData,
     });
@@ -105,7 +104,7 @@ export const hotels_search = async (slug: string[]) => {
   });
 
   try {
-    const response = await fetch(`${baseUrl}/hotel_search`, {
+    const response = await fetch(`${siteUrl}/api/mock/hotels`, {
       method: "POST",
       body: formData,
     });
@@ -167,7 +166,7 @@ export const sign_up = async (payload: Record<string, any>) => {
   });
 
   try {
-    const response = await fetch(`${baseUrl}/signup`, {
+    const response = await fetch(`${siteUrl}/api/mock/auth/signup`, {
       method: "POST",
       body: formData,
     });
@@ -177,7 +176,6 @@ export const sign_up = async (payload: Record<string, any>) => {
     if (!response.ok || data?.status === false) {
       return { error: data?.message || "Something went wrong" };
     }
-    console.log(data);
     return data;
   } catch (error) {
     return { error: (error as Error).message || "An error occurred" };
@@ -190,7 +188,7 @@ export const signIn = async (payload: { email: string; password: string }) => {
   formData.append("email", payload.email);
   formData.append("password", payload.password);
   try {
-    const response = await fetch(`${baseUrl}/login`, {
+    const response = await fetch(`${siteUrl}/api/mock/auth/login`, {
       method: "POST",
       body: formData,
     });
@@ -220,7 +218,7 @@ export const getUser = async () => {
 };
 export const fetchCountries = async () => {
   try {
-    const response = await fetch(`${baseUrl}/countries`, {
+    const response = await fetch(`${siteUrl}/api/mock/countries`, {
       method: "POST",
     });
 
@@ -238,7 +236,7 @@ export const forget_password = async (email: string) => {
   const formData = new FormData();
   formData.append("email", email);
   try {
-    const response = await fetch(`${baseUrl}/forget_password`, {
+    const response = await fetch(`${siteUrl}/api/mock/auth/forgot`, {
       method: "POST",
       body: formData,
     });

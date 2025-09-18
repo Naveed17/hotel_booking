@@ -14,8 +14,8 @@ function FeaturedCard({ ...props }: any): React.JSX.Element {
                 {/* Destination Image */}
                 <div className="relative w-full h-100">
                     <ImageBlur
-                        src={destination.img}
-                        alt={destination.name}
+                        src={destination.image}
+                        alt={destination.title}
                         fill
                         priority
                         quality={100}

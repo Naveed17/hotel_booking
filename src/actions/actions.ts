@@ -1,10 +1,9 @@
-export const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
 export const getDestinations = async (city: string) => {
   try {
     const response = await fetch(
-      `${baseUrl}/hotels_locations?city=${encodeURIComponent(city)}`,
+      `${siteUrl}/api/mock/locations?city=${encodeURIComponent(city)}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -17,7 +16,6 @@ export const getDestinations = async (city: string) => {
     if (!response.ok || data?.status === false) {
       return { error: data?.message || "Something went wrong" };
     }
-    console.log(data);
 
     return data?.data || [];
   } catch (error) {
