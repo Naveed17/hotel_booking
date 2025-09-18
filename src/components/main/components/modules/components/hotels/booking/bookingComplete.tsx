@@ -65,7 +65,7 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
 
   const handleDownloadReceipt = async () => {
     if (!hotel) return;
-    
+
     setIsGeneratingPDF(true);
     try {
       await generateReceipt({
@@ -127,7 +127,7 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
           <p className="text-gray-600">Your reservation has been successfully confirmed</p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Booking Details */}
             <div className="lg:col-span-2 space-y-6">
@@ -216,7 +216,7 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
 
               {/* Actions */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <button 
+                <button
                   onClick={handleDownloadReceipt}
                   disabled={isGeneratingPDF}
                   className="flex items-center justify-center gap-2 px-6 py-3 bg-travel-blue text-white rounded-lg font-medium hover:bg-travel-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -235,7 +235,7 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
               <div className="sticky top-8">
                 <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
                   <h3 className="text-lg font-bold text-gray-900 mb-4">Your Hotel</h3>
-                  
+
                   {/* Hotel Info */}
                   <div className="mb-6">
                     <div className="relative w-full h-32 rounded-lg overflow-hidden mb-4">
