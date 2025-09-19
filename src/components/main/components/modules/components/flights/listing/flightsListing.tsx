@@ -16,6 +16,8 @@ import {
     Shield,
     Luggage
 } from 'lucide-react'
+import Select from '@components/core/select'
+import { useRouter } from 'next/navigation'
 
 // Mock flight data
 const mockFlights = [
@@ -100,7 +102,7 @@ const FlightsListing = (): React.JSX.Element => {
     const [showFilters, setShowFilters] = useState(false);
     const [selectedFlight, setSelectedFlight] = useState<any>(null);
     const [selectedClass, setSelectedClass] = useState('Economy');
-
+    const router = useRouter()
     return (
         <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-50 pt-20">
             <div className="container mx-auto px-4 py-8">
@@ -178,21 +180,22 @@ const FlightsListing = (): React.JSX.Element => {
                         {/* Flight Results */}
                         <div className="lg:col-span-3">
                             {/* Sort Options */}
-                            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-4 mb-6">
+                            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-4 mb-6 relative z-10">
                                 <div className="flex items-center justify-between">
                                     <p className="text-gray-600">{mockFlights.length} flights found</p>
                                     <div className="flex items-center gap-2">
                                         <ArrowUpDown className="w-4 h-4 text-gray-500" />
-                                        <select
-                                            value={sortBy}
-                                            onChange={(e) => setSortBy(e.target.value)}
-                                            className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-                                        >
-                                            <option value="price">Price (Low to High)</option>
-                                            <option value="duration">Duration</option>
-                                            <option value="departure">Departure Time</option>
-                                            <option value="rating">Rating</option>
-                                        </select>
+                                        <Select
+                                            value={{ value: sortBy, label: sortBy === 'price' ? 'Price (Low to High)' : sortBy === 'duration' ? 'Duration' : sortBy === 'departure' ? 'Departure Time' : 'Rating' }}
+                                            onChange={(option) => setSortBy((option as any)?.value || 'price')}
+                                            options={[
+                                                { value: 'price', label: 'Price (Low to High)' },
+                                                { value: 'duration', label: 'Duration' },
+                                                { value: 'departure', label: 'Departure Time' },
+                                                { value: 'rating', label: 'Rating' }
+                                            ]}
+                                            className="min-w-[200px]"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +264,7 @@ const FlightsListing = (): React.JSX.Element => {
                                                 </div>
                                                 <p className="text-3xl font-bold text-gray-900 mb-1">${flight.price}</p>
                                                 <p className="text-sm text-gray-600 mb-4">per person</p>
-                                                <button 
+                                                <button
                                                     onClick={() => setSelectedFlight(flight)}
                                                     className="w-full md:w-auto bg-gradient-to-r from-sky-600 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-sky-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                                                 >
@@ -312,7 +315,7 @@ const FlightsListing = (): React.JSX.Element => {
                                 className="fixed inset-0 bg-black/50 z-50"
                                 onClick={() => setSelectedFlight(null)}
                             />
-                            
+
                             {/* Drawer */}
                             <motion.div
                                 initial={{ x: '100%' }}
@@ -385,13 +388,12 @@ const FlightsListing = (): React.JSX.Element => {
                                             {selectedFlight.classes?.map((flightClass: any) => (
                                                 <div
                                                     key={flightClass.name}
-                                                    className={`border-2 rounded-xl p-4 cursor-pointer transition-all duration-300 ${
-                                                        selectedClass === flightClass.name
-                                                            ? 'border-sky-500 bg-sky-50'
-                                                            : flightClass.available
+                                                    className={`border-2 rounded-xl p-4 cursor-pointer transition-all duration-300 ${selectedClass === flightClass.name
+                                                        ? 'border-sky-500 bg-sky-50'
+                                                        : flightClass.available
                                                             ? 'border-gray-200 hover:border-sky-300'
                                                             : 'border-gray-200 opacity-50 cursor-not-allowed'
-                                                    }`}
+                                                        }`}
                                                     onClick={() => flightClass.available && setSelectedClass(flightClass.name)}
                                                 >
                                                     <div className="flex justify-between items-center">
@@ -442,8 +444,8 @@ const FlightsListing = (): React.JSX.Element => {
                                                 ${selectedFlight.classes?.find((c: any) => c.name === selectedClass)?.price || selectedFlight.price}
                                             </span>
                                         </div>
-                                        <button 
-                                            onClick={() => window.location.href = '/en/flights/booking'}
+                                        <button
+                                            onClick={() => router.push('/flights/booking')}
                                             className="w-full bg-gradient-to-r from-sky-600 to-blue-600 text-white py-4 rounded-xl font-semibold hover:from-sky-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                                         >
                                             Book This Flight

@@ -12,6 +12,7 @@ import ImageBlur from '@src/utils/blurImage';
 import { useUser } from '@hooks/use-user';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import Select from '@components/core/select';
 const Wrapper = (): React.JSX.Element => {
     const { user } = useUser();
     const params = useParams();
@@ -47,19 +48,17 @@ const Wrapper = (): React.JSX.Element => {
                     <div className="flex items-center justify-between sm:justify-end gap-3 lg:gap-4">
                         <div className="flex items-center gap-2">
                             <span className="text-gray-400 font-medium text-sm lg:text-base">Sort :</span>
-                            <div className="relative">
-                                <select
-                                    value={selectedSort}
-                                    onChange={(e) => handleSort(e.target.value)}
-                                    className="appearance-none bg-filter-bg px-3 lg:px-4 py-2 pr-7 lg:pr-8 rounded-lg text-xs lg:text-sm text-text-muted focus:outline-none focus:ring-2 focus:ring-brand-blue border-none"
-                                >
-                                    <option value="popularity">Popularity</option>
-                                    <option value="low_to_high">Price Low to High</option>
-                                    <option value='high_to_low'>Price High to Low</option>
-                                    <option value='rating'>Rating</option>
-                                </select>
-                                <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 h-3 w-3 lg:h-4 lg:w-4 text-text-secondary pointer-events-none" />
-                            </div>
+                            <Select
+                                value={{ value: selectedSort, label: selectedSort === 'popularity' ? 'Popularity' : selectedSort === 'low_to_high' ? 'Price Low to High' : selectedSort === 'high_to_low' ? 'Price High to Low' : 'Rating' }}
+                                onChange={(option) => handleSort((option as any)?.value || 'popularity')}
+                                options={[
+                                    { value: 'popularity', label: 'Popularity' },
+                                    { value: 'low_to_high', label: 'Price Low to High' },
+                                    { value: 'high_to_low', label: 'Price High to Low' },
+                                    { value: 'rating', label: 'Rating' }
+                                ]}
+                                className="min-w-[180px]"
+                            />
                         </div>
                         <div className="hidden sm:flex border border-gray-300 rounded-lg overflow-hidden">
                             <button

@@ -13,45 +13,61 @@ interface CustomSelectProps extends Omit<SelectProps<Option>, 'styles'> {
 const customStyles: StylesConfig<Option> = {
   control: (provided, state) => ({
     ...provided,
-    minHeight: '48px',
-    border: '2px solid #e5e7eb',
-    borderRadius: '12px',
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    backdropFilter: 'blur(4px)',
+    minHeight: '32px',
+    height: '32px',
+    border: '1px solid #d1d5db',
+    borderRadius: '8px',
+    backgroundColor: 'white',
     boxShadow: 'none',
+    fontSize: '14px',
     '&:hover': {
-      borderColor: state.isFocused ? '#8b5cf6' : '#d1d5db',
+      borderColor: state.isFocused ? '#0ea5e9' : '#9ca3af',
     },
-    borderColor: state.isFocused ? '#8b5cf6' : '#e5e7eb',
-    transition: 'all 0.3s ease',
+    borderColor: state.isFocused ? '#0ea5e9' : '#d1d5db',
+    transition: 'all 0.2s ease',
   }),
   menu: (provided) => ({
     ...provided,
-    borderRadius: '12px',
-    border: '1px solid #e5e7eb',
-    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    borderRadius: '8px',
+    border: '1px solid #d1d5db',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
     overflow: 'hidden',
+    fontSize: '14px',
   }),
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isSelected 
-      ? '#8b5cf6' 
+      ? '#0ea5e9' 
       : state.isFocused 
-      ? '#f3f4f6' 
+      ? '#f1f5f9' 
       : 'white',
     color: state.isSelected ? 'white' : '#374151',
-    padding: '12px 16px',
+    padding: '8px 12px',
+    fontSize: '14px',
     '&:hover': {
-      backgroundColor: state.isSelected ? '#8b5cf6' : '#f3f4f6',
+      backgroundColor: state.isSelected ? '#0ea5e9' : '#f1f5f9',
     },
   }),
   placeholder: (provided) => ({
     ...provided,
     color: '#9ca3af',
+    fontSize: '14px',
   }),
   singleValue: (provided) => ({
     ...provided,
     color: '#374151',
+    fontSize: '14px',
+  }),
+  valueContainer: (provided) => ({
+    ...provided,
+    padding: '0 8px',
+  }),
+  indicatorSeparator: () => ({
+    display: 'none',
+  }),
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    padding: '4px',
   }),
 };
 

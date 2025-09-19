@@ -142,7 +142,7 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Trip Details */}
-              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100 relative z-10">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
                   <span className="bg-gradient-to-r from-gray-900 to-green-600 bg-clip-text text-transparent">

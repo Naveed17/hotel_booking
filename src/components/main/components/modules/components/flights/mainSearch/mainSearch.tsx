@@ -19,6 +19,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import dayjs from "dayjs";
+import Select from '@components/core/select';
 
 interface Airport {
     id: string;
@@ -175,14 +176,16 @@ function FlightsMainSearch() {
                         name="class"
                         control={control}
                         render={({ field }) => (
-                            <select
-                                {...field}
-                                className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-sky-500 focus:border-transparent"
-                            >
-                                <option value="economy">Economy</option>
-                                <option value="business">Business</option>
-                                <option value="first">First Class</option>
-                            </select>
+                            <Select
+                                value={{ value: field.value, label: field.value === 'economy' ? 'Economy' : field.value === 'business' ? 'Business' : 'First Class' }}
+                                onChange={(option) => field.onChange((option as any)?.value)}
+                                options={[
+                                    { value: 'economy', label: 'Economy' },
+                                    { value: 'business', label: 'Business' },
+                                    { value: 'first', label: 'First Class' }
+                                ]}
+                                className="min-w-[150px]"
+                            />
                         )}
                     />
                 </div>

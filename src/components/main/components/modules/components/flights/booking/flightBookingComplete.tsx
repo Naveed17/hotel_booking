@@ -12,6 +12,7 @@ import {
     Mail,
     Phone
 } from 'lucide-react'
+import { useRouter } from 'next/navigation';
 
 // Mock booking data
 const mockBooking = {
@@ -50,7 +51,7 @@ const mockBooking = {
 
 const FlightBookingComplete = (): React.JSX.Element => {
     const [isDownloading, setIsDownloading] = useState(false);
-
+    const router = useRouter()
     const handleDownloadTicket = async () => {
         setIsDownloading(true);
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -225,7 +226,7 @@ const FlightBookingComplete = (): React.JSX.Element => {
                                     </button>
 
                                     <button
-                                        onClick={() => window.location.href = '/en'}
+                                        onClick={() => router.push('/')}
                                         className="w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300"
                                     >
                                         Back to Home

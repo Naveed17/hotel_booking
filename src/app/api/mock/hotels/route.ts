@@ -77,7 +77,7 @@ export async function POST() {
       },
       {
         hotel_id: "4",
-        img: "https://images.unsplash.com/photo-1578774204375-8322cd64d4e5?w=800&h=600&fit=crop",
+        img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&h=600&fit=crop",
         name: "Luxury Suites Istanbul",
         location: "Istanbul Historic",
         address: "Sultanahmet Square, Istanbul, Turkey",
@@ -284,7 +284,7 @@ export async function POST() {
       },
       {
         hotel_id: "13",
-        img: "https://images.unsplash.com/photo-1520637836862-4d197d17c93a?w=800&h=600&fit=crop",
+        img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop",
         name: "Amsterdam Canal Hotel",
         location: "Amsterdam Center",
         address: "Prinsengracht, Amsterdam, Netherlands",
