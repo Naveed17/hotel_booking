@@ -7,11 +7,11 @@ export async function POST() {
     status: true,
     data: {
       app: {
-        business_name: "TopTier Travel",
-        home_title: "TopTier Travel - Premium Hotel Booking",
-        site_url: "https://toptier-travel.com",
+        business_name: "Travel Website",
+        home_title: "Travel Website - Premium Hotel Booking",
+        site_url: "https://hotel-booking-alpha-murex.vercel.app",
         meta_description:
-          "Book premium hotels worldwide with TopTier Travel. Find the best deals on luxury accommodations.",
+          "Book premium hotels worldwide with Travel Website. Find the best deals on luxury accommodations.",
         header_logo_img:
           "https://via.placeholder.com/200x60/2563eb/ffffff?text=TopTier+Travel",
         favicon_img: "https://via.placeholder.com/32x32/2563eb/ffffff?text=T",
@@ -105,7 +105,8 @@ export async function POST() {
           avatar:
             "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
           status: "1",
-          photo: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop",
+          photo:
+            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop",
         },
         {
           id: "2",
@@ -117,7 +118,8 @@ export async function POST() {
           avatar:
             "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
           status: "1",
-          photo: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop",
+          photo:
+            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop",
         },
       ],
       our_services: [

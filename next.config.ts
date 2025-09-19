@@ -18,10 +18,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "toptiertravel.vip",
-      },
-      {
-        protocol: "https",
         hostname: "images.unsplash.com",
       },
       {
