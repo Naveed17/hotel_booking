@@ -169,69 +169,67 @@ const Footer = (): React.JSX.Element => {
                     </div>
 
                     <div className="md:col-span-2">
-                        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                            <h4 className="font-bold text-white mb-4 text-lg flex items-center gap-2">
-                                <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
-                                Stay Connected
-                            </h4>
-                            <p className="text-gray-300 text-sm mb-6">
-                                Join our community for exclusive deals, travel tips, and insider access to the world's best destinations.
-                            </p>
 
-                            <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm space-y-4">
-                                <AnimatePresence>
-                                    {errors.root && (
-                                        <motion.div
-                                            key="footer-error"
-                                            initial={{ opacity: 0, y: -10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: -10 }}
-                                            transition={{ duration: 0.3 }}
-                                        >
-                                            <Alert variant="destructive">{errors.root.message}</Alert>
-                                        </motion.div>
-                                    )}
-                                    {showSuccess && (
-                                        <motion.div
-                                            key="footer-success"
-                                            initial={{ opacity: 0, y: -10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: -10 }}
-                                            transition={{ duration: 0.3 }}
-                                        >
-                                            <Alert variant="success">
-                                                Successfully subscribed to the newsletter!
-                                            </Alert>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                        <h4 className="font-bold text-white mb-4 text-lg flex items-center gap-2">
+                            <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                            Stay Connected
+                        </h4>
 
-                                <Controller
-                                    name="email"
-                                    control={control}
-                                    render={({ field }) => (
-                                        <input
-                                            {...field}
-                                            type="email"
-                                            placeholder="Enter your email"
-                                            className={`w-full h-12 rounded-full border ${errors.email ? "border-red-500" : "border-gray-200"
-                                                } px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                                        />
-                                    )}
-                                />
-                                {errors.email && (
-                                    <p className="text-red-500 text-sm">{errors.email.message}</p>
+
+                        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm space-y-4">
+                            <AnimatePresence>
+                                {errors.root && (
+                                    <motion.div
+                                        key="footer-error"
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <Alert variant="destructive">{errors.root.message}</Alert>
+                                    </motion.div>
                                 )}
+                                {showSuccess && (
+                                    <motion.div
+                                        key="footer-success"
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <Alert variant="success">
+                                            Successfully subscribed to the newsletter!
+                                        </Alert>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
 
-                                <button
-                                    type="submit"
-                                    disabled={mutation.isPending}
-                                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
-                                >
-                                    {mutation.isPending ? "Submitting..." : "Join Now"}
-                                </button>
-                            </form>
-                        </div>
+                            <Controller
+                                name="email"
+                                control={control}
+                                render={({ field }) => (
+                                    <input
+                                        {...field}
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        className={`w-full h-12 rounded-full border ${errors.email ? "border-red-500" : "border-gray-200"
+                                            } px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                                    />
+                                )}
+                            />
+                            {errors.email && (
+                                <p className="text-red-500 text-sm">{errors.email.message}</p>
+                            )}
+
+                            <button
+                                type="submit"
+                                disabled={mutation.isPending}
+                                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
+                            >
+                                {mutation.isPending ? "Submitting..." : "Join Now"}
+                            </button>
+                        </form>
+
                     </div>
                 </div>
 
