@@ -5,7 +5,7 @@ import { debounce } from 'lodash';
 import { useHotelFilters } from '@src/context/hotelFilterContext';
 import { PriceRangeSlider } from '@components/core/components';
 import { Search, Star } from 'lucide-react';
-import { Checkbox } from '@components/ui/checkbox';
+import { Checkbox } from '@components/core/checkbox';
 import { useUser } from '@hooks/use-user';
 
 // --- Sub Components ---
@@ -91,8 +91,8 @@ function SearchFilter({
                         debouncedOnChange(e.target.value);
                     }}
                     type="text"
-                    placeholder="Where do you want to stay?"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-sm placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent"
+                    placeholder="Search hotels by name..."
+                    className="w-full pl-10 pr-4 py-3 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-xl text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300"
                 />
             </div>
         </>
@@ -109,16 +109,16 @@ function StarsFilter({
 
         <>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
                 {[5, 4, 3].map((stars) => (
-                    <div key={stars} className="flex items-center justify-between">
+                    <div key={stars} className="flex items-center justify-between px-3 py-0.5 bg-white/50 rounded-xl hover:bg-white/80 transition-all duration-300">
                         <div className="flex items-center gap-3">
                             <div className="flex">
                                 {[...Array(stars)].map((_, i) => (
-                                    <Star key={i} className="h-3 w-3 fill-gray-300 text-gray-300" />
+                                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                                 ))}
                             </div>
-                            <span className="text-sm text-text-muted">({stars} Stars)</span>
+                            <span className="text-sm font-medium text-gray-700">{stars} Stars</span>
                         </div>
                         <Checkbox
                             checked={value.includes(stars)}
@@ -128,10 +128,8 @@ function StarsFilter({
                                 } else {
                                     toggle(stars);
                                 }
-
                             }}
                         />
-
                     </div>
                 ))}
             </div>
@@ -413,10 +411,10 @@ function AmenitiesFilter({
         <>
             <div className="space-y-3">
                 {amenities.map((amenity, index) => (
-                    <div key={index} className="flex items-center justify-between">
+                    <div key={index} className="flex items-center justify-between px-3 py-0.5 bg-white/50 rounded-xl hover:bg-white/80 transition-all duration-300">
                         <div className="flex items-center gap-3">
-                            <span className="text-lg">{amenity.icon}</span>
-                            <span className="text-sm text-text-muted">{amenity.label}</span>
+                            <span className="text-lg text-gray-600">{amenity.icon}</span>
+                            <span className="text-sm font-medium text-gray-700">{amenity.label}</span>
                         </div>
                         <Checkbox
                             checked={value.includes(amenity.label)}
@@ -428,7 +426,6 @@ function AmenitiesFilter({
                                 }
                             }}
                         />
-
                     </div>
                 ))}
             </div>
@@ -449,13 +446,10 @@ function HotelSuppliersFilter({
         <>
             <div className="space-y-3">
                 {suppliers.map((supplier, index) => (
-                    <div key={index} className="flex items-center">
-                        <div className="flex items-center gap-2">
-                            <span className="text-sm text-muted">{supplier?.name}</span>
-                        </div>
+                    <div key={index} className="flex items-center justify-between p-3 bg-white/50 rounded-xl hover:bg-white/80 transition-all duration-300">
+                        <span className="text-sm font-medium text-gray-700">{supplier?.name}</span>
                         <Checkbox
                             checked={value.includes(supplier?.name)}
-                            className='ms-auto'
                             onCheckedChange={(checked) => {
                                 if (checked) {
                                     toggle(supplier?.name);
@@ -464,7 +458,6 @@ function HotelSuppliersFilter({
                                 }
                             }}
                         />
-
                     </div>
                 ))}
             </div>
@@ -574,50 +567,53 @@ export default function HotelFilters({
     );
 
     return (
-        <div className="bg-white rounded-xl border border-gray-200 p-6 sticky top-24 animate-slideDown">
+        <div className="space-y-6">
+            {filterItems.map((filter, index) => {
+                if (
+                    filter.id === "hotels_suppliers" &&
+                    !(user && user.user_type === "Admin")
+                ) {
+                    return null;
+                }
 
-            <h2 className="text-lg font-bold text-text-primary mb-6">Advanced Search</h2>
+                const scheme = { bg: 'bg-white', border: 'border-gray-200', accent: 'text-gray-700', dot: 'bg-blue-500' };
 
-            {/* Filters */}
-            <div className="animate-fadeIn">
-                {filterItems.map((filter) => {
-                    if (
-                        filter.id === "hotels_suppliers" &&
-                        !(user && user.user_type === "Admin")
-                    ) {
-                        return null;
-                    }
+                return (
+                    <div key={filter.id} className={`${scheme.bg} border-b ${scheme.border} pb-6 mb-6 transition-all duration-300`}>
+                        <label className={`mb-4 block text-sm font-bold ${scheme.accent} flex items-center gap-2`}>
+                            <span className={`w-2 h-2 ${scheme.dot} rounded-full`}></span>
+                            {filter.label}
+                        </label>
 
-                    return (
-                        <div key={filter.id}>
-                            <label className="mb-3 block text-sm font-semibold text-text-primary">
-                                {filter.label}
-                            </label>
+                        <AnimatePresence>
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="overflow-hidden"
+                            >
+                                {filter.content}
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+                );
+            })}
 
-                            <AnimatePresence>
-                                <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="overflow-hidden px-3 pb-6"
-                                >
-                                    {filter.content}
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
-                    );
-                })}
-
-
-
-            </div>
-            <div className="space-y-3">
-                <button onClick={() => clearAll()} className="w-full py-3 bg-gray-100 text-brand-blue rounded-lg font-medium hover:bg-gray-200 transition-colors">
-                    Reset Filters
+            {/* Enhanced Action Buttons */}
+            <div className="space-y-3 pt-4">
+                <button
+                    onClick={() => clearAll()}
+                    className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                >
+                    Reset All Filters
                 </button>
-                <button disabled={isLoading} onClick={() => applyFilter()} className="w-full py-3 bg-travel-blue text-white rounded-lg font-medium hover:bg-travel-blue/90 transition-colors">
-                    Apply
+                <button
+                    disabled={isLoading}
+                    onClick={() => applyFilter()}
+                    className="w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg disabled:cursor-not-allowed"
+                >
+                    {isLoading ? 'Applying...' : 'Apply Filters'}
                 </button>
             </div>
         </div>

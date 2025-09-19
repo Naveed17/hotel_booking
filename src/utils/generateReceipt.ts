@@ -36,49 +36,67 @@ export const generateReceipt = async (data: ReceiptData) => {
     },
   });
 
-  // Professional Colors
-  const primaryBlue = [37, 99, 235];
-  const lightGray = [248, 250, 252];
-  const borderGray = [229, 231, 235];
-  const textGray = [75, 85, 99];
-  const darkText = [31, 41, 55];
+  // Modern Design Colors
+  const emeraldGreen = [16, 185, 129]; // emerald-500
+  const gradientBlue = [59, 130, 246]; // blue-500
+  const softGray = [248, 250, 252]; // gray-50
+  const borderGray = [229, 231, 235]; // gray-200
+  const textGray = [75, 85, 99]; // gray-600
+  const darkText = [17, 24, 39]; // gray-900
+  const accentPurple = [139, 92, 246]; // violet-500
 
-  // Header
-  doc.setFillColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
-  doc.rect(0, 0, 210, 35, "F");
+  // Modern Gradient Header
+  doc.setFillColor(emeraldGreen[0], emeraldGreen[1], emeraldGreen[2]);
+  doc.rect(0, 0, 210, 40, "F");
+
+  // Add subtle gradient effect with overlays
+  doc.setFillColor(gradientBlue[0], gradientBlue[1], gradientBlue[2]);
+  doc.rect(0, 0, 210, 40, "F");
 
   doc.setTextColor(255, 255, 255);
-  doc.setFontSize(20);
+  doc.setFontSize(24);
   doc.setFont("helvetica", "bold");
-  doc.text("BOOKING RECEIPT", 20, 18);
+  doc.text("BOOKING CONFIRMED", 20, 20);
 
-  doc.setFontSize(10);
+  doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
-  doc.text("Hotel Reservation Confirmation", 20, 26);
+  doc.text("Your Dream Stay Awaits • Hotel Reservation Receipt", 20, 30);
 
-  // QR Code
-  doc.addImage(qrCodeDataURL, "PNG", 165, 8, 20, 20);
+  // Enhanced QR Code with border
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(160, 6, 28, 28, 3, 3, "F");
+  doc.addImage(qrCodeDataURL, "PNG", 164, 10, 20, 20);
 
-  // Confirmation Number
-  doc.setTextColor(darkText[0], darkText[1], darkText[2]);
-  doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
-  doc.rect(20, 45, 170, 15, "F");
-  doc.setDrawColor(borderGray[0], borderGray[1], borderGray[2]);
-  doc.rect(20, 45, 170, 15, "S");
+  // Modern Confirmation Badge
+  doc.setFillColor(emeraldGreen[0], emeraldGreen[1], emeraldGreen[2]);
+  doc.roundedRect(20, 50, 170, 18, 3, 3, "F");
+  doc.setDrawColor(emeraldGreen[0], emeraldGreen[1], emeraldGreen[2]);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(20, 50, 170, 18, 3, 3, "S");
 
-  doc.setFontSize(10);
+  // Add small dot indicator
+  doc.setFillColor(emeraldGreen[0], emeraldGreen[1], emeraldGreen[2]);
+  doc.circle(28, 59, 1.5, "F");
+
+  doc.setTextColor(textGray[0], textGray[1], textGray[2]);
+  doc.setFontSize(9);
   doc.setFont("helvetica", "bold");
-  doc.text("CONFIRMATION NUMBER", 25, 52);
-  doc.setFontSize(14);
-  doc.setTextColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
-  doc.text(data.confirmationNumber, 25, 57);
-
-  // Hotel Information
-  let yPos = 75;
-  doc.setTextColor(darkText[0], darkText[1], darkText[2]);
-  doc.setFontSize(12);
+  doc.text("CONFIRMATION NUMBER", 33, 56);
+  doc.setFontSize(16);
   doc.setFont("helvetica", "bold");
-  doc.text("HOTEL INFORMATION", 20, yPos);
+  doc.setTextColor(emeraldGreen[0], emeraldGreen[1], emeraldGreen[2]);
+  doc.text(data.confirmationNumber, 33, 63);
+
+  // Modern Section Headers
+  let yPos = 80;
+  doc.setTextColor(darkText[0], darkText[1], darkText[2]);
+  doc.setFontSize(13);
+  doc.setFont("helvetica", "bold");
+
+  // Add colored dot for section
+  doc.setFillColor(gradientBlue[0], gradientBlue[1], gradientBlue[2]);
+  doc.circle(22, yPos - 2, 1.5, "F");
+  doc.text("HOTEL INFORMATION", 28, yPos);
 
   yPos += 8;
   drawSimpleTable(
@@ -95,9 +113,13 @@ export const generateReceipt = async (data: ReceiptData) => {
 
   // Guest Information
   yPos += 35;
-  doc.setFontSize(12);
+  doc.setFontSize(13);
   doc.setFont("helvetica", "bold");
-  doc.text("GUEST INFORMATION", 20, yPos);
+
+  // Add colored dot for section
+  doc.setFillColor(accentPurple[0], accentPurple[1], accentPurple[2]);
+  doc.circle(22, yPos - 2, 1.5, "F");
+  doc.text("GUEST INFORMATION", 28, yPos);
 
   yPos += 8;
   drawSimpleTable(
@@ -114,9 +136,13 @@ export const generateReceipt = async (data: ReceiptData) => {
 
   // Booking Details
   yPos += 35;
-  doc.setFontSize(12);
+  doc.setFontSize(13);
   doc.setFont("helvetica", "bold");
-  doc.text("BOOKING DETAILS", 20, yPos);
+
+  // Add colored dot for section
+  doc.setFillColor(emeraldGreen[0], emeraldGreen[1], emeraldGreen[2]);
+  doc.circle(22, yPos - 2, 1.5, "F");
+  doc.text("BOOKING DETAILS", 28, yPos);
 
   yPos += 8;
   drawSimpleTable(
@@ -150,9 +176,13 @@ export const generateReceipt = async (data: ReceiptData) => {
 
   // Price Breakdown
   yPos += 45;
-  doc.setFontSize(12);
+  doc.setFontSize(13);
   doc.setFont("helvetica", "bold");
-  doc.text("PRICE BREAKDOWN", 20, yPos);
+
+  // Add colored dot for section
+  doc.setFillColor(255, 159, 67); // orange-400
+  doc.circle(22, yPos - 2, 1.5, "F");
+  doc.text("PRICE BREAKDOWN", 28, yPos);
 
   yPos += 8;
   drawPriceTable(
@@ -171,20 +201,29 @@ export const generateReceipt = async (data: ReceiptData) => {
     170
   );
 
-  // Footer
-  yPos += 40;
-  doc.setFillColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
-  doc.rect(20, yPos, 170, 15, "F");
+  // Modern Footer
+  yPos += 50;
+  doc.setFillColor(emeraldGreen[0], emeraldGreen[1], emeraldGreen[2]);
+  doc.roundedRect(20, yPos, 170, 20, 3, 3, "F");
+
+  // Add gradient overlay
+  doc.setFillColor(gradientBlue[0], gradientBlue[1], gradientBlue[2]);
+  doc.roundedRect(20, yPos, 170, 20, 3, 3, "F");
 
   doc.setTextColor(255, 255, 255);
-  doc.setFontSize(11);
+  doc.setFontSize(12);
   doc.setFont("helvetica", "bold");
-  doc.text("Thank you for your booking!", 105, yPos + 6, { align: "center" });
-  doc.setFontSize(9);
+  doc.text("Thank you for choosing us!", 105, yPos + 8, { align: "center" });
+  doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
-  doc.text("Present this receipt at check-in", 105, yPos + 11, {
-    align: "center",
-  });
+  doc.text(
+    "Present this confirmation at check-in • Have a wonderful stay!",
+    105,
+    yPos + 14,
+    {
+      align: "center",
+    }
+  );
 
   // Download
   doc.save(`hotel-receipt-${data.confirmationNumber}.pdf`);
@@ -198,37 +237,43 @@ function drawSimpleTable(
   y: number,
   width: number
 ) {
-  const rowHeight = 8;
+  const rowHeight = 10;
   const colWidth = width / 2;
 
   data.forEach((row, index) => {
     const currentY = y + index * rowHeight;
 
-    // Alternating backgrounds
+    // Modern alternating backgrounds with rounded corners effect
     if (index % 2 === 0) {
       doc.setFillColor(248, 250, 252);
       doc.rect(x, currentY - 1, width, rowHeight, "F");
     }
 
-    // Border
+    // Subtle borders
     doc.setDrawColor(229, 231, 235);
-    doc.rect(x, currentY - 1, width, rowHeight, "S");
+    doc.setLineWidth(0.3);
+    if (index === 0) {
+      doc.line(x, currentY - 1, x + width, currentY - 1); // top border
+    }
+    doc.line(x, currentY + rowHeight - 1, x + width, currentY + rowHeight - 1); // bottom border
+    doc.line(x, currentY - 1, x, currentY + rowHeight - 1); // left border
+    doc.line(x + width, currentY - 1, x + width, currentY + rowHeight - 1); // right border
     doc.line(
       x + colWidth,
       currentY - 1,
       x + colWidth,
       currentY + rowHeight - 1
-    );
+    ); // middle divider
 
-    // Text
+    // Enhanced text styling
     doc.setFontSize(9);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(75, 85, 99);
-    doc.text(row[0], x + 4, currentY + 4);
+    doc.text(row[0], x + 6, currentY + 5);
 
     doc.setFont("helvetica", "normal");
-    doc.setTextColor(31, 41, 55);
-    doc.text(row[1], x + colWidth + 4, currentY + 4);
+    doc.setTextColor(17, 24, 39);
+    doc.text(row[1], x + colWidth + 6, currentY + 5);
   });
 }
 
@@ -240,7 +285,7 @@ function drawPriceTable(
   y: number,
   width: number
 ) {
-  const rowHeight = 8;
+  const rowHeight = 10;
   const col1Width = width * 0.4;
   const col2Width = width * 0.3;
   const col3Width = width * 0.3;
@@ -248,42 +293,50 @@ function drawPriceTable(
   data.forEach((row, index) => {
     const currentY = y + index * rowHeight;
 
-    // Total row styling
+    // Enhanced total row styling with gradient effect
     if (row[0] === "TOTAL") {
-      doc.setFillColor(37, 99, 235);
-      doc.rect(x, currentY - 1, width, rowHeight, "F");
+      doc.setFillColor(16, 185, 129); // emerald-500
+      doc.roundedRect(x, currentY - 1, width, rowHeight, 2, 2, "F");
+
+      // Add gradient overlay
+      doc.setFillColor(59, 130, 246); // blue-500
+      doc.roundedRect(x, currentY - 1, width, rowHeight, 2, 2, "F");
+
       doc.setTextColor(255, 255, 255);
     } else {
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(x, currentY - 1, width, rowHeight, "F");
       }
-      doc.setTextColor(31, 41, 55);
+      doc.setTextColor(17, 24, 39);
     }
 
-    // Border
+    // Subtle borders
     doc.setDrawColor(229, 231, 235);
-    doc.rect(x, currentY - 1, width, rowHeight, "S");
-    doc.line(
-      x + col1Width,
-      currentY - 1,
-      x + col1Width,
-      currentY + rowHeight - 1
-    );
-    doc.line(
-      x + col1Width + col2Width,
-      currentY - 1,
-      x + col1Width + col2Width,
-      currentY + rowHeight - 1
-    );
+    doc.setLineWidth(0.3);
+    if (row[0] !== "TOTAL") {
+      doc.rect(x, currentY - 1, width, rowHeight, "S");
+      doc.line(
+        x + col1Width,
+        currentY - 1,
+        x + col1Width,
+        currentY + rowHeight - 1
+      );
+      doc.line(
+        x + col1Width + col2Width,
+        currentY - 1,
+        x + col1Width + col2Width,
+        currentY + rowHeight - 1
+      );
+    }
 
-    // Text
-    doc.setFontSize(9);
+    // Enhanced text styling
+    doc.setFontSize(row[0] === "TOTAL" ? 11 : 9);
     const fontWeight = row[0] === "TOTAL" ? "bold" : "normal";
     doc.setFont("helvetica", fontWeight);
 
-    doc.text(row[0], x + 4, currentY + 4);
-    doc.text(row[1], x + col1Width + 4, currentY + 4);
-    doc.text(row[2], x + col1Width + col2Width + 4, currentY + 4);
+    doc.text(row[0], x + 6, currentY + 5);
+    doc.text(row[1], x + col1Width + 6, currentY + 5);
+    doc.text(row[2], x + col1Width + col2Width + 6, currentY + 5);
   });
 }

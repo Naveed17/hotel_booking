@@ -4,6 +4,8 @@ import Container from '@components/core/container';
 import ImageBlur from '@src/utils/blurImage';
 import renderStars from '@src/utils/renderStars';
 import { MapPin, Calendar, Users, CreditCard, Shield, CheckCircle } from 'lucide-react';
+import { DatePicker } from '@components/DatePicker';
+import { GuestSelector } from '@components/GuestSelector';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -110,115 +112,149 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
   const totalPrice = parseFloat(hotel.actual_price) * nights;
 
   return (
-    <div className="min-h-screen bg-bg-page">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 pt-20">
       <Container className="py-8">
+        {/* Enhanced Header */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+            SECURE BOOKING PROCESS
+          </div>
+          <h1 className="text-4xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+            Complete Your Reservation
+          </h1>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            You're just a few steps away from your perfect stay. Fill in your details to secure your booking.
+          </p>
+        </div>
+
         {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
-          <Link href={`/${lang}/hotels`} className="hover:text-travel-blue">Hotels</Link>
-          <span>&gt;</span>
-          <Link href={`/${lang}/hotels/${hotel.hotel_id}`} className="hover:text-travel-blue">{hotel.name}</Link>
-          <span>&gt;</span>
-          <span className="text-gray-900 font-medium">Booking</span>
+        <nav className="flex items-center justify-center space-x-2 text-sm text-gray-600 mb-8">
+          <Link href={`/${lang}/hotels`} className="hover:text-blue-600 transition-colors">Hotels</Link>
+          <span className="text-gray-400">•</span>
+          <Link href={`/${lang}/hotels/${hotel.hotel_id}`} className="hover:text-blue-600 transition-colors">{hotel.name}</Link>
+          <span className="text-gray-400">•</span>
+          <span className="text-blue-600 font-medium">Booking</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Booking Form */}
           <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-8">
               {/* Trip Details */}
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-travel-blue" />
-                  Trip Details
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                  <span className="bg-gradient-to-r from-gray-900 to-green-600 bg-clip-text text-transparent">
+                    Trip Details
+                  </span>
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Check-in</label>
-                    <input
-                      type="date"
-                      name="checkIn"
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                      Check-in Date
+                    </label>
+                    <DatePicker
+                      placeholder="Select check-in date"
                       value={formData.checkIn}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
-                      required
+                      onChange={(date) => handleInputChange({ target: { name: 'checkIn', value: date } } as any)}
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Check-out</label>
-                    <input
-                      type="date"
-                      name="checkOut"
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                      Check-out Date
+                    </label>
+                    <DatePicker
+                      placeholder="Select check-out date"
                       value={formData.checkOut}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
-                      required
+                      onChange={(date) => handleInputChange({ target: { name: 'checkOut', value: date } } as any)}
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Guests</label>
-                    <select
-                      name="guests"
-                      value={formData.guests}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
-                    >
-                      <option value="1">1 Guest</option>
-                      <option value="2">2 Guests</option>
-                      <option value="3">3 Guests</option>
-                      <option value="4">4 Guests</option>
-                    </select>
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                      Number of Guests
+                    </label>
+                    <GuestSelector
+                      value={`${formData.guests} Guests, 1 Room`}
+                      onChange={(value) => {
+                        const guests = value.split(',')[0];
+                        const guestCount = parseInt(guests);
+                        handleInputChange({ target: { name: 'guests', value: guestCount.toString() } } as any);
+                      }}
+                    />
                   </div>
                 </div>
               </div>
 
               {/* Guest Information */}
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <Users className="w-5 h-5 text-travel-blue" />
-                  Guest Information
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></span>
+                  <span className="bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                    Guest Information
+                  </span>
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      First Name
+                    </label>
                     <input
                       type="text"
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-blue-300"
+                      placeholder="Enter first name"
                       required
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                      Last Name
+                    </label>
                     <input
                       type="text"
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-emerald-300"
+                      placeholder="Enter last name"
                       required
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                      Email Address
+                    </label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-cyan-300"
+                      placeholder="Enter email address"
                       required
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                      Phone Number
+                    </label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-orange-300"
+                      placeholder="Enter phone number"
                       required
                     />
                   </div>
@@ -226,65 +262,83 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
               </div>
 
               {/* Payment Information */}
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <CreditCard className="w-5 h-5 text-travel-blue" />
-                  Payment Information
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-3 h-3 bg-pink-500 rounded-full animate-pulse"></span>
+                  <span className="bg-gradient-to-r from-gray-900 to-pink-600 bg-clip-text text-transparent">
+                    Payment Information
+                  </span>
                 </h2>
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                      Cardholder Name
+                    </label>
                     <input
                       type="text"
                       name="cardName"
                       value={formData.cardName}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-pink-300"
+                      placeholder="Enter cardholder name"
                       required
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                  <div className="space-y-3">
+                    <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                      Card Number
+                    </label>
                     <input
                       type="text"
                       name="cardNumber"
                       value={formData.cardNumber}
                       onChange={handleInputChange}
                       placeholder="1234 5678 9012 3456"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-indigo-300"
                       required
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-3">
+                      <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                        Expiry Date
+                      </label>
                       <input
                         type="text"
                         name="expiryDate"
                         value={formData.expiryDate}
                         onChange={handleInputChange}
                         placeholder="MM/YY"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-yellow-300"
                         required
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                    <div className="space-y-3">
+                      <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full"></span>
+                        CVV
+                      </label>
                       <input
                         type="text"
                         name="cvv"
                         value={formData.cvv}
                         onChange={handleInputChange}
                         placeholder="123"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-teal-300"
                         required
                       />
                     </div>
                   </div>
                 </div>
-                <div className="mt-4 p-3 bg-blue-50 rounded-lg flex items-center gap-2 text-sm text-blue-700">
-                  <Shield className="w-4 h-4" />
-                  Your payment information is secure and encrypted
+                <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100 flex items-center gap-3">
+                  <Shield className="w-5 h-5 text-blue-600" />
+                  <div>
+                    <p className="text-sm font-semibold text-blue-900">Secure Payment</p>
+                    <p className="text-xs text-blue-700">Your payment information is encrypted and secure</p>
+                  </div>
                 </div>
               </div>
             </form>
@@ -293,7 +347,11 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
           {/* Booking Summary */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-100">
+                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                  BOOKING SUMMARY
+                </div>
                 {/* Hotel Info */}
                 <div className="flex gap-4 mb-6">
                   <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
@@ -353,8 +411,9 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
                   type="submit"
                   form="booking-form"
                   onClick={handleSubmit}
-                  className="w-full bg-travel-blue hover:bg-travel-blue-600 text-white font-semibold py-3 rounded-lg transition-colors"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
                 >
+                  <CheckCircle className="w-5 h-5" />
                   Complete Booking
                 </button>
               </div>

@@ -17,7 +17,7 @@ export default async function Layout({
     const dict = await getDictionary(lang)
     return (
 
-        <div className='w-full h-full bg-bg-page'>
+        <div className='w-full h-full bg-bg-page pt-40'>
             <HotelFiltersProvider slug={slug || null}>
                 <HotelsMain dict={dict} slug={slug}>
                     {children}

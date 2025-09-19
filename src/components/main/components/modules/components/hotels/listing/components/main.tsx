@@ -93,37 +93,65 @@ export default function ListingLayout({ children, dict }: ListingLayoutProps) {
         setQuickFilter(filter);
     };
     return (
-        <div className="flex flex-col gap-4 bg-bg-page">
+        <div className="flex flex-col gap-4 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
             <div className="w-full">
-                <div className="bg-white border-b border-gray-100">
-                    <Container className="py-3 lg:py-4">
-                        <div className="flex items-center gap-2 mb-3 lg:mb-4">
-                            <span className="text-text-muted font-medium text-sm lg:text-base">Quick Filter :</span>
+                <div className="bg-white/95 backdrop-blur-xl border-b border-gray-100/50 shadow-sm">
+                    <Container className="py-6">
+                        <div className="text-center mb-8">
+                            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                                <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                                FIND YOUR PERFECT MATCH
+                            </div>
+                            <h2 className="text-3xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                                Quick Filters
+                            </h2>
+                            <p className="text-gray-600 max-w-2xl mx-auto">
+                                Discover hotels that match your preferences with our smart filtering system
+                            </p>
                         </div>
-                        <div className="flex gap-2 lg:gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                            {filterChips.map((chip, index) => (
-                                <button
-                                    onClick={() => handleQuickFilter(chip.label)}
-                                    key={index}
-                                    className={`flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-2 filter-chip ${chip.label === filters.quickFilter ? "!bg-travel-blue !text-white" : ""} rounded-lg lg:rounded-xl text-xs lg:text-sm font-medium text-muted hover:bg-gray-200 transition-colors whitespace-nowrap flex-shrink-0`}
-                                >
-                                    {chip.icon && <span className="text-sm lg:text-base">{chip.icon}</span>}
-                                    {chip.label}
-                                </button>
-                            ))}
+                        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide justify-center">
+                            {filterChips.map((chip, index) => {
+                                const isActive = chip.label === filters.quickFilter;
+                                const colorSchemes = [
+                                    { bg: 'bg-purple-100 text-purple-700 hover:bg-purple-200', active: 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white' },
+                                    { bg: 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200', active: 'bg-gradient-to-r from-emerald-600 to-green-600 text-white' },
+                                    { bg: 'bg-orange-100 text-orange-700 hover:bg-orange-200', active: 'bg-gradient-to-r from-orange-600 to-red-600 text-white' }
+                                ];
+                                const scheme = colorSchemes[index % colorSchemes.length];
+                                return (
+                                    <button
+                                        onClick={() => handleQuickFilter(chip.label)}
+                                        key={index}
+                                        className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 whitespace-nowrap flex-shrink-0 shadow-sm ${
+                                            isActive ? scheme.active : scheme.bg
+                                        }`}
+                                    >
+                                        {chip.icon && <span className="text-base">{chip.icon}</span>}
+                                        {chip.label}
+                                    </button>
+                                );
+                            })}
                         </div>
                     </Container>
                 </div>
-                <Container className="mt-8">
-                    <div className="grid grid-cols-1 md:grid-cols-36 gap-8">
-                        {/* Sidebar */}
-                        <aside className="col-span-1 md:col-span-10 mb-6">
-                            <Filter dict={dict} />
+                <Container className="mt-8 pb-20">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                        {/* Enhanced Sidebar */}
+                        <aside className="lg:col-span-1">
+                            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 sticky top-24">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                    <h3 className="text-lg font-bold text-gray-900">Refine Your Search</h3>
+                                </div>
+                                <Filter dict={dict} />
+                            </div>
                         </aside>
 
-                        {/* Main Results */}
-                        <main className="col-span-1 md:col-span-26 mb-4">
-                            {children}
+                        {/* Enhanced Main Results */}
+                        <main className="lg:col-span-3">
+                            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6">
+                                {children}
+                            </div>
                         </main>
                     </div>
                 </Container>

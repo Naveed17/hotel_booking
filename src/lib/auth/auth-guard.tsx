@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useUser } from '@src/hooks/use-user';
-import { Alert } from '@components/ui/alert';
+import { Alert } from '@components/core/alert';
 
 
 export interface AuthGuardProps {

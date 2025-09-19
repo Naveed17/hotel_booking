@@ -1,5 +1,5 @@
 'use client';
-import { MainSearch } from '@components/main';
+import { HotelSearch } from '@components/main/components/modules';
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 
@@ -28,20 +28,41 @@ function Hero() {
 
     return (
         <motion.section
-            className="relative pb-5 pt-14 md:pt-0 md:h-[634px] bg-cover bg-center bg-no-repeat flex items-center justify-center"
-            style={{
-                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.20)), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 46.98%, rgba(0, 0, 0, 0.77) 92.61%), url('https://api.builder.io/api/v1/image/assets/TEMP/8dcf4684796d62a910be9c54b0c2c595edef1e5a?width=2880')`
-            }}
+            className="relative pb-10 pt-40 min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 flex items-center justify-center"
             variants={sectionVariants as any}
             initial="hidden"
             animate="visible"
         >
-            <div className="container mx-auto px-4">
-                {/* Hero Title with staggered animation */}
-                <div className="text-center mb-8">
-                    <h1 className="text-white text-4xl md:text-6xl font-black text-center max-w-4xl mx-auto mb-8 leading-tight">
+            {/* Background Elements */}
+            <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-[url('https://api.builder.io/api/v1/image/assets/TEMP/8dcf4684796d62a910be9c54b0c2c595edef1e5a?width=2880')] bg-cover bg-center opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-indigo-900/50"></div>
+
+                {/* Floating Elements */}
+                <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400/10 rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-400/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-cyan-400/10 rounded-full blur-xl animate-pulse delay-500"></div>
+            </div>
+
+            <div className="container mx-auto px-4 relative z-10">
+                {/* Enhanced Hero Content */}
+                <div className="text-center mb-12">
+                    {/* Badge */}
+                    <motion.div
+                        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-white/20"
+                        variants={titleVariants as any}
+                        initial="hidden"
+                        animate="visible"
+                        custom={0}
+                    >
+                        <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+                        TRUSTED BY 100K+ TRAVELERS WORLDWIDE
+                    </motion.div>
+
+                    {/* Main Title */}
+                    <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-black text-center max-w-6xl mx-auto mb-8 leading-tight">
                         <motion.span
-                            className="inline-block"
+                            className="inline-block bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent"
                             variants={titleVariants as any}
                             initial="hidden"
                             animate="visible"
@@ -51,7 +72,7 @@ function Hero() {
                         </motion.span>
                         <br />
                         <motion.span
-                            className="inline-block"
+                            className="inline-block bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent"
                             variants={titleVariants as any}
                             initial="hidden"
                             animate="visible"
@@ -60,10 +81,29 @@ function Hero() {
                             World's Hidden Treasures
                         </motion.span>
                     </h1>
+
+                    {/* Subtitle */}
+                    <motion.p
+                        className="text-gray-200 text-xl md:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed"
+                        variants={titleVariants as any}
+                        initial="hidden"
+                        animate="visible"
+                        custom={3}
+                    >
+                        Embark on extraordinary journeys to breathtaking destinations. From luxury resorts to hidden gems,
+                        we curate the perfect escape for every traveler.
+                    </motion.p>
                 </div>
 
-                {/* Search Form with delayed appearance */}
-                <MainSearch />
+                {/* Enhanced Search Form */}
+                <motion.div
+                    variants={titleVariants as any}
+                    initial="hidden"
+                    animate="visible"
+                    custom={4}
+                >
+                    <HotelSearch />
+                </motion.div>
             </div>
         </motion.section>
     )

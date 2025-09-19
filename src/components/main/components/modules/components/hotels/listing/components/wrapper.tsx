@@ -6,8 +6,8 @@ import React, { useState } from 'react'
 import { useHotelFilters } from '@src/context/hotelFilterContext';
 import { HotelCardLoading } from '@components/core/components';
 import { formatPrice } from '@src/utils/formatNumber';
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@components/ui/drawer";
-import { HotelsMap } from '@components/ui/hotelMap';
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@components/drawer";
+import { HotelsMap } from '@components/hotelMap';
 import ImageBlur from '@src/utils/blurImage';
 import { useUser } from '@hooks/use-user';
 import Link from 'next/link';
@@ -126,97 +126,95 @@ const Wrapper = (): React.JSX.Element => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                                    className={`bg-white rounded-[2.8rem] p-2 lg:rounded-[3rem] border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 ${viewMode === "list" ? "flex flex-col sm:flex-row" : ""
+                                    className={`bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 group ${viewMode === "list" ? "flex flex-col sm:flex-row" : ""
                                         }`}
                                 >
                                     {/* Image Section */}
                                     <motion.div
-                                        className={`relative overflow-hidden rounded-[2.5rem] p-2 lg:rounded-[2.8rem] bg-white ${viewMode === "list"
-                                            ? "sm:w-80 flex-shrink-0 h-48 sm:h-full"
-                                            : "h-60 sm:h-72 lg:h-80"
+                                        className={`relative overflow-hidden ${viewMode === "list"
+                                            ? "sm:w-80 flex-shrink-0 h-48 sm:h-full rounded-t-2xl sm:rounded-l-2xl sm:rounded-tr-none"
+                                            : "h-60 sm:h-72 lg:h-80 rounded-t-2xl"
                                             }`}
                                     >
                                         <ImageBlur
                                             src={hotel.img}
                                             alt={hotel.name}
                                             fill
-                                            className="rounded-[2rem] lg:rounded-[2.3rem]"
+                                            className="object-cover group-hover:scale-110 transition-transform duration-500"
                                         />
+                                        {/* Animated Badge */}
+                                        <div className="absolute top-4 left-4">
+                                            <div className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg">
+                                                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                                Available
+                                            </div>
+                                        </div>
+                                        {/* Heart Button */}
+                                        <button className="absolute top-4 right-4 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors shadow-lg">
+                                            <Heart className="w-4 h-4 text-gray-600 hover:text-red-500 transition-colors" />
+                                        </button>
                                     </motion.div>
 
                                     {/* Content Section */}
                                     <motion.div
-                                        className={`p-5 pt-2 ${viewMode === "list"
+                                        className={`p-6 ${viewMode === "list"
                                             ? "flex-1 flex flex-col justify-between"
                                             : ""
                                             }`}
                                     >
-                                        <div>
-                                            <div
-                                                className={`flex ${viewMode === "list"
-                                                    ? "flex-row items-center"
-                                                    : "flex-col gap-1 mt-2"
-                                                    } justify-between mb-2`}
-                                            >
-                                                <h3
-                                                    className="text-lg lg:text-xl font-bold text-[#0F172B] pr-2 truncate"
-                                                    title={hotel.name}
-                                                >
-                                                    {hotel.name}
-                                                </h3>
+                                        <div className="space-y-4">
+                                            <div className={`${viewMode === "list" ? "flex items-start justify-between" : "space-y-2"}`}>
+                                                <div className={viewMode === "list" ? "flex-1 pr-4" : ""}>
+                                                    <h3 className="bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent text-xl font-bold leading-tight">
+                                                        {hotel.name}
+                                                    </h3>
+                                                    <div className="flex items-center gap-2 mt-2">
+                                                        <span className="text-gray-600 text-sm">
+                                                            {hotel.location}
+                                                        </span>
+                                                    </div>
+                                                </div>
 
-                                                <span className="text-xs lg:text-sm flex items-center gap-0.5 text-gray-400 whitespace-nowrap">
-                                                    {renderStars(parseFloat(hotel.stars), 3.5)}
-                                                </span>
+                                                <div className={`flex items-center gap-1 ${viewMode === "list" ? "" : "mt-2"}`}>
+                                                    {renderStars(parseFloat(hotel.stars), 4)}
+                                                    <span className="text-sm text-gray-500 ml-1">({hotel.stars})</span>
+                                                </div>
                                             </div>
 
-                                            <div className="flex items-center gap-2 mb-4">
-                                                <span className="text-sm text-text-secondary">
-                                                    {hotel.location}
-                                                </span>
-                                            </div>
                                             {user && user.user_type === "Admin" && (
-                                                <div className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-50 px-1.5 py-0.5 text-sm font-semibold">
+                                                <div className="inline-flex items-center gap-2 bg-gray-50 rounded-full px-3 py-1.5 text-sm font-medium border border-gray-200">
                                                     <img
                                                         src="https://via.placeholder.com/24"
                                                         alt="supplier"
-                                                        className="h-4 w-4 rounded-full object-cover"
+                                                        className="h-5 w-5 rounded-full object-cover"
                                                     />
-                                                    <span>{hotel.supplier_name}</span>
+                                                    <span className="text-gray-700">{hotel.supplier_name}</span>
                                                 </div>
                                             )}
-
-
                                         </div>
 
-                                        <div className="space-y-4">
+                                        <div className={`${viewMode === "list" ? "mt-4" : "mt-6"} space-y-4`}>
                                             <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-xl lg:text-2xl font-black text-text-primary">
+                                                <div className="flex items-baseline gap-2">
+                                                    <span className="text-2xl font-bold text-gray-900">
                                                         {formatPrice(
                                                             hotel.actual_price,
                                                             hotel.currency
                                                         )}
                                                     </span>
-
-                                                    <span className="text-sm text-text-secondary">
-                                                        /night
-                                                    </span>
+                                                    <span className="text-gray-500 text-sm">/night</span>
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-2 h-2 bg-success rounded-full"></div>
+                                                    <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                                                    <span className="text-emerald-600 text-sm font-medium">Available</span>
                                                 </div>
                                             </div>
-                                            <div className="flex items-center gap-2">
-                                                <Link href={`/${lang}/hotels/${hotel.hotel_id}`} className="w-full">
-                                                    <button className="w-full bg-travel-blue text-white py-3 rounded-full font-semibold hover:bg-travel-blue/90 transition-colors text-sm lg:text-base">
-                                                        View Details
-                                                    </button>
-                                                </Link>
-                                                <button className="p-3 border border-gray-200 rounded-full hover:bg-gray-50 transition-colors">
-                                                    <Heart className="w-4 h-4" />
+
+                                            <Link href={`/${lang}/hotels/${hotel.hotel_id}`} className="block">
+                                                <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                    View Details
                                                 </button>
-                                            </div>
+                                            </Link>
                                         </div>
                                     </motion.div>
                                 </motion.div>

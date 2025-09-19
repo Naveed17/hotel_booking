@@ -1,7 +1,6 @@
 
 'use client'
 import Container from "@components/core/container";
-import { Button } from "@components/ui/button";
 import { useUser } from "@hooks/use-user";
 import { Menu, X } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
@@ -27,109 +26,151 @@ export default function Header({ ...props }: { dictionary: any }): React.JSX.Ele
     const { user, isLoading } = useUser();
     return (
         <>
-            <header className="bg-white border-b border-gray-100 fixed w-full top-0 z-40">
+            <header className="fixed w-full top-0 z-50 px-4 pt-4">
                 <Container>
-                    <div className="flex items-center  h-16 sm:h-20">
-                        {/* Logo */}
-                        <div className="flex-shrink-0">
-                            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold logo">Travel Website</h1>
+                    <div className="bg-white/95 backdrop-blur-lg border border-gray-200/50 rounded-2xl shadow-sm">
+                        <div className="flex items-center justify-between h-16 px-6">
+                            {/* Logo */}
+                            <div className="flex-shrink-0 cursor-pointer" onClick={() => router.push('/')}>
+                                <h1 className="text-2xl font-black text-gray-900 tracking-tight hover:text-blue-600 transition-colors duration-300">
+                                    Travel
+                                </h1>
+                            </div>
+
+                            {/* Desktop Navigation - Centered */}
+                            <nav className="hidden lg:flex items-center space-x-12 absolute left-1/2 transform -translate-x-1/2">
+                                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-base transition-all duration-300 relative group">
+                                    Hotels
+                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                </a>
+                                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-base transition-all duration-300 relative group">
+                                    Destinations
+                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                </a>
+                                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-base transition-all duration-300 relative group">
+                                    About
+                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                </a>
+                                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-base transition-all duration-300 relative group">
+                                    Contact
+                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                </a>
+                            </nav>
+
+
+
+                            {/* Right Side Actions */}
+                            <div className="flex items-center space-x-4">
+                                {/* Mobile Menu Button */}
+                                <button
+                                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                    className="lg:hidden p-2 rounded-full hover:bg-gray-100 transition-all duration-300"
+                                >
+                                    {mobileMenuOpen ? (
+                                        <X className="h-6 w-6 text-gray-700" />
+                                    ) : (
+                                        <Menu className="h-6 w-6 text-gray-700" />
+                                    )}
+                                </button>
+                                {/* User Actions */}
+                                {user ? (
+                                    <div className="hidden lg:block">
+                                        <UserDropdown />
+                                    </div>
+                                ) : (
+                                    !isLoading && (
+                                        <div className="hidden lg:flex items-center space-x-3">
+                                            <button
+                                                onClick={() => router.push('/auth/sign-in')}
+                                                className="text-gray-700 hover:text-gray-900 font-medium px-4 py-2 transition-all duration-300"
+                                            >
+                                                Sign In
+                                            </button>
+                                            <button
+                                                onClick={() => router.push('/auth/signup')}
+                                                className="bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105"
+                                            >
+                                                Sign Up
+                                            </button>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+
                         </div>
 
-                        {/* Desktop Navigation */}
-                        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 ml-8">
-                            <a href="#" className="muted hover:text-brand-blue transition-colors text-sm xl:text-base">Hotels</a>
-                            <a href="#" className="text-muted hover:text-brand-blue transition-colors text-sm xl:text-base">Contact</a>
-                            <a href="#" className="text-muted hover:text-brand-blue transition-colors text-sm xl:text-base">Support</a>
-                        </nav>
+                        {/* Enhanced Mobile Menu */}
+                        <AnimatePresence>
+                            {mobileMenuOpen && (
+                                <motion.div
+                                    key="mobile-menu"
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                    variants={menuVariants}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
+                                    className="lg:hidden absolute top-full left-4 right-4 bg-white/95 backdrop-blur-md border border-gray-200/50 rounded-2xl shadow-xl z-50 mt-2"
+                                >
+                                    <div className="px-6 py-8">
+                                        {/* Mobile Navigation Links */}
+                                        <nav className="space-y-6 mb-8">
+                                            <Link
+                                                href="/"
+                                                className="block text-gray-700 hover:text-gray-900 font-medium text-lg transition-all duration-300"
+                                            >
+                                                Hotels
+                                            </Link>
+                                            <Link
+                                                href="/destinations"
+                                                className="block text-gray-700 hover:text-gray-900 font-medium text-lg transition-all duration-300"
+                                            >
+                                                Destinations
+                                            </Link>
+                                            <Link
+                                                href="/about"
+                                                className="block text-gray-700 hover:text-gray-900 font-medium text-lg transition-all duration-300"
+                                            >
+                                                About
+                                            </Link>
+                                            <Link
+                                                href="/contact"
+                                                className="block text-gray-700 hover:text-gray-900 font-medium text-lg transition-all duration-300"
+                                            >
+                                                Contact
+                                            </Link>
+                                        </nav>
 
+                                        {/* Mobile Auth Buttons */}
+                                        {!isLoading && !user && (
+                                            <div className="space-y-4 pt-6 border-t border-gray-200">
+                                                <button
+                                                    onClick={() => router.push('/auth/sign-in')}
+                                                    className="w-full text-gray-700 hover:text-gray-900 font-medium py-3 text-center transition-all duration-300"
+                                                >
+                                                    Sign In
+                                                </button>
+                                                <button
+                                                    onClick={() => router.push('/auth/signup')}
+                                                    className="w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-3 rounded-full transition-all duration-300"
+                                                >
+                                                    Sign Up
+                                                </button>
+                                            </div>
+                                        )}
 
-
-                        {/* Mobile Menu Button */}
-                        <button
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="md:hidden p-2 ml-auto rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
-                        >
-                            {mobileMenuOpen ? (
-                                <X className="h-5 w-5 text-brand-blue" />
-                            ) : (
-                                <Menu className="h-5 w-5 text-brand-blue" />
+                                        {/* Mobile User Menu */}
+                                        {user && (
+                                            <div className="pt-6 border-t border-gray-200">
+                                                <UserDropdown />
+                                            </div>
+                                        )}
+                                    </div>
+                                </motion.div>
                             )}
-                        </button>
-
-                        {/* Desktop Menu Button */}
-                        <button className="hidden md:block lg:hidden p-2 ml-auto rounded-lg border border-gray-300 hover:bg-gray-50">
-                            <Menu className="h-5 w-5 text-brand-blue" />
-                        </button>
-                        {user && (
-                            <div className="ms-auto">
-                                <UserDropdown />
-                            </div>
-                        )}
-                        {!isLoading && !user && (
-                            <div className="hidden lg:flex items-center space-x-3 ml-auto">
-                                <Button onClick={() => router.push('/auth/signup')} variant="outline" className="border-travel-gray-800 text-travel-gray-800 hover:bg-travel-gray-50 rounded-full px-6">
-                                    Sign up
-                                </Button>
-                                <Button onClick={() => router.push('/auth/sign-in')} className="bg-travel-blue hover:bg-travel-blue-600 text-white rounded-full px-6">
-                                    Login
-                                </Button>
-                            </div>
-                        )}
-
+                        </AnimatePresence>
                     </div>
-
-                    {/* Mobile Menu */}
-                    <AnimatePresence>
-                        {mobileMenuOpen && (
-                            <motion.div
-                                key="mobile-menu"
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                variants={menuVariants}
-                                transition={{ duration: 0.25, ease: "easeOut" }}
-                                className="md:hidden border-t border-gray-100 py-4 space-y-4 absolute top-full left-0 w-full bg-white shadow-lg z-50"
-                            >
-                                {/* Mobile Navigation Links */}
-                                <nav className="space-y-2 pb-3">
-                                    <Link
-                                        href="/"
-
-                                        className="block px-3 py-2 text-text-muted hover:text-brand-blue hover:bg-gray-50 rounded-lg transition-colors"
-                                    >
-                                        Hotels
-                                    </Link>
-                                    <Link
-                                        href="/contact"
-
-                                        className="block px-3 py-2 text-text-muted hover:text-brand-blue hover:bg-gray-50 rounded-lg transition-colors"
-                                    >
-                                        Contact
-                                    </Link>
-                                    <Link
-                                        href="/support"
-
-                                        className="block px-3 py-2 text-text-muted hover:text-brand-blue hover:bg-gray-50 rounded-lg transition-colors"
-                                    >
-                                        Support
-                                    </Link>
-                                    {!isLoading && !user && (
-                                        <div className="flex items-center space-x-3 px-3">
-                                            <Button onClick={() => router.push('/auth/signup')} variant="outline" className="border-travel-gray-800 text-travel-gray-800 hover:bg-travel-gray-50 rounded-full px-6">
-                                                Sign up
-                                            </Button>
-                                            <Button onClick={() => router.push('/auth/sign-in')} className="bg-travel-blue hover:bg-travel-blue-600 text-white rounded-full px-6">
-                                                Login
-                                            </Button>
-                                        </div>
-                                    )}
-                                </nav>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
                 </Container>
             </header>
-            <div className="md:h-20 h-10" />
         </>
     );
 }

@@ -3,7 +3,7 @@ import React from "react";
 const HotelCardLoading = ({ viewMode }: { viewMode: "grid" | "list" }) => {
     return (
         <div
-            className={`bg-white rounded-[2.8rem] lg:rounded-[3rem] border border-gray-200 overflow-hidden animate-pulse ${viewMode === "list" ? "flex flex-col sm:flex-row" : ""
+            className={`bg-white rounded border border-gray-200 overflow-hidden animate-pulse ${viewMode === "list" ? "flex flex-col sm:flex-row" : ""
                 }`}
         >
             {/* Image placeholder */}
@@ -21,8 +21,8 @@ const HotelCardLoading = ({ viewMode }: { viewMode: "grid" | "list" }) => {
 
                 <div className="h-6 bg-gray-200 rounded w-1/3 mt-4" />
                 <div className="flex gap-2 mt-6">
-                    <div className="h-10 bg-gray-200 rounded-full w-full" />
-                    <div className="h-10 bg-gray-200 rounded-full w-12" />
+                    <div className="h-10 bg-gray-200 rounded w-full" />
+
                 </div>
             </div>
         </div>

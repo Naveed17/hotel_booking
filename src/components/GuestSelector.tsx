@@ -32,7 +32,7 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
     const childText = totalChildren === 1 ? 'Child' : 'Children';
     const roomText = rooms === 1 ? 'Room' : 'Rooms';
     onChange(`${totalAdults} ${adultText}, ${totalChildren} ${childText}, ${rooms} ${roomText}`);
-  }, [adults, children, rooms, onChange]);
+  }, [adults, children, rooms]);
 
   const incrementAdults = () => setAdults(prev => Math.min(prev + 1, 10));
   const decrementAdults = () => setAdults(prev => Math.max(prev - 1, 1));
@@ -49,101 +49,118 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
         className="relative cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
+        <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-purple-500 w-5 h-5 pointer-events-none z-10" />
         <input
           type="text"
           value={value}
           readOnly
-          className="w-full pl-10 pr-10 h-11 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer"
+          className="w-full pl-10 pr-10 h-12 border-2 border-gray-200 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent cursor-pointer transition-all duration-300 hover:border-purple-300"
         />
-        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
+        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 pointer-events-none" />
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-lg border border-gray-200 p-6 z-50 min-w-[280px]">
-          {/* Adults */}
-          <div className="flex items-center justify-between py-3">
-            <div>
-              <div className="font-medium text-gray-900">Adults</div>
-              <div className="text-sm text-gray-500">Ages 13+</div>
+        <div className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-6 z-50 min-w-[320px]">
+          {/* Enhanced Header */}
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-2">
+              <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+              CUSTOMIZE YOUR STAY
             </div>
-            <div className="flex items-center gap-3">
+            <h3 className="text-lg font-bold text-gray-900">Select Guests & Rooms</h3>
+          </div>
+
+          {/* Enhanced Adults */}
+          <div className="flex items-center justify-between py-4 px-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl mb-4">
+            <div>
+              <div className="font-bold text-gray-900 flex items-center gap-2">
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                Adults
+              </div>
+              <div className="text-sm text-blue-600 font-medium">Ages 13+</div>
+            </div>
+            <div className="flex items-center gap-4">
               <button
                 onClick={decrementAdults}
                 disabled={adults <= 1}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-full bg-white border-2 border-blue-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-110"
               >
-                <Minus className="w-4 h-4" />
+                <Minus className="w-4 h-4 text-blue-600" />
               </button>
-              <span className="w-8 text-center font-medium">{adults}</span>
+              <span className="w-8 text-center font-bold text-lg text-gray-900">{adults}</span>
               <button
                 onClick={incrementAdults}
                 disabled={adults >= 10}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-full bg-white border-2 border-blue-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-110"
               >
-                <Plus className="w-4 h-4" />
+                <Plus className="w-4 h-4 text-blue-600" />
               </button>
             </div>
           </div>
 
-          {/* Children */}
-          <div className="flex items-center justify-between py-3 border-t border-gray-100">
+          {/* Enhanced Children */}
+          <div className="flex items-center justify-between py-4 px-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl mb-4">
             <div>
-              <div className="font-medium text-gray-900">Children</div>
-              <div className="text-sm text-gray-500">Ages 2-12</div>
+              <div className="font-bold text-gray-900 flex items-center gap-2">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                Children
+              </div>
+              <div className="text-sm text-emerald-600 font-medium">Ages 2-12</div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <button
                 onClick={decrementChildren}
                 disabled={children <= 0}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-full bg-white border-2 border-emerald-200 flex items-center justify-center hover:bg-emerald-50 hover:border-emerald-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-110"
               >
-                <Minus className="w-4 h-4" />
+                <Minus className="w-4 h-4 text-emerald-600" />
               </button>
-              <span className="w-8 text-center font-medium">{children}</span>
+              <span className="w-8 text-center font-bold text-lg text-gray-900">{children}</span>
               <button
                 onClick={incrementChildren}
                 disabled={children >= 10}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-full bg-white border-2 border-emerald-200 flex items-center justify-center hover:bg-emerald-50 hover:border-emerald-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-110"
               >
-                <Plus className="w-4 h-4" />
+                <Plus className="w-4 h-4 text-emerald-600" />
               </button>
             </div>
           </div>
 
-          {/* Rooms */}
-          <div className="flex items-center justify-between py-3 border-t border-gray-100">
+          {/* Enhanced Rooms */}
+          <div className="flex items-center justify-between py-4 px-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl mb-6">
             <div>
-              <div className="font-medium text-gray-900">Rooms</div>
+              <div className="font-bold text-gray-900 flex items-center gap-2">
+                <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                Rooms
+              </div>
+              <div className="text-sm text-purple-600 font-medium">Accommodation units</div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <button
                 onClick={decrementRooms}
                 disabled={rooms <= 1}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-full bg-white border-2 border-purple-200 flex items-center justify-center hover:bg-purple-50 hover:border-purple-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-110"
               >
-                <Minus className="w-4 h-4" />
+                <Minus className="w-4 h-4 text-purple-600" />
               </button>
-              <span className="w-8 text-center font-medium">{rooms}</span>
+              <span className="w-8 text-center font-bold text-lg text-gray-900">{rooms}</span>
               <button
                 onClick={incrementRooms}
                 disabled={rooms >= 5}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-full bg-white border-2 border-purple-200 flex items-center justify-center hover:bg-purple-50 hover:border-purple-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-110"
               >
-                <Plus className="w-4 h-4" />
+                <Plus className="w-4 h-4 text-purple-600" />
               </button>
             </div>
           </div>
 
-          {/* Done Button */}
-          <div className="pt-4 border-t border-gray-100">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors"
-            >
-              Done
-            </button>
-          </div>
+          {/* Enhanced Done Button */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-4 px-6 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            ✨ Confirm Selection
+          </button>
         </div>
       )}
     </div>

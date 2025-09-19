@@ -116,98 +116,139 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
   }
 
   return (
-    <div className="min-h-screen bg-bg-page">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 pt-20">
       <Container className="py-8">
-        {/* Success Header */}
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="w-8 h-8 text-green-600" />
+        {/* Enhanced Success Header */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-6 py-3 rounded-full text-sm font-semibold mb-8">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+            BOOKING CONFIRMED SUCCESSFULLY
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Booking Confirmed!</h1>
-          <p className="text-gray-600">Your reservation has been successfully confirmed</p>
+          <div className="w-20 h-20 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <CheckCircle className="w-10 h-10 text-emerald-600" />
+          </div>
+          <h1 className="text-5xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+            Booking Confirmed!
+          </h1>
+          <p className="text-gray-600 text-xl max-w-2xl mx-auto">
+            Congratulations! Your reservation has been successfully confirmed. Get ready for an amazing experience.
+          </p>
         </div>
 
-        <div className="w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Booking Details */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-8">
               {/* Confirmation Details */}
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">Booking Details</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Confirmation Number</label>
-                    <p className="text-lg font-bold text-travel-blue">{bookingData.confirmationNumber}</p>
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
+                  <span className="bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+                    Booking Details
+                  </span>
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                      Confirmation Number
+                    </label>
+                    <p className="text-lg font-bold text-emerald-600 bg-emerald-50 px-4 py-2 rounded-xl">{bookingData.confirmationNumber}</p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Guest Name</label>
-                    <p className="text-gray-900 font-medium">{bookingData.guestName}</p>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      Guest Name
+                    </label>
+                    <p className="text-gray-900 font-semibold text-lg">{bookingData.guestName}</p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Check-in</label>
-                    <p className="text-gray-900 font-medium flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                      Check-in Date
+                    </label>
+                    <p className="text-gray-900 font-semibold flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-green-500" />
                       {new Date(bookingData.checkIn).toLocaleDateString()}
                     </p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Check-out</label>
-                    <p className="text-gray-900 font-medium flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                      Check-out Date
+                    </label>
+                    <p className="text-gray-900 font-semibold flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-red-500" />
                       {new Date(bookingData.checkOut).toLocaleDateString()}
                     </p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Guests</label>
-                    <p className="text-gray-900 font-medium flex items-center gap-2">
-                      <Users className="w-4 h-4" />
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                      Number of Guests
+                    </label>
+                    <p className="text-gray-900 font-semibold flex items-center gap-2">
+                      <Users className="w-4 h-4 text-purple-500" />
                       {bookingData.guests} Guests
                     </p>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Total Amount</label>
-                    <p className="text-xl font-bold text-gray-900">${bookingData.totalAmount.toFixed(2)}</p>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                      Total Amount Paid
+                    </label>
+                    <p className="text-2xl font-black text-gray-900 bg-gradient-to-r from-yellow-100 to-orange-100 px-4 py-2 rounded-xl">${bookingData.totalAmount.toFixed(2)}</p>
                   </div>
                 </div>
               </div>
 
               {/* Contact Information */}
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">Contact Information</h2>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-gray-400" />
-                    <span className="text-gray-900">{bookingData.email}</span>
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-3 h-3 bg-cyan-500 rounded-full animate-pulse"></span>
+                  <span className="bg-gradient-to-r from-gray-900 to-cyan-600 bg-clip-text text-transparent">
+                    Contact Information
+                  </span>
+                </h2>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 p-4 bg-cyan-50 rounded-xl border border-cyan-100">
+                    <Mail className="w-5 h-5 text-cyan-600" />
+                    <span className="text-gray-900 font-semibold">{bookingData.email}</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-gray-400" />
-                    <span className="text-gray-900">{bookingData.phone}</span>
+                  <div className="flex items-center gap-3 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+                    <Phone className="w-5 h-5 text-indigo-600" />
+                    <span className="text-gray-900 font-semibold">{bookingData.phone}</span>
                   </div>
                 </div>
               </div>
 
               {/* Next Steps */}
-              <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">What's Next?</h2>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <span className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></span>
+                  <span className="bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                    What's Next?
+                  </span>
+                </h2>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20">
+                    <CheckCircle className="w-6 h-6 text-emerald-500 mt-0.5" />
                     <div>
-                      <p className="font-medium text-gray-900">Confirmation Email Sent</p>
+                      <p className="font-bold text-gray-900 mb-1">Confirmation Email Sent</p>
                       <p className="text-sm text-gray-600">Check your email for booking details and receipt</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                  <div className="flex items-start gap-4 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20">
+                    <CheckCircle className="w-6 h-6 text-blue-500 mt-0.5" />
                     <div>
-                      <p className="font-medium text-gray-900">Hotel Notified</p>
+                      <p className="font-bold text-gray-900 mb-1">Hotel Notified</p>
                       <p className="text-sm text-gray-600">The hotel has been informed of your reservation</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                  <div className="flex items-start gap-4 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20">
+                    <CheckCircle className="w-6 h-6 text-purple-500 mt-0.5" />
                     <div>
-                      <p className="font-medium text-gray-900">Check-in Ready</p>
+                      <p className="font-bold text-gray-900 mb-1">Check-in Ready</p>
                       <p className="text-sm text-gray-600">Present your confirmation number at check-in</p>
                     </div>
                   </div>
@@ -215,16 +256,16 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
               </div>
 
               {/* Actions */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-6">
                 <button
                   onClick={handleDownloadReceipt}
                   disabled={isGeneratingPDF}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-travel-blue text-white rounded-lg font-medium hover:bg-travel-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  <Download className={`w-4 h-4 ${isGeneratingPDF ? 'animate-spin' : ''}`} />
+                  <Download className={`w-5 h-5 ${isGeneratingPDF ? 'animate-spin' : ''}`} />
                   {isGeneratingPDF ? 'Generating PDF...' : 'Download Receipt'}
                 </button>
-                <Link href={`/${lang}/hotels`} className="flex items-center justify-center gap-2 px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                <Link href={`/${lang}/hotels`} className="flex items-center justify-center gap-3 px-8 py-4 bg-white/95 backdrop-blur-xl border-2 border-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 transform hover:scale-105 shadow-lg">
                   Book Another Hotel
                 </Link>
               </div>
@@ -233,8 +274,11 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
             {/* Hotel Summary */}
             <div className="lg:col-span-1">
               <div className="sticky top-8">
-                <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Your Hotel</h3>
+                <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-100">
+                  <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    YOUR HOTEL
+                  </div>
 
                   {/* Hotel Info */}
                   <div className="mb-6">

@@ -5,11 +5,11 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Alert } from "@components/ui/alert";
+import { Alert } from "@components/core/alert";
 import { AnimatePresence, motion } from "framer-motion";
 import Container from "@components/core/container";
 
-// ✅ Zod validation schema
+
 const newsletterSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
     email: z.string().email("Please enter a valid email address"),
@@ -18,10 +18,9 @@ const newsletterSchema = z.object({
 type NewsletterFormData = z.infer<typeof newsletterSchema>;
 
 const Newsletter = (): React.JSX.Element => {
-    // ✅ Local state for showing success
     const [showSuccess, setShowSuccess] = useState(false);
 
-    // ✅ React Hook Form setup
+
     const {
         handleSubmit,
         control,
@@ -36,7 +35,7 @@ const Newsletter = (): React.JSX.Element => {
         },
     });
 
-    // ✅ React Query mutation
+
     const mutation = useMutation({
         mutationFn: (data: NewsletterFormData) => newsLetter(data),
         onSuccess: (data) => {
@@ -58,121 +57,131 @@ const Newsletter = (): React.JSX.Element => {
         },
     });
 
-    // ✅ Handle submit
+
     const onSubmit = (data: NewsletterFormData) => {
         mutation.mutate(data);
     };
 
     return (
-        <section className="py-20">
+        <section className="py-20 bg-gradient-to-br from-cyan-50 to-blue-50">
             <Container>
-                <div className="flex flex-col lg:flex-row items-center gap-12">
-                    {/* Newsletter Image */}
-                    <div className="lg:w-1/2">
-                        <img
-                            src="/images/Rectangle 817.png"
-                            alt="Travel journey"
-                            className="w-full h-96 object-cover rounded-6xl"
-                        />
+                <div className="max-w-4xl mx-auto">
+                    <div className="text-center mb-12">
+                        <div className="inline-flex items-center gap-2 bg-cyan-100 text-cyan-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            <span className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></span>
+                            STAY IN THE LOOP
+                        </div>
+                        <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-cyan-600 bg-clip-text text-transparent">
+                            Your Travel Journey Starts Here
+                        </h2>
+                        <p className="text-gray-600 text-xl max-w-2xl mx-auto leading-relaxed">
+                            Get exclusive travel deals, insider tips, and destination inspiration delivered straight to your inbox.
+                        </p>
                     </div>
 
-                    {/* Newsletter Content */}
-                    <div className="lg:w-1/2">
-                        <div className="inline-block bg-black/60 text-white px-3 py-1 rounded text-sm mb-6">
-                            Newsletter
-                        </div>
-
-                        <h2 className="text-4xl font-bold text-travel-gray-900 mb-6 font-urbanist">
-                            Your Travel<br />Journey Starts Here
-                        </h2>
-
-                        <p className="text-travel-gray-600 text-lg mb-8 leading-relaxed">
-                            Begin your adventure with handpicked stays, exclusive deals, and effortless booking — everything you need for a perfect getaway, all in one place.
-                        </p>
-
-                        {/* Newsletter Form */}
-                        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-
-                            <AnimatePresence>
-                                {errors.root && (
-                                    <motion.div
-                                        key="error-alert"
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <Alert variant="destructive">
-                                            {errors.root.message}
-                                        </Alert>
-                                    </motion.div>
-                                )}
-
-                                {showSuccess && (
-                                    <motion.div
-                                        key="success-alert"
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <Alert variant="success">
-                                            Successfully subscribed to the newsletter!
-                                        </Alert>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <div className="flex flex-col gap-4 flex-1">
-                                    {/* Name */}
-                                    <Controller
-                                        name="name"
-                                        control={control}
-                                        render={({ field }) => (
-                                            <input
-                                                {...field}
-                                                type="text"
-                                                placeholder="Name"
-                                                className={`w-full h-12 bg-gray-100 border ${errors.name ? "border-red-500" : "border-transparent"
-                                                    } rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                                            />
-                                        )}
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                        <div className="flex flex-col lg:flex-row">
+                            <div className="lg:w-2/5 relative">
+                                <div className="h-64 lg:h-full relative overflow-hidden">
+                                    <img
+                                        src="/images/Rectangle 817.png"
+                                        alt="Travel journey"
+                                        className="w-full h-full object-cover"
                                     />
-                                    {errors.name && (
-                                        <p className="text-red-500 text-sm">{errors.name.message}</p>
-                                    )}
-                                </div>
-
-                                <div className="flex flex-col gap-4 flex-1">
-                                    {/* Email */}
-                                    <Controller
-                                        name="email"
-                                        control={control}
-                                        render={({ field }) => (
-                                            <input
-                                                {...field}
-                                                type="email"
-                                                placeholder="Email"
-                                                className={`w-full h-12 bg-gray-100 border ${errors.email ? "border-red-500" : "border-transparent"
-                                                    } rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                                            />
-                                        )}
-                                    />
-                                    {errors.email && (
-                                        <p className="text-red-500 text-sm">{errors.email.message}</p>
-                                    )}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/20 to-blue-600/20" />
+                                    <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg">
+                                        <span className="text-sm font-semibold text-gray-900">🌍 50K+ Subscribers</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Submit button */}
-                            <button
-                                type="submit"
-                                disabled={mutation.isPending}
-                                className="w-full h-12 bg-travel-blue hover:bg-travel-blue-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
-                            >
-                                {mutation.isPending ? "Submitting..." : "Continue"}
-                            </button>
-                        </form>
+                            <div className="lg:w-3/5 p-8 lg:p-12">
+
+                                {/* Newsletter Form */}
+                                <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+
+                                    <AnimatePresence>
+                                        {errors.root && (
+                                            <motion.div
+                                                key="error-alert"
+                                                initial={{ opacity: 0, y: -10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                transition={{ duration: 0.3 }}
+                                            >
+                                                <Alert variant="destructive">
+                                                    {errors.root.message}
+                                                </Alert>
+                                            </motion.div>
+                                        )}
+
+                                        {showSuccess && (
+                                            <motion.div
+                                                key="success-alert"
+                                                initial={{ opacity: 0, y: -10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                transition={{ duration: 0.3 }}
+                                            >
+                                                <Alert variant="success">
+                                                    Successfully subscribed to the newsletter!
+                                                </Alert>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                    <div className="flex flex-col sm:flex-row gap-4">
+                                        <div className="flex flex-col gap-4 flex-1">
+                                            {/* Name */}
+                                            <Controller
+                                                name="name"
+                                                control={control}
+                                                render={({ field }) => (
+                                                    <input
+                                                        {...field}
+                                                        type="text"
+                                                        placeholder="Name"
+                                                        className={`w-full h-12 bg-gray-100 border ${errors.name ? "border-red-500" : "border-transparent"
+                                                            } rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                                                    />
+                                                )}
+                                            />
+                                            {errors.name && (
+                                                <p className="text-red-500 text-sm">{errors.name.message}</p>
+                                            )}
+                                        </div>
+
+                                        <div className="flex flex-col gap-4 flex-1">
+                                            {/* Email */}
+                                            <Controller
+                                                name="email"
+                                                control={control}
+                                                render={({ field }) => (
+                                                    <input
+                                                        {...field}
+                                                        type="email"
+                                                        placeholder="Email"
+                                                        className={`w-full h-12 bg-gray-100 border ${errors.email ? "border-red-500" : "border-transparent"
+                                                            } rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                                                    />
+                                                )}
+                                            />
+                                            {errors.email && (
+                                                <p className="text-red-500 text-sm">{errors.email.message}</p>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* Submit button */}
+                                    <button
+                                        type="submit"
+                                        disabled={mutation.isPending}
+                                        className="w-full h-12 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50"
+                                    >
+                                        {mutation.isPending ? "Submitting..." : "Join the Adventure"}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </Container>

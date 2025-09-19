@@ -9,25 +9,50 @@ function FeaturedDestination() {
     const { data } = useAppSelector((state) => state?.appData);
     const featured_tours = data?.featured_tours || [];
     return (
-        <section id="destinations" className="py-20">
+        <section id="destinations" className="py-20 bg-gradient-to-br from-emerald-50 to-green-50">
             <Container>
-                {/* Section Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold text-travel-gray-900 mb-4 font-urbanist">
-                        Featured Destination
+                {/* Enhanced Section Header */}
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                        EXPLORE THE WORLD
+                    </div>
+                    <h2 className="text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+                        Featured Destinations
                     </h2>
-                    <p className="text-travel-gray-600 text-lg max-w-2xl mx-auto">
-                        Uncover the most stunning and sought-after travel spots, curated for unforgettable experiences around the globe.
+                    <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
+                        Embark on extraordinary journeys to the world's most captivating destinations. From ancient wonders to modern marvels, discover places that will leave you breathless.
                     </p>
                 </div>
 
-                {/* Destinations Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {featured_tours.map((destination: any) => (
-                        <React.Fragment key={destination.id}>
+                {/* Enhanced Destinations Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                    {featured_tours.map((destination: any, index: number) => (
+                        <div 
+                            key={destination.id}
+                            className="transform transition-all duration-500"
+                            style={{
+                                animationDelay: `${index * 150}ms`
+                            }}
+                        >
                             <FeaturedCard destination={destination} />
-                        </React.Fragment>
+                        </div>
                     ))}
+                </div>
+
+                {/* Call to Action */}
+                <div className="text-center mt-16">
+                    <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 max-w-2xl mx-auto">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                            Ready for your next adventure?
+                        </h3>
+                        <p className="text-gray-600 mb-6">
+                            Browse our complete collection of 500+ destinations across 80+ countries
+                        </p>
+                        <button className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            View All Destinations
+                        </button>
+                    </div>
                 </div>
             </Container>
         </section>

@@ -192,42 +192,7 @@ body {
     position: absolute;
 }
 
-.range-thumb {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 2rem;
-    position: absolute;
-    top: 0;
-    background: none;
-    pointer-events: none;
-}
 
-.range-thumb::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 16px;
-    width: 16px;
-    background: var(--color-travel-blue);
-    border: 2px solid var(--color-travel-blue);
-    /* emerald-500 */
-    border-radius: 50%;
-    cursor: pointer;
-    pointer-events: all;
-    position: relative;
-    z-index: 3;
-    margin-top: -12px;
-}
-
-.range-thumb::-moz-range-thumb {
-    height: 16px;
-    width: 16px;
-    background: var(--color-travel-blue);
-    border: 2px solid var(--color-travel-blue);
-    border-radius: 50%;
-    cursor: pointer;
-    pointer-events: all;
-    position: relative;
-    z-index: 3;
-}
 
 .filter-chip {
     display: flex;

@@ -88,56 +88,65 @@ export function DatePicker({ placeholder, value, onChange, className }: DatePick
         className="relative cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
+        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-5 h-5 pointer-events-none z-10" />
         <input
           type="text"
           value={value}
           placeholder={placeholder}
           readOnly
-          className="w-full pl-10 h-11 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer"
+          className={`w-full pl-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent cursor-pointer transition-all duration-300 hover:border-blue-300 ${className || 'border-gray-200 focus:ring-blue-500'}`}
         />
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-lg border border-gray-200 p-4 z-50 min-w-[300px]">
-          {/* Calendar Header */}
-          <div className="flex items-center justify-between mb-4">
+        <div className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-6 z-[9999] min-w-[320px]">
+          {/* Enhanced Calendar Header */}
+          <div className="flex items-center justify-between mb-6">
             <button
               onClick={goToPreviousMonth}
-              className="p-1 hover:bg-gray-100 rounded"
+              className="w-10 h-10 hover:bg-blue-50 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-5 h-5 text-gray-600" />
             </button>
-            <h3 className="font-semibold text-gray-900">
-              {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
-            </h3>
+            <div className="text-center">
+              <h3 className="font-bold text-gray-900 text-lg">
+                {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+              </h3>
+              <div className="w-2 h-2 bg-blue-500 rounded-full mx-auto mt-1"></div>
+            </div>
             <button
               onClick={goToNextMonth}
-              className="p-1 hover:bg-gray-100 rounded"
+              className="w-10 h-10 hover:bg-blue-50 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-5 h-5 text-gray-600" />
             </button>
           </div>
 
-          {/* Days of Week */}
-          <div className="grid grid-cols-7 gap-1 mb-2">
+          {/* Enhanced Days of Week */}
+          <div className="grid grid-cols-7 gap-1 mb-4">
             {daysOfWeek.map(day => (
-              <div key={day} className="text-center text-xs font-medium text-gray-500 py-2">
+              <div key={day} className="text-center text-sm font-bold text-gray-600 py-3 bg-gray-50 rounded-lg">
                 {day}
               </div>
             ))}
           </div>
 
-          {/* Calendar Days */}
-          <div className="grid grid-cols-7 gap-1">
+          {/* Enhanced Calendar Days */}
+          <div className="grid grid-cols-7 gap-2">
             {days.map((date, index) => (
               <button
                 key={index}
                 onClick={() => handleDateSelect(date)}
                 className={`
-                  w-8 h-8 text-sm rounded hover:bg-blue-50 transition-colors
-                  ${isCurrentMonth(date) ? 'text-gray-900' : 'text-gray-400'}
-                  ${isToday(date) ? 'bg-blue-500 text-white hover:bg-blue-600' : ''}
+                  w-10 h-10 text-sm font-medium rounded-xl transition-all duration-300 transform hover:scale-110
+                  ${isCurrentMonth(date) 
+                    ? 'text-gray-900 hover:bg-blue-50 hover:text-blue-600' 
+                    : 'text-gray-300 hover:text-gray-400'
+                  }
+                  ${isToday(date) 
+                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:from-blue-600 hover:to-cyan-600' 
+                    : ''
+                  }
                 `}
               >
                 {date.getDate()}

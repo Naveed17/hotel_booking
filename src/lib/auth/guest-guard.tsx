@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { Alert } from '@src/components/ui/alert';
+import { Alert } from '@src/components/core/alert';
 import { useUser } from '@src/hooks/use-user';
 
 

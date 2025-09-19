@@ -222,26 +222,37 @@ function MainSearch() {
                 delay: 1.5,
                 ease: "easeOut"
             }}
-            className="bg-white rounded-3xl shadow-2xl p-7 w-full max-w-6xl mx-auto"
+            className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 w-full max-w-6xl mx-auto"
         >
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* Where to search */}
+                {/* Enhanced Header */}
+                <div className="text-center mb-8">
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                        FIND YOUR PERFECT STAY
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Where would you like to go?</h3>
+                    <p className="text-gray-600">Discover amazing places to stay around the world</p>
+                </div>
+
                 <div className="mb-6">
-                    <label htmlFor="destination" className="text-travel-gray text-sm font-medium mb-3 block">
-                        Where to?
+                    <label htmlFor="destination" className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                        <MapPin className="w-4 h-4 text-blue-500" />
+                        Destination
                     </label>
                     <div className="relative" ref={wrapperRef}>
-                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-travel-gray w-4 h-4" />
+                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 z-10" />
                         <input
                             id="destination"
                             ref={inputRef}
                             type="text"
-                            placeholder="Search destinations..."
+                            placeholder="Search destinations, cities, countries..."
                             onFocus={(e) => e.target.value.length > 2 && setIsOpen(true)}
                             onChange={(e) => handleSearch(e.target.value)}
-                            className={`w-full pl-10 h-11 border rounded-xl bg-white focus:outline-none focus:ring-2 focus:border-transparent ${errors.destination
+                            className={`w-full pl-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.destination
                                 ? 'border-red-500 focus:ring-red-500'
-                                : 'border-gray-200 focus:ring-blue-500'
+                                : 'border-gray-200 focus:ring-blue-500 hover:border-blue-300'
                                 }`}
                         />
                         <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
@@ -254,9 +265,9 @@ function MainSearch() {
                             </div>
                         )}
 
-                        {/* Dropdown */}
+                        {/* Enhanced Dropdown */}
                         {isOpen && (
-                            <div className="absolute z-10 w-full bg-white shadow-lg rounded-md mt-2 max-h-64 pb-3 overflow-y-auto">
+                            <div className="absolute z-50 w-full bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl mt-2 max-h-64 pb-3 overflow-y-auto border border-gray-100">
                                 <div className="text-xs font-medium text-gray-500 mb-2 px-3 py-2">
                                     Popular Destinations
                                 </div>
@@ -332,10 +343,11 @@ function MainSearch() {
                 </div>
 
                 {/* Date and Guest Selection */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                     {/* Check-in */}
                     <div>
-                        <label className="text-travel-gray text-sm font-medium mb-3 block">
+                        <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                             Check-in
                         </label>
                         <Controller
@@ -357,7 +369,8 @@ function MainSearch() {
 
                     {/* Check-out */}
                     <div>
-                        <label className="text-travel-gray text-sm font-medium mb-3 block">
+                        <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
                             Check-out
                         </label>
                         <Controller
@@ -379,8 +392,9 @@ function MainSearch() {
 
                     {/* Guests */}
                     <div>
-                        <label className="text-travel-gray text-sm font-medium mb-3 block">
-                            Guests
+                        <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                            Guests & Rooms
                         </label>
                         <Controller
                             name="guests"
@@ -406,12 +420,16 @@ function MainSearch() {
                         )}
                     </div>
 
-                    {/* Search Button */}
+                    {/* Enhanced Search Button */}
                     <div className="md:self-end">
+                        <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                            <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                            Ready to explore?
+                        </label>
                         <button
                             type="submit"
                             disabled={isSubmitting || loading}
-                            className="w-full h-11 bg-travel-blue hover:bg-travel-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
+                            className="w-full h-12 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
                         >
                             {isSubmitting || loading ? (
                                 <>
@@ -420,8 +438,8 @@ function MainSearch() {
                                 </>
                             ) : (
                                 <>
-                                    <Search className="w-4 h-4" />
-                                    Search Homes
+                                    <Search className="w-5 h-5" />
+                                    Find Perfect Stay
                                 </>
                             )}
                         </button>

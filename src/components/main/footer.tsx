@@ -14,7 +14,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { z } from "zod";
 import { newsLetter } from "@src/actions";
-import { Alert } from "@components/ui/alert";
+import { Alert } from "@components/core/alert";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAppSelector } from "@lib/redux/store";
 import useLocale from "@hooks/useLocale";
@@ -76,37 +76,40 @@ const Footer = (): React.JSX.Element => {
     };
 
     return (
-        <footer className="bg-white border-t border-gray-100 pt-16 pb-8">
-
+        <footer className="bg-gradient-to-br from-gray-900 to-slate-800 text-white pt-20 pb-8">
             {/* Brand Info */}
             <Container>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-                    <h3 className="text-2xl font-bold text-travel-blue mb-4 font-urbanist">
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                        <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                        TRUSTED BY 100K+ TRAVELERS
+                    </div>
+                    <h3 className="text-4xl font-black mb-4 font-urbanist bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                         Travels Website
                     </h3>
-                    <p className="text-travel-gray-600">
-                        Unlock extraordinary stays with our expert-curated hotels and
-                        exclusive access to the world's finest destinations.
+                    <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+                        Your gateway to extraordinary adventures. We curate the world's finest experiences,
+                        connecting you with unforgettable destinations and premium accommodations.
                     </p>
                 </div>
             </Container>
-            <div className="border-b border-gray-100 mb-24" />
             <Container>
                 {/* === Top Row: Brand + Newsletter === */}
 
                 {/* === Links Grid === */}
-                <div className="grid grid-cols-1 md:grid-cols-8 gap-12 mb-12">
-                    {/* Left Content (Company Info + Links) */}
+                <div className="grid grid-cols-1 md:grid-cols-8 gap-12 mb-16">
                     <div className="md:col-span-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-                        {/* Explore */}
-                        <div>
-                            <h4 className="font-semibold text-travel-gray-900 mb-6">Explore</h4>
-                            <ul className="space-y-3">
+                        <div className="group">
+                            <h4 className="font-bold text-white mb-6 text-lg flex items-center gap-2">
+                                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                                Explore
+                            </h4>
+                            <ul className="space-y-4">
                                 {exploreLinks.map((item: any, i: number) => (
                                     <li key={i}>
                                         <Link
                                             href={`/${item.slug_url}`}
-                                            className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
+                                            className="text-gray-300 hover:text-blue-400 transition-all duration-300 capitalize hover:translate-x-1 inline-block"
                                         >
                                             {item.page_name}
                                         </Link>
@@ -115,15 +118,17 @@ const Footer = (): React.JSX.Element => {
                             </ul>
                         </div>
 
-                        {/* Support */}
-                        <div>
-                            <h4 className="font-semibold text-travel-gray-900 mb-6">Support</h4>
-                            <ul className="space-y-3">
+                        <div className="group">
+                            <h4 className="font-bold text-white mb-6 text-lg flex items-center gap-2">
+                                <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
+                                Support
+                            </h4>
+                            <ul className="space-y-4">
                                 {supportLinks.map((item: any, i: number) => (
                                     <li key={i}>
                                         <Link
                                             href={`/${item.slug_url}`}
-                                            className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
+                                            className="text-gray-300 hover:text-emerald-400 transition-all duration-300 capitalize hover:translate-x-1 inline-block"
                                         >
                                             {item.page_name}
                                         </Link>
@@ -132,15 +137,17 @@ const Footer = (): React.JSX.Element => {
                             </ul>
                         </div>
 
-                        {/* Company */}
-                        <div>
-                            <h4 className="font-semibold text-travel-gray-900 mb-6">Company</h4>
-                            <ul className="space-y-3">
+                        <div className="group">
+                            <h4 className="font-bold text-white mb-6 text-lg flex items-center gap-2">
+                                <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                                Company
+                            </h4>
+                            <ul className="space-y-4">
                                 {companyLinks.map((item: any, i: number) => (
                                     <li key={i}>
                                         <Link
                                             href={`/${item.slug_url}`}
-                                            className="text-travel-gray-600 hover:text-travel-blue transition-colors capitalize"
+                                            className="text-gray-300 hover:text-purple-400 transition-all duration-300 capitalize hover:translate-x-1 inline-block"
                                         >
                                             {item.page_name}
                                         </Link>
@@ -149,96 +156,110 @@ const Footer = (): React.JSX.Element => {
                             </ul>
                         </div>
 
-                        {/* Downloads */}
-                        <div>
-                            <h4 className="font-semibold text-travel-gray-900 mb-6">Downloads</h4>
-                            <ul className="space-y-3">
-                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">iOS</a></li>
-                                <li><a href="#" className="text-travel-gray-600 hover:text-travel-blue">Android</a></li>
+                        <div className="group">
+                            <h4 className="font-bold text-white mb-6 text-lg flex items-center gap-2">
+                                <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                Downloads
+                            </h4>
+                            <ul className="space-y-4">
+                                <li><a href="#" className="text-gray-300 hover:text-pink-400 transition-all duration-300 hover:translate-x-1 inline-block">iOS App</a></li>
+                                <li><a href="#" className="text-gray-300 hover:text-pink-400 transition-all duration-300 hover:translate-x-1 inline-block">Android App</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    {/* Newsletter (Right Side) */}
-                    <div className="md:col-span-2 flex flex-col items-start">
-                        <h4 className="font-bold text-travel-gray-900 mb-4">Stay Connected</h4>
-                        <p className="text-travel-gray-600 text-sm mb-4 max-w-sm text-left">
-                            Subscribe to get travel tips, exclusive deals, and the latest updates.
-                        </p>
+                    <div className="md:col-span-2">
+                        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                            <h4 className="font-bold text-white mb-4 text-lg flex items-center gap-2">
+                                <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                Stay Connected
+                            </h4>
+                            <p className="text-gray-300 text-sm mb-6">
+                                Join our community for exclusive deals, travel tips, and insider access to the world's best destinations.
+                            </p>
 
-                        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm space-y-4">
-                            <AnimatePresence>
-                                {errors.root && (
-                                    <motion.div
-                                        key="footer-error"
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <Alert variant="destructive">{errors.root.message}</Alert>
-                                    </motion.div>
-                                )}
-                                {showSuccess && (
-                                    <motion.div
-                                        key="footer-success"
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <Alert variant="success">
-                                            Successfully subscribed to the newsletter!
-                                        </Alert>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                            <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm space-y-4">
+                                <AnimatePresence>
+                                    {errors.root && (
+                                        <motion.div
+                                            key="footer-error"
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <Alert variant="destructive">{errors.root.message}</Alert>
+                                        </motion.div>
+                                    )}
+                                    {showSuccess && (
+                                        <motion.div
+                                            key="footer-success"
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <Alert variant="success">
+                                                Successfully subscribed to the newsletter!
+                                            </Alert>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
 
-                            <Controller
-                                name="email"
-                                control={control}
-                                render={({ field }) => (
-                                    <input
-                                        {...field}
-                                        type="email"
-                                        placeholder="Enter your email"
-                                        className={`w-full h-12 rounded-full border ${errors.email ? "border-red-500" : "border-gray-200"
-                                            } px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                                    />
+                                <Controller
+                                    name="email"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <input
+                                            {...field}
+                                            type="email"
+                                            placeholder="Enter your email"
+                                            className={`w-full h-12 rounded-full border ${errors.email ? "border-red-500" : "border-gray-200"
+                                                } px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                                        />
+                                    )}
+                                />
+                                {errors.email && (
+                                    <p className="text-red-500 text-sm">{errors.email.message}</p>
                                 )}
-                            />
-                            {errors.email && (
-                                <p className="text-red-500 text-sm">{errors.email.message}</p>
-                            )}
 
-                            <button
-                                type="submit"
-                                disabled={mutation.isPending}
-                                className="bg-travel-blue hover:bg-travel-blue-600 text-white rounded-full px-6 py-2 transition-colors disabled:opacity-50"
-                            >
-                                {mutation.isPending ? "Submitting..." : "Subscribe"}
-                            </button>
-                        </form>
+                                <button
+                                    type="submit"
+                                    disabled={mutation.isPending}
+                                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
+                                >
+                                    {mutation.isPending ? "Submitting..." : "Join Now"}
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
                 {/* === Bottom Bar === */}
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-gray-100">
-                    <p className="text-sm text-travel-gray-500">
-                        © 2025 Travels Website. All rights reserved.
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
+                    <p className="text-sm text-gray-400">
+                        © 2025 Travels Website. All rights reserved. Made with ❤️ for travelers worldwide.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-6">
-                        {/* Locale & Currency */}
                         <LocaleCurrencySelectors />
 
-                        {/* Socials */}
-                        <div className="flex items-center gap-4">
-                            <a href={data?.app?.social_facebook || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Facebook className="w-5 h-5" /></a>
-                            <a href={data?.app?.social_twitter || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Twitter className="w-5 h-5" /></a>
-                            <a href={data?.app?.social_instagram || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Instagram className="w-5 h-5" /></a>
-                            <a href={data?.app?.social_linkedin || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Linkedin className="w-5 h-5" /></a>
-                            <a href={data?.app?.social_youtube || "#"} className="text-travel-gray-500 hover:text-travel-blue"><Youtube className="w-5 h-5" /></a>
+                        <div className="flex items-center gap-3">
+                            <a href={data?.app?.social_facebook || "#"} className="w-10 h-10 bg-white/10 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                                <Facebook className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                            </a>
+                            <a href={data?.app?.social_twitter || "#"} className="w-10 h-10 bg-white/10 hover:bg-sky-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                                <Twitter className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                            </a>
+                            <a href={data?.app?.social_instagram || "#"} className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                                <Instagram className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                            </a>
+                            <a href={data?.app?.social_linkedin || "#"} className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                                <Linkedin className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                            </a>
+                            <a href={data?.app?.social_youtube || "#"} className="w-10 h-10 bg-white/10 hover:bg-red-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                                <Youtube className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                            </a>
                         </div>
                     </div>
                 </div>

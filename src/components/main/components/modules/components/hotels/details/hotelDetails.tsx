@@ -5,6 +5,8 @@ import ImageBlur from '@src/utils/blurImage';
 import renderStars from '@src/utils/renderStars';
 import { getFeatureIcon } from '@src/utils/featureIcon';
 import { MapPin, Heart, Share2, Wifi, Car, Coffee, Dumbbell, Waves, Utensils } from 'lucide-react';
+import { DatePicker } from '@components/DatePicker';
+import { GuestSelector } from '@components/GuestSelector';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
@@ -86,17 +88,19 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
   }
 
   return (
-    <div className="min-h-screen bg-bg-page">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 pt-20">
       <Container className="py-8">
-        {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
-          <span>Hotels</span>
-          <span>&gt;</span>
-          <span className="text-gray-900 font-medium">{hotel.name}</span>
+        {/* Enhanced Breadcrumb */}
+        <nav className="flex items-center space-x-2 text-sm mb-8">
+          <div className="bg-white/95 backdrop-blur-xl rounded-full px-4 py-2 shadow-sm border border-gray-100">
+            <span className="text-gray-600">Hotels</span>
+            <span className="mx-2 text-gray-400">&gt;</span>
+            <span className="text-blue-600 font-semibold">{hotel.name}</span>
+          </div>
         </nav>
 
-        {/* Hotel Image */}
-        <div className="relative w-full h-96 lg:h-[500px] rounded-xl overflow-hidden mb-8">
+        {/* Enhanced Hotel Image */}
+        <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden mb-8 shadow-2xl">
           <ImageBlur
             src={hotel.img}
             alt={hotel.name}
@@ -105,66 +109,89 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
             quality={100}
             className="object-cover"
           />
-          <div className="absolute top-4 right-4 flex gap-2">
-            <button className="w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-colors shadow-sm">
-              <Share2 className="w-5 h-5 text-gray-600" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          <div className="absolute top-6 right-6 flex gap-3">
+            <button className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg">
+              <Share2 className="w-5 h-5 text-gray-700" />
             </button>
-            <button className="w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-colors shadow-sm">
-              <Heart className="w-5 h-5 text-gray-600" />
+            <button className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg">
+              <Heart className="w-5 h-5 text-gray-700" />
             </button>
+          </div>
+          <div className="absolute bottom-6 left-6">
+            <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full">
+              <span className="text-sm font-semibold text-gray-900">📸 Premium Gallery</span>
+            </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
+          {/* Enhanced Main Content */}
           <div className="lg:col-span-2">
-            {/* Hotel Info */}
-            <div className="mb-8">
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2 font-urbanist">
-                {hotel.name}
-              </h1>
-              
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center">
-                  {renderStars(parseFloat(hotel.stars))}
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8 mb-8">
+              {/* Enhanced Hotel Info */}
+              <div className="mb-8">
+                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                  LUXURY ACCOMMODATION
                 </div>
-                <div className="flex items-center gap-1 text-gray-600">
-                  <MapPin className="w-4 h-4" />
-                  <span>{hotel.location}</span>
+
+                <h1 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                  {hotel.name}
+                </h1>
+
+                <div className="flex flex-wrap items-center gap-6 mb-6">
+                  <div className="flex items-center gap-2">
+                    {renderStars(parseFloat(hotel.stars))}
+                    <span className="text-sm font-medium text-gray-600">({hotel.stars} Stars)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <MapPin className="w-5 h-5 text-blue-500" />
+                    <span className="font-medium">{hotel.location}</span>
+                  </div>
                 </div>
-              </div>
 
-              <p className="text-gray-600 mb-6">{hotel.address}</p>
+                <p className="text-gray-600 mb-6 text-lg leading-relaxed">{hotel.address}</p>
 
-              <div className="flex items-center gap-2 mb-6">
-                <span className="bg-travel-blue text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {hotel.rating} Rating
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                    ⭐ {hotel.rating} Excellent Rating
+                  </span>
+                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                    🏆 Top Choice
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Description */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">About This Hotel</h2>
-              <p className="text-gray-600 leading-relaxed">
-                Experience luxury and comfort at {hotel.name}, located in the heart of {hotel.location}. 
-                Our hotel offers world-class amenities and exceptional service to make your stay memorable. 
+            {/* Enhanced Description */}
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8 mb-8">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                <h2 className="text-3xl font-black text-gray-900 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">About This Hotel</h2>
+              </div>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Experience luxury and comfort at {hotel.name}, located in the heart of {hotel.location}.
+                Our hotel offers world-class amenities and exceptional service to make your stay memorable.
                 Whether you're traveling for business or leisure, we provide the perfect blend of comfort and convenience.
               </p>
             </div>
 
-            {/* Amenities */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Amenities</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {mockAmenities.map((amenity) => {
+            {/* Enhanced Amenities */}
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8">
+              <div className="flex items-center gap-2 mb-8">
+                <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                <h2 className="text-3xl font-black text-gray-900 bg-gradient-to-r from-gray-900 to-purple-600 bg-clip-text text-transparent">Premium Amenities</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {mockAmenities.map((amenity, index) => {
                   const { icon, bg } = getFeatureIcon(amenity);
                   return (
-                    <div key={amenity} className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-100">
-                      <div className={`w-10 h-10 ${bg} rounded-lg flex items-center justify-center`}>
+                    <div key={amenity} className="group flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 shadow-lg group-hover:scale-110 transition-transform duration-300">
                         {icon}
                       </div>
-                      <span className="font-medium text-gray-900">{amenity}</span>
+                      <span className="font-semibold text-gray-900 group-hover:text-gray-700 transition-colors">{amenity}</span>
                     </div>
                   );
                 })}
@@ -172,61 +199,73 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
             </div>
           </div>
 
-          {/* Booking Card */}
+          {/* Enhanced Booking Card */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="mb-6">
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-3xl font-black text-gray-900 font-urbanist">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-100">
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    BEST PRICE GUARANTEED
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-4xl font-black text-gray-900 bg-gradient-to-r from-gray-900 to-green-600 bg-clip-text text-transparent">
                       ${hotel.actual_price}
                     </span>
-                    <span className="text-gray-600">/night</span>
+                    <span className="text-gray-600 text-lg font-medium">/night</span>
                   </div>
-                  <p className="text-sm text-gray-500">Taxes and fees included</p>
+                  <p className="text-sm text-green-600 font-medium">Taxes and fees included</p>
                 </div>
 
-                <div className="space-y-4 mb-6">
+                <div className="space-y-6 mb-8">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Check-in
+                    <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      Check-in Date
                     </label>
-                    <input
-                      type="date"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                    <DatePicker
+                      placeholder="Select check-in date"
+                      value=""
+                      onChange={() => {}}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Check-out
+                    <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                      Check-out Date
                     </label>
-                    <input
-                      type="date"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent"
+                    <DatePicker
+                      placeholder="Select check-out date"
+                      value=""
+                      onChange={() => {}}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Guests
+                    <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                      Number of Guests
                     </label>
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-travel-blue focus:border-transparent">
-                      <option>1 Guest</option>
-                      <option>2 Guests</option>
-                      <option>3 Guests</option>
-                      <option>4 Guests</option>
-                    </select>
+                    <GuestSelector
+                      value="2 Guests, 1 Room"
+                      onChange={() => {}}
+                    />
                   </div>
                 </div>
 
                 <Link href={`/${lang}/hotels/${hotel.hotel_id}/booking`}>
-                  <button className="w-full bg-travel-blue hover:bg-travel-blue-600 text-white font-semibold py-3 rounded-lg transition-colors mb-4">
-                    Book Now
+                  <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg mb-6">
+                    Book Your Stay Now
                   </button>
                 </Link>
 
-                <p className="text-xs text-gray-500 text-center">
-                  You won't be charged yet
-                </p>
+                <div className="text-center space-y-2">
+                  <p className="text-sm text-green-600 font-medium">
+                    Free cancellation until 24h before
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    You won't be charged yet
+                  </p>
+                </div>
               </div>
             </div>
           </div>
