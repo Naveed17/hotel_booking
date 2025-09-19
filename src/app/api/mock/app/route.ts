@@ -103,7 +103,7 @@ export async function POST() {
           comment:
             "Amazing service and beautiful hotels. TopTier Travel made our vacation unforgettable!",
           avatar:
-            "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
           status: "1",
           photo: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop",
         },
@@ -117,7 +117,7 @@ export async function POST() {
           avatar:
             "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
           status: "1",
-          photo: "https://images.unsplash.com/photo-1578774204375-8322cd64d4e5?w=800&h=600&fit=crop",
+          photo: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop",
         },
       ],
       our_services: [

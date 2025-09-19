@@ -130,8 +130,7 @@ const Newsletter = (): React.JSX.Element => {
                                         )}
                                     </AnimatePresence>
                                     <div className="flex flex-col sm:flex-row gap-4">
-                                        <div className="flex flex-col gap-4 flex-1">
-                                            {/* Name */}
+                                        <div className="flex-1">
                                             <Controller
                                                 name="name"
                                                 control={control}
@@ -145,13 +144,14 @@ const Newsletter = (): React.JSX.Element => {
                                                     />
                                                 )}
                                             />
+
                                             {errors.name && (
                                                 <p className="text-red-500 text-sm">{errors.name.message}</p>
                                             )}
+
                                         </div>
 
-                                        <div className="flex flex-col gap-4 flex-1">
-                                            {/* Email */}
+                                        <div className="flex-1">
                                             <Controller
                                                 name="email"
                                                 control={control}
@@ -165,20 +165,46 @@ const Newsletter = (): React.JSX.Element => {
                                                     />
                                                 )}
                                             />
+
                                             {errors.email && (
                                                 <p className="text-red-500 text-sm">{errors.email.message}</p>
                                             )}
+
                                         </div>
                                     </div>
 
-                                    {/* Submit button */}
                                     <button
                                         type="submit"
                                         disabled={mutation.isPending}
-                                        className="w-full h-12 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50"
+                                        className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        {mutation.isPending ? "Submitting..." : "Join the Adventure"}
+                                        {mutation.isPending ? "Subscribing..." : "Subscribe Now"}
                                     </button>
+
+                                    {/* Additional Information */}
+                                    <div className="mt-6 space-y-4">
+                                        <div className="flex items-center justify-center gap-6 text-sm text-gray-600">
+                                            <div className="flex items-center gap-2">
+                                                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                                <span>Weekly travel deals</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                                <span>Destination guides</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                                <span>Travel tips</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="text-center">
+                                            <p className="text-sm text-gray-500 mb-2">
+                                                Join thousands of travelers who save up to 40% on their trips
+                                            </p>
+
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
