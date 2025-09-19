@@ -13,17 +13,17 @@ export async function POST() {
         meta_description:
           "Book premium hotels worldwide with Travel Website. Find the best deals on luxury accommodations.",
         header_logo_img:
-          "https://via.placeholder.com/200x60/2563eb/ffffff?text=TopTier+Travel",
+          "https://via.placeholder.com/200x60/2563eb/ffffff?text=travelwebsite+Travel",
         favicon_img: "https://via.placeholder.com/32x32/2563eb/ffffff?text=T",
-        contact_email: "info@toptier-travel.com",
-        contact_phone: "+1-800-TOPTIER",
+        contact_email: "info@trave-travel.com",
+        contact_phone: "+1-800-travel",
         currency: "USD",
         language: "en",
-        social_facebook: "https://facebook.com/toptiertravel",
-        social_twitter: "https://twitter.com/toptiertravel",
-        social_instagram: "https://instagram.com/toptiertravel",
-        social_linkedin: "https://linkedin.com/company/toptiertravel",
-        social_youtube: "https://youtube.com/toptiertravel",
+        social_facebook: "https://facebook.com/travelwebsite",
+        social_twitter: "https://twitter.com/travelwebsite",
+        social_instagram: "https://instagram.com/travelwebsite",
+        social_linkedin: "https://linkedin.com/company/travelwebsite",
+        social_youtube: "https://youtube.com/travelwebsite",
       },
       featured_tours: [
         {
