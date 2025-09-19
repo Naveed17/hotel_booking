@@ -1,4 +1,4 @@
-import { FeaturedDestinations, Hero, FeaturedHotels, WhyUs, Newsletter, Testimonials } from "@components/main";
+import { FeaturedDestinations, Hero, FeaturedHotels, FeaturedFlights, WhyUs, Newsletter, Testimonials } from "@components/main";
 
 export default function Page(): React.JSX.Element {
     return <>
@@ -8,6 +8,8 @@ export default function Page(): React.JSX.Element {
         <FeaturedDestinations />
         {/* Featured Hotels */}
         <FeaturedHotels />
+        {/* Featured Flights */}
+        <FeaturedFlights />
         {/* Why Us Section */}
         <WhyUs />
         {/* Testimonials */}

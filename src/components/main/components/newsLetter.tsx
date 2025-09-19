@@ -84,7 +84,7 @@ const Newsletter = (): React.JSX.Element => {
                             <div className="lg:w-2/5 relative">
                                 <div className="h-64 lg:h-full relative overflow-hidden">
                                     <img
-                                        src="/images/Rectangle 817.png"
+                                        src="/images/news-letter.jpg"
                                         alt="Travel journey"
                                         className="w-full h-full object-cover"
                                     />
