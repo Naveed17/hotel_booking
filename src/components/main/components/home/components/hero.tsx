@@ -1,7 +1,10 @@
 'use client';
 import { HotelSearch } from '@components/main/components/modules';
+import { ToursMainSearch } from '@components/main/components/modules/components/tours/mainSearch';
+import { FlightsMainSearch } from '@components/main/components/modules/components/flights/mainSearch';
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
+import { Building2, MapPin, Plane } from 'lucide-react';
 
 const sectionVariants = {
     hidden: { opacity: 0 },
@@ -25,6 +28,7 @@ const titleVariants = {
     })
 };
 function Hero() {
+    const [activeTab, setActiveTab] = useState<'hotels' | 'tours' | 'flights'>('hotels');
 
     return (
         <motion.section
@@ -95,14 +99,61 @@ function Hero() {
                     </motion.p>
                 </div>
 
-                {/* Enhanced Search Form */}
+                {/* Enhanced Search Form with Tabs */}
                 <motion.div
                     variants={titleVariants as any}
                     initial="hidden"
                     animate="visible"
                     custom={4}
+                    className="max-w-6xl mx-auto"
                 >
-                    <HotelSearch />
+                    {/* Tab Navigation */}
+                    <div className="flex justify-center mb-6">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-2 border border-white/20">
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setActiveTab('hotels')}
+                                    className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                                        activeTab === 'hotels'
+                                            ? 'bg-white text-blue-600 shadow-lg'
+                                            : 'text-white hover:bg-white/10'
+                                    }`}
+                                >
+                                    <Building2 className="w-5 h-5" />
+                                    Hotels
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('tours')}
+                                    className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                                        activeTab === 'tours'
+                                            ? 'bg-white text-emerald-600 shadow-lg'
+                                            : 'text-white hover:bg-white/10'
+                                    }`}
+                                >
+                                    <MapPin className="w-5 h-5" />
+                                    Tours
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('flights')}
+                                    className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                                        activeTab === 'flights'
+                                            ? 'bg-white text-sky-600 shadow-lg'
+                                            : 'text-white hover:bg-white/10'
+                                    }`}
+                                >
+                                    <Plane className="w-5 h-5" />
+                                    Flights
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Tab Content */}
+                    <div className="relative">
+                        {activeTab === 'hotels' && <HotelSearch />}
+                        {activeTab === 'tours' && <ToursMainSearch />}
+                        {activeTab === 'flights' && <FlightsMainSearch />}
+                    </div>
                 </motion.div>
             </div>
         </motion.section>

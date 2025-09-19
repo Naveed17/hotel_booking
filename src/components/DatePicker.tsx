@@ -85,7 +85,7 @@ export function DatePicker({ placeholder, value, onChange, className }: DatePick
   return (
     <div className="relative" ref={containerRef}>
       <div
-        className="relative cursor-pointer"
+        className="relative cursor-pointer z-0"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500 w-5 h-5 pointer-events-none z-10" />
@@ -99,7 +99,7 @@ export function DatePicker({ placeholder, value, onChange, className }: DatePick
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-6 z-[9999] min-w-[320px]">
+        <div className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-6 z-[99] min-w-[320px]">
           {/* Enhanced Calendar Header */}
           <div className="flex items-center justify-between mb-6">
             <button
@@ -139,12 +139,12 @@ export function DatePicker({ placeholder, value, onChange, className }: DatePick
                 onClick={() => handleDateSelect(date)}
                 className={`
                   w-10 h-10 text-sm font-medium rounded-xl transition-all duration-300 transform hover:scale-110
-                  ${isCurrentMonth(date) 
-                    ? 'text-gray-900 hover:bg-blue-50 hover:text-blue-600' 
+                  ${isCurrentMonth(date)
+                    ? 'text-gray-900 hover:bg-blue-50 hover:text-blue-600'
                     : 'text-gray-300 hover:text-gray-400'
                   }
-                  ${isToday(date) 
-                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:from-blue-600 hover:to-cyan-600' 
+                  ${isToday(date)
+                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:from-blue-600 hover:to-cyan-600'
                     : ''
                   }
                 `}
