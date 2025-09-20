@@ -8,7 +8,7 @@ interface DashboardRootLayoutProps {
 const DashboardRootLayout = ({ children }: DashboardRootLayoutProps) => {
   return (
     <AuthGuard>
-      <DashboardLayout>{children}</DashboardLayout>;
+      <DashboardLayout>{children}</DashboardLayout>
     </AuthGuard>
   )
 };
