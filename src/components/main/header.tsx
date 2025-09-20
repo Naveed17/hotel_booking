@@ -158,12 +158,6 @@ export default function Header({ ...props }: { dictionary: any }): React.JSX.Ele
                                             </div>
                                         )}
 
-                                        {/* Mobile User Menu */}
-                                        {user && (
-                                            <div className="pt-6 border-t border-gray-200">
-                                                <UserDropdown />
-                                            </div>
-                                        )}
                                     </div>
                                 </motion.div>
                             )}
