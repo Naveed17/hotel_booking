@@ -122,7 +122,7 @@ const FlightBooking = (): React.JSX.Element => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.1 }}
-                                    className="bg-white/95 relative z-40 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
+                                    className="bg-white/95 relative z-40 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8"
                                 >
                                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Passenger Information</h2>
 
@@ -226,7 +226,7 @@ const FlightBooking = (): React.JSX.Element => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2 }}
-                                    className="bg-white/95 relative z-0 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
+                                    className="bg-white/95 relative z-0 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8"
 
                                 >
                                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
@@ -279,7 +279,7 @@ const FlightBooking = (): React.JSX.Element => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
-                                    className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
+                                    className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8"
                                 >
                                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Payment Information</h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -128,7 +128,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Enhanced Main Content */}
           <div className="lg:col-span-2">
-            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8 mb-8">
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8 mb-8">
               {/* Enhanced Hotel Info */}
               <div className="mb-8">
                 <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
@@ -165,7 +165,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
             </div>
 
             {/* Enhanced Description */}
-            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8 mb-8">
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8 mb-8">
               <div className="flex items-center gap-2 mb-6">
                 <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
                 <h2 className="text-3xl font-black  bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">About This Hotel</h2>
@@ -178,7 +178,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
             </div>
 
             {/* Enhanced Amenities */}
-            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8">
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8">
               <div className="flex items-center gap-2 mb-8">
                 <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                 <h2 className="text-3xl font-black  bg-gradient-to-r from-gray-900 to-purple-600 bg-clip-text text-transparent">Premium Amenities</h2>
@@ -208,7 +208,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
           {/* Enhanced Booking Card */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-0 md:p-8 shadow-2xl border border-gray-100">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-2xl border border-gray-100">
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>

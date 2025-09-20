@@ -142,7 +142,7 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Trip Details */}
-              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-0 md:p-8 shadow-xl border border-gray-100 relative z-10">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-xl border border-gray-100 relative z-10">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
                   <span className="bg-gradient-to-r from-gray-900 to-green-600 bg-clip-text text-transparent">
@@ -190,7 +190,7 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
               </div>
 
               {/* Guest Information */}
-              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-0 md:p-8 shadow-xl border border-gray-100">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-xl border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <span className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></span>
                   <span className="bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
@@ -262,7 +262,7 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
               </div>
 
               {/* Payment Information */}
-              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-0 md:p-8 shadow-xl border border-gray-100">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-xl border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <span className="w-3 h-3 bg-pink-500 rounded-full animate-pulse"></span>
                   <span className="bg-gradient-to-r from-gray-900 to-pink-600 bg-clip-text text-transparent">
@@ -347,7 +347,7 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
           {/* Booking Summary */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-0 md:p-8 shadow-2xl border border-gray-100">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-2xl border border-gray-100">
                 <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                   <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                   BOOKING SUMMARY

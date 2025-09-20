@@ -95,7 +95,7 @@ const Newsletter = (): React.JSX.Element => {
                                 </div>
                             </div>
 
-                            <div className="lg:w-3/5 p-8 px-6 lg:px-0 lg:p-12">
+                            <div className="lg:w-3/5 p-8 px-6  lg:p-12">
 
                                 {/* Newsletter Form */}
                                 <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>

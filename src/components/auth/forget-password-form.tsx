@@ -70,7 +70,7 @@ export default function ForgetPasswordForm() {
       </div>
 
       {/* Enhanced Form Container */}
-      <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 py-6 md:py-8 md:p-8 shadow-xl border border-gray-100">
 
         {errors.root && (
           <div className="mb-6">

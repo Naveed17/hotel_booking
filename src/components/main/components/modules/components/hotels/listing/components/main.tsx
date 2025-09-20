@@ -144,10 +144,10 @@ export default function ListingLayout({ children, dict }: ListingLayoutProps) {
                                     animate={{ opacity: 1, height: 'auto' }}
                                     exit={{ opacity: 0, height: 0 }}
                                     transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                    className="lg:hidden overflow-hidden lg:col-span-1"
+                                    className="overflow-hidden lg:col-span-1"
                                 >
 
-                                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 sticky top-24">
+                                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 sticky">
                                         <div className="flex items-center gap-2 mb-6">
                                             <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                             <h3 className="text-lg font-bold text-gray-900">Refine Your Search</h3>

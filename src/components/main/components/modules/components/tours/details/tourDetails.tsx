@@ -143,7 +143,7 @@ const TourDetails = (): React.JSX.Element => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
+                            className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8"
                         >
                             {/* Header */}
                             <div className="mb-6">

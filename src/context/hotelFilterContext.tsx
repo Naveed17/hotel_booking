@@ -83,7 +83,7 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
 }) => {
     const [filters, setFilters] = useState<HotelFilters>(initialFilters);
     const [useFilter, setUseFilter] = useState(false);
-    const [showFilters, setShowFilters] = useState(false);
+    const [showFilters, setShowFilters] = useState(true);
 
     // ===== Initial Hotels (search) =====
     const {

@@ -86,7 +86,7 @@ export default function LoginForm() {
         )
       }
 
-      <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 py-6 md:py-0 md:p-8 shadow-xl border border-gray-100">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 py-6 md:py-8 md:p-8 shadow-xl border border-gray-100">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Email */}
           <div className="space-y-3">
