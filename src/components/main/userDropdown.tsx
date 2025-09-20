@@ -60,7 +60,7 @@ export default function UserDropdown() {
     }, [checkSession, router]);
 
     return (
-        <div className="relative inline-block text-left">
+        <div className="relative inline-block text-left leading-0">
             {/* Enhanced Avatar Button */}
             <button
                 ref={refs.setReference}
