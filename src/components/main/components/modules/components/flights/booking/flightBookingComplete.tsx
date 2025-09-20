@@ -77,7 +77,7 @@ const FlightBookingComplete = (): React.JSX.Element => {
                                 BOOKING CONFIRMED
                             </div>
                         </div>
-                        <h1 className="text-4xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
+                        <h1 className="text-4xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
                             Flight Booked Successfully!
                         </h1>
                         <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -93,7 +93,7 @@ const FlightBookingComplete = (): React.JSX.Element => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8"
+                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
                             >
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Flight Details</h2>
 
@@ -112,7 +112,7 @@ const FlightBookingComplete = (): React.JSX.Element => {
 
                                 {/* Flight Route */}
                                 <div className="bg-gray-50 rounded-xl p-6">
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                                         <div className="text-center">
                                             <p className="text-2xl font-bold text-gray-900 mb-1">{mockBooking.flight.departure.time}</p>
                                             <p className="text-lg font-semibold text-gray-700">{mockBooking.flight.departure.airport}</p>
@@ -121,9 +121,10 @@ const FlightBookingComplete = (): React.JSX.Element => {
                                             <p className="text-xs text-gray-500">{mockBooking.flight.departure.terminal}</p>
                                         </div>
 
-                                        <div className="flex-1 mx-8">
+                                        <div className="flex-1 md:mx-8">
                                             <div className="relative">
-                                                <div className="h-px bg-gray-300 w-full"></div>
+                                                <div className="h-px md:h-px w-full bg-gray-300 hidden md:block"></div>
+                                                <div className="w-px h-12 bg-gray-300 mx-auto md:hidden"></div>
                                                 <Plane className="w-6 h-6 text-sky-600 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-50" />
                                             </div>
                                             <div className="text-center mt-3">
@@ -166,7 +167,7 @@ const FlightBookingComplete = (): React.JSX.Element => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
-                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8"
+                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
                             >
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
 

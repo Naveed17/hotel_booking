@@ -62,12 +62,14 @@ const TourBookingComplete = (): React.JSX.Element => {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-8"
                     >
-                        <div className="inline-flex items-center justify-center w-20 h-20 bg-emerald-100 rounded-full mb-6">
-                            <CheckCircle className="w-10 h-10 text-emerald-600" />
-                        </div>
-                        <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-                            BOOKING CONFIRMED
+                        <div className="flex items-center gap-2 justify-center">
+                            <div className="inline-flex items-center justify-center w-20 h-20 bg-emerald-100 rounded-full mb-6">
+                                <CheckCircle className="w-10 h-10 text-emerald-600" />
+                            </div>
+                            <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                                BOOKING CONFIRMED
+                            </div>
                         </div>
                         <h1 className="text-4xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
                             Your Tour is Booked!
@@ -85,11 +87,11 @@ const TourBookingComplete = (): React.JSX.Element => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8"
+                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
                             >
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Tour Details</h2>
 
-                                <div className="flex gap-6 mb-6">
+                                <div className="flex flex-col md:flex-row gap-6 mb-6">
                                     <img
                                         src={mockBooking.tour.image}
                                         alt={mockBooking.tour.name}
@@ -158,7 +160,7 @@ const TourBookingComplete = (): React.JSX.Element => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
-                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8"
+                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
                             >
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
 
@@ -190,7 +192,7 @@ const TourBookingComplete = (): React.JSX.Element => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
-                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8"
+                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
                             >
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">What's Next?</h2>
 
