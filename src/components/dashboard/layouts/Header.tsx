@@ -16,7 +16,6 @@ const Header = () => {
   const lang = params?.lang as string || 'en';
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const handleLogout = async () => {
     if (logout) {
       await logout();
@@ -28,16 +27,16 @@ const Header = () => {
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="flex items-center justify-between px-6 py-4">
         <div className="flex items-center">
-          <button 
+          <button
             onClick={() => setIsMobileMenuOpen(true)}
             className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500"
           >
             <Menu className="h-6 w-6" />
           </button>
-          
+
           <div className="ml-4 lg:ml-0 flex-1 min-w-0">
             <h1 className="text-base sm:text-xl md:text-2xl font-bold text-gray-900 truncate">
-              {user?.role === 'super-admin' ? 'Super Admin' : user?.role.charAt(0).toUpperCase() + user?.role.slice(1)} Dashboard
+              {user?.role === 'super-admin' ? 'Super Admin' : user ? user?.role.charAt(0).toUpperCase() + user?.role.slice(1) : 'Admin'} Dashboard
             </h1>
           </div>
         </div>
@@ -51,7 +50,7 @@ const Header = () => {
               className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-          
+
           <button className="p-1 text-gray-400 hover:text-gray-500 relative">
             <Bell className="h-5 w-5" />
             <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
@@ -98,23 +97,22 @@ const Header = () => {
               <X className="h-6 w-6" />
             </DrawerClose>
           </DrawerHeader>
-          
+
           <nav className="p-4 flex-1">
             <div className="space-y-1">
               {getNavigationItems(user?.role).map((item) => {
                 const isActive = window.location.pathname === item.href || window.location.pathname.startsWith(item.href + '/');
                 const Icon = item.icon;
-                
+
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                      isActive
-                        ? 'bg-blue-50 text-blue-700'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                    }`}
+                    className={`group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${isActive
+                      ? 'bg-blue-50 text-blue-700'
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                      }`}
                   >
                     <Icon className={`mr-3 h-5 w-5 ${isActive ? 'text-blue-700' : 'text-gray-400'}`} />
                     {item.name}
@@ -166,12 +164,12 @@ const Header = () => {
     }
 
     const roleSpecificItems = [];
-    
+
     const bookingLabel = role === 'customer' ? 'My Bookings' : 'Bookings';
     roleSpecificItems.push(
       { name: bookingLabel, href: `/${lang}/dashboard/bookings`, icon: BookOpen }
     );
-    
+
     if (role === 'agent') {
       roleSpecificItems.push(
         { name: 'Customers', href: `/${lang}/dashboard/${role}/customers`, icon: Users }
@@ -181,13 +179,13 @@ const Header = () => {
         { name: 'Analytics', href: `/${lang}/dashboard/analytics`, icon: BarChart3 },
         { name: 'Users', href: `/${lang}/dashboard/users`, icon: Users }
       );
-      
+
       if (role === 'admin' || role === 'super-admin') {
         roleSpecificItems.push(
           { name: 'Modules', href: `/${lang}/dashboard/modules/settings`, icon: Settings }
         );
       }
-      
+
       if (role === 'super-admin') {
         roleSpecificItems.push(
           { name: 'System', href: `/${lang}/dashboard/system`, icon: Shield }
