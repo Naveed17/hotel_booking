@@ -19,13 +19,14 @@ import { useParams, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import Container from '@components/core/container'
 
 // Mock tour data
 const mockTour = {
     id: "1",
     name: "Paris City Walking Tour with Local Guide",
     location: "Paris, France",
-    image: "https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=400",
+    image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=400",
     price: 89,
     currency: "USD",
     rating: "4.8",
@@ -89,8 +90,8 @@ const TourBooking = (): React.JSX.Element => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 pt-20">
-            <div className="container mx-auto px-4 py-8">
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 pb-8 pt-30">
+            <Container>
                 {/* Back Button */}
                 <Link href={`/${lang}/tours/${mockTour.id}`} className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-6">
                     <ChevronLeft className="w-4 h-4" />
@@ -339,7 +340,7 @@ const TourBooking = (): React.JSX.Element => {
                         </motion.div>
                     </div>
                 </div>
-            </div>
+            </Container>
         </div>
     )
 }

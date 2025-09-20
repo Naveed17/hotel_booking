@@ -22,7 +22,7 @@ const mockBooking = {
     tour: {
         name: "Paris City Walking Tour with Local Guide",
         location: "Paris, France",
-        image: "https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=400",
+        image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=400",
         duration: "3 hours",
         category: "Cultural"
     },

@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import ToursFilter from './filter'
+import Container from '@components/core/container';
 
 interface ToursMainProps {
     children?: React.ReactNode;
@@ -14,19 +15,19 @@ const ToursMain = ({ children }: ToursMainProps): React.JSX.Element => {
 
     return (
         <div className="min-h-screen py-8">
-            <div className="container mx-auto px-4">
+            <Container>
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                     {/* Filters Sidebar */}
                     <div className="lg:col-span-1">
                         <ToursFilter onFilterChange={handleFilterChange} />
                     </div>
-                    
+
                     {/* Tours Listing */}
                     <div className="lg:col-span-3">
                         {children}
                     </div>
                 </div>
-            </div>
+            </Container>
         </div>
     )
 }

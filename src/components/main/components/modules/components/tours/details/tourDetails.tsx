@@ -19,6 +19,7 @@ import { DatePicker } from '@components/DatePicker'
 import { GuestSelector } from '@components/GuestSelector'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import Container from '@components/core/container'
 
 // Mock tour data
 const mockTour = {
@@ -26,7 +27,7 @@ const mockTour = {
     name: "Paris City Walking Tour with Local Guide",
     location: "Paris, France",
     images: [
-        "https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=800",
+        "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800",
         "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800",
         "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=800",
         "https://images.unsplash.com/photo-1520637836862-4d197d17c93a?w=800"
@@ -81,8 +82,8 @@ const TourDetails = (): React.JSX.Element => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 pt-20">
-            <div className="container mx-auto px-4 py-8">
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 pb-8 pt-30">
+            <Container>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Main Content */}
                     <div className="lg:col-span-2 space-y-8">
@@ -313,7 +314,7 @@ const TourDetails = (): React.JSX.Element => {
                         </motion.div>
                     </div>
                 </div>
-            </div>
+            </Container>
         </div>
     )
 }

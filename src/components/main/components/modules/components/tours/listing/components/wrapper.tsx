@@ -14,7 +14,7 @@ const mockTours = [
         id: "1",
         name: "Paris City Walking Tour",
         location: "Paris, France",
-        image: "https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=800",
+        image: "https://images.unsplash.com/photo-1549144511-f099e773c147?w=800",
         price: "89",
         currency: "USD",
         rating: "4.8",
