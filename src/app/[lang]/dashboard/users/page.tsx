@@ -57,14 +57,14 @@ const UsersPage = () => {
   };
 
   const sortedUsers = [...users]
-    .filter(u => 
+    .filter(u =>
       u.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       u.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       u.role.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .sort((a, b) => {
-      const aVal = a[sortField];
-      const bVal = b[sortField];
+      const aVal: any = a[sortField];
+      const bVal: any = b[sortField];
       if (sortDirection === 'asc') {
         return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
       } else {
@@ -96,8 +96,8 @@ const UsersPage = () => {
 
   const SortIcon = ({ field }: { field: keyof User }) => {
     if (sortField !== field) return <ChevronUp className="h-4 w-4 text-gray-300" />;
-    return sortDirection === 'asc' ? 
-      <ChevronUp className="h-4 w-4 text-blue-600" /> : 
+    return sortDirection === 'asc' ?
+      <ChevronUp className="h-4 w-4 text-blue-600" /> :
       <ChevronDown className="h-4 w-4 text-blue-600" />;
   };
 
@@ -152,138 +152,135 @@ const UsersPage = () => {
         transition={{ delay: 0.1 }}
         className="bg-white rounded-xl shadow-sm border border-gray-200 p-6"
       >
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">Recent Users</h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-gray-900">Recent Users</h3>
 
+        </div>
+
+        <div className="mb-4 flex items-center gap-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <input
+              type="text"
+              placeholder="Search users..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
           </div>
-          
-          <div className="mb-4 flex items-center gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <input
-                type="text"
-                placeholder="Search users..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-            <button
-              onClick={() => setShowAddDrawer(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center gap-2"
-            >
-              <UserPlus className="h-4 w-4" />
-              Add User
-            </button>
-          </div>
-          
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="text-left py-4 px-6 font-semibold text-gray-900">
-                    <button onClick={() => handleSort('name')} className="flex items-center gap-2 hover:text-blue-600">
-                      Name <SortIcon field="name" />
-                    </button>
-                  </th>
-                  <th className="text-left py-4 px-6 font-semibold text-gray-900">
-                    <button onClick={() => handleSort('email')} className="flex items-center gap-2 hover:text-blue-600">
-                      Email <SortIcon field="email" />
-                    </button>
-                  </th>
-                  <th className="text-left py-4 px-6 font-semibold text-gray-900">
-                    <button onClick={() => handleSort('role')} className="flex items-center gap-2 hover:text-blue-600">
-                      Role <SortIcon field="role" />
-                    </button>
-                  </th>
-                  <th className="text-left py-4 px-6 font-semibold text-gray-900">
-                    <button onClick={() => handleSort('status')} className="flex items-center gap-2 hover:text-blue-600">
-                      Status <SortIcon field="status" />
-                    </button>
-                  </th>
-                  <th className="text-left py-4 px-6 font-semibold text-gray-900">
-                    <button onClick={() => handleSort('joined')} className="flex items-center gap-2 hover:text-blue-600">
-                      Joined <SortIcon field="joined" />
-                    </button>
-                  </th>
-                  <th className="text-left py-4 px-6 font-semibold text-gray-900">Last Active</th>
-                  <th className="text-center py-4 px-6 font-semibold text-gray-900">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedUsers.map((user) => (
-                  <tr key={user.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="py-4 px-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
-                          {user.name.charAt(0)}
-                        </div>
-                        <div>
-                          <p className="font-semibold text-gray-900">{user.name}</p>
-                          <p className="text-sm text-gray-500">ID: {user.id}</p>
-                        </div>
+          <button
+            onClick={() => setShowAddDrawer(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center gap-2"
+          >
+            <UserPlus className="h-4 w-4" />
+            Add User
+          </button>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-200 bg-gray-50">
+                <th className="text-left py-4 px-6 font-semibold text-gray-900">
+                  <button onClick={() => handleSort('name')} className="flex items-center gap-2 hover:text-blue-600">
+                    Name <SortIcon field="name" />
+                  </button>
+                </th>
+                <th className="text-left py-4 px-6 font-semibold text-gray-900">
+                  <button onClick={() => handleSort('email')} className="flex items-center gap-2 hover:text-blue-600">
+                    Email <SortIcon field="email" />
+                  </button>
+                </th>
+                <th className="text-left py-4 px-6 font-semibold text-gray-900">
+                  <button onClick={() => handleSort('role')} className="flex items-center gap-2 hover:text-blue-600">
+                    Role <SortIcon field="role" />
+                  </button>
+                </th>
+                <th className="text-left py-4 px-6 font-semibold text-gray-900">
+                  <button onClick={() => handleSort('status')} className="flex items-center gap-2 hover:text-blue-600">
+                    Status <SortIcon field="status" />
+                  </button>
+                </th>
+                <th className="text-left py-4 px-6 font-semibold text-gray-900">
+                  <button onClick={() => handleSort('joined')} className="flex items-center gap-2 hover:text-blue-600">
+                    Joined <SortIcon field="joined" />
+                  </button>
+                </th>
+                <th className="text-left py-4 px-6 font-semibold text-gray-900">Last Active</th>
+                <th className="text-center py-4 px-6 font-semibold text-gray-900">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedUsers.map((user) => (
+                <tr key={user.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td className="py-4 px-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
+                        {user.name.charAt(0)}
                       </div>
-                    </td>
-                    <td className="py-4 px-6 text-gray-600">{user.email}</td>
-                    <td className="py-4 px-6">
-                      <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-                        user.role === 'super-admin' ? 'bg-red-100 text-red-700' :
-                        user.role === 'admin' ? 'bg-purple-100 text-purple-700' :
+                      <div>
+                        <p className="font-semibold text-gray-900">{user.name}</p>
+                        <p className="text-sm text-gray-500">ID: {user.id}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-4 px-6 text-gray-600">{user.email}</td>
+                  <td className="py-4 px-6">
+                    <span className={`px-3 py-1 text-xs font-medium rounded-full ${user.role === 'super-admin' ? 'bg-red-100 text-red-700' :
+                      user.role === 'admin' ? 'bg-purple-100 text-purple-700' :
                         user.role === 'agent' ? 'bg-green-100 text-green-700' :
-                        'bg-blue-100 text-blue-700'
+                          'bg-blue-100 text-blue-700'
                       }`}>
-                        {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6">
-                      <span className={`px-3 py-1 text-xs font-medium rounded-full flex items-center gap-1 w-fit ${
-                        user.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                      {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                    </span>
+                  </td>
+                  <td className="py-4 px-6">
+                    <span className={`px-3 py-1 text-xs font-medium rounded-full flex items-center gap-1 w-fit ${user.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
                       }`}>
-                        <div className={`w-2 h-2 rounded-full ${
-                          user.status === 'active' ? 'bg-green-500' : 'bg-gray-500'
+                      <div className={`w-2 h-2 rounded-full ${user.status === 'active' ? 'bg-green-500' : 'bg-gray-500'
                         }`}></div>
-                        {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6 text-gray-600">{user.joined}</td>
-                    <td className="py-4 px-6 text-gray-600">{user.lastActive}</td>
-                    <td className="py-4 px-6">
-                      <div className="flex items-center justify-center gap-2">
-                        <button
-                          onClick={() => setViewingUser(user)}
-                          className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="View Details"
-                        >
-                          <Eye className="h-4 w-4" />
-                        </button>
-                        <button
-                          onClick={() => setEditingUser(user)}
-                          className="p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                          title="Edit User"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </button>
-                        <button
-                          onClick={() => handleDeleteUser(user)}
-                          className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Delete User"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+                    </span>
+                  </td>
+                  <td className="py-4 px-6 text-gray-600">{user.joined}</td>
+                  <td className="py-4 px-6 text-gray-600">{user.lastActive}</td>
+                  <td className="py-4 px-6">
+                    <div className="flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => setViewingUser(user)}
+                        className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        title="View Details"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => setEditingUser(user)}
+                        className="p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                        title="Edit User"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteUser(user)}
+                        className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        title="Delete User"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {sortedUsers.length === 0 && (
+          <div className="text-center py-12">
+            <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <p className="text-gray-500">No users found matching your search.</p>
           </div>
-          
-          {sortedUsers.length === 0 && (
-            <div className="text-center py-12">
-              <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500">No users found matching your search.</p>
-            </div>
-          )}
+        )}
       </motion.div>
 
       {/* Add User Drawer */}
@@ -375,7 +372,7 @@ const UserDrawer = ({ title, user, onClose, onSave, open }: {
             <X className="h-6 w-6" />
           </DrawerClose>
         </DrawerHeader>
-        
+
         <form onSubmit={handleSubmit(onSubmit)} className="flex-1 flex flex-col">
           <div className="p-6 overflow-y-auto flex-1 space-y-6">
             <div>
@@ -387,15 +384,14 @@ const UserDrawer = ({ title, user, onClose, onSave, open }: {
                   <input
                     {...field}
                     type="text"
-                    className={`w-full px-4 py-3 border rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                      errors.name ? 'border-red-500' : 'border-gray-200'
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${errors.name ? 'border-red-500' : 'border-gray-200'
+                      }`}
                   />
                 )}
               />
               {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-900 mb-2">Email</label>
               <Controller
@@ -405,15 +401,14 @@ const UserDrawer = ({ title, user, onClose, onSave, open }: {
                   <input
                     {...field}
                     type="email"
-                    className={`w-full px-4 py-3 border rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                      errors.email ? 'border-red-500' : 'border-gray-200'
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${errors.email ? 'border-red-500' : 'border-gray-200'
+                      }`}
                   />
                 )}
               />
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-900 mb-2">Role</label>
               <Controller
@@ -435,7 +430,7 @@ const UserDrawer = ({ title, user, onClose, onSave, open }: {
               />
               {errors.role && <p className="text-red-500 text-sm mt-1">{errors.role.message}</p>}
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-900 mb-2">Status</label>
               <Controller
@@ -456,7 +451,7 @@ const UserDrawer = ({ title, user, onClose, onSave, open }: {
               {errors.status && <p className="text-red-500 text-sm mt-1">{errors.status.message}</p>}
             </div>
           </div>
-        
+
           <DrawerFooter className="border-t border-gray-200">
             <div className="flex gap-3">
               <button
@@ -491,7 +486,7 @@ const ViewUserDrawer = ({ user, onClose, open }: { user: User; onClose: () => vo
             <X className="h-6 w-6" />
           </DrawerClose>
         </DrawerHeader>
-        
+
         <div className="p-6 flex-1">
           <div className="text-center mb-8">
             <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-3xl mx-auto mb-4">
@@ -500,43 +495,40 @@ const ViewUserDrawer = ({ user, onClose, open }: { user: User; onClose: () => vo
             <h4 className="text-2xl font-semibold text-gray-900 mb-2">{user.name}</h4>
             <p className="text-gray-600">{user.email}</p>
           </div>
-          
+
           <div className="space-y-6">
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-500 mb-1">User ID</p>
                 <p className="font-semibold text-gray-900">#{user.id}</p>
               </div>
-              
+
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-500 mb-1">Role</p>
-                <span className={`inline-flex px-3 py-1 text-sm font-medium rounded-full ${
-                  user.role === 'super-admin' ? 'bg-red-100 text-red-700' :
+                <span className={`inline-flex px-3 py-1 text-sm font-medium rounded-full ${user.role === 'super-admin' ? 'bg-red-100 text-red-700' :
                   user.role === 'admin' ? 'bg-purple-100 text-purple-700' :
-                  user.role === 'agent' ? 'bg-green-100 text-green-700' :
-                  'bg-blue-100 text-blue-700'
-                }`}>
+                    user.role === 'agent' ? 'bg-green-100 text-green-700' :
+                      'bg-blue-100 text-blue-700'
+                  }`}>
                   {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
                 </span>
               </div>
-              
+
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-500 mb-1">Status</p>
-                <span className={`inline-flex items-center gap-2 px-3 py-1 text-sm font-medium rounded-full ${
-                  user.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
-                }`}>
-                  <div className={`w-2 h-2 rounded-full ${
-                    user.status === 'active' ? 'bg-green-500' : 'bg-gray-500'
-                  }`}></div>
+                <span className={`inline-flex items-center gap-2 px-3 py-1 text-sm font-medium rounded-full ${user.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                  }`}>
+                  <div className={`w-2 h-2 rounded-full ${user.status === 'active' ? 'bg-green-500' : 'bg-gray-500'
+                    }`}></div>
                   {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
                 </span>
               </div>
-              
+
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-500 mb-1">Joined Date</p>
                 <p className="font-semibold text-gray-900">{user.joined}</p>
               </div>
-              
+
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-500 mb-1">Last Active</p>
                 <p className="font-semibold text-gray-900">{user.lastActive}</p>
@@ -544,7 +536,7 @@ const ViewUserDrawer = ({ user, onClose, open }: { user: User; onClose: () => vo
             </div>
           </div>
         </div>
-        
+
         <DrawerFooter className="border-t border-gray-200">
           <button
             onClick={onClose}
@@ -571,13 +563,13 @@ const DeleteUserModal = ({ user, onClose, onConfirm }: {
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Trash2 className="h-8 w-8 text-red-600" />
           </div>
-          
+
           <h3 className="text-xl font-bold text-gray-900 mb-2">Delete User</h3>
           <p className="text-gray-600 mb-6">
-            Are you sure you want to delete <span className="font-semibold">{user.name}</span>? 
+            Are you sure you want to delete <span className="font-semibold">{user.name}</span>?
             This action cannot be undone.
           </p>
-          
+
           <div className="flex gap-3">
             <button
               onClick={onClose}

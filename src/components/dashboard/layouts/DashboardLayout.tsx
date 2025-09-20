@@ -1,4 +1,3 @@
-'use client'
 import React from 'react';
 import { DashboardProvider } from '@src/context/dashboardContext';
 import Sidebar from './Sidebar';
@@ -13,9 +12,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     <DashboardProvider>
       <div className="min-h-screen bg-gray-50">
         <Sidebar />
-        <div className="lg:pl-64">
+        <div className="lg:pl-64 relative">
           <Header />
-          <main className="p-6">
+          <main className="pt-24 p-6">
             {children}
           </main>
         </div>
