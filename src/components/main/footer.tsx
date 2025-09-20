@@ -98,7 +98,7 @@ const Footer = (): React.JSX.Element => {
 
                 {/* === Links Grid === */}
                 <div className="grid grid-cols-1 md:grid-cols-8 gap-12 mb-16">
-                    <div className="md:col-span-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div className="md:col-span-6 grid grid-cols-2 md:grid-cols-4 gap-12">
                         <div className="group">
                             <h4 className="font-bold text-white mb-6 text-lg flex items-center gap-2">
                                 <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
@@ -235,7 +235,7 @@ const Footer = (): React.JSX.Element => {
 
                 {/* === Bottom Bar === */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
-                    <p className="text-sm text-gray-400">
+                    <p className="text-center md:text-left text-sm text-gray-400">
                         © 2025 Travels Website. All rights reserved. Made with ❤️ for travelers worldwide.
                     </p>
 

@@ -22,7 +22,7 @@ const featuredFlights = [
     },
     {
         id: 2,
-        airline: "Qatar Airways", 
+        airline: "Qatar Airways",
         logo: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=100",
         route: "London → Tokyo",
         departure: "LHR",
@@ -37,7 +37,7 @@ const featuredFlights = [
     {
         id: 3,
         airline: "Singapore Airlines",
-        logo: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=100", 
+        logo: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=100",
         route: "Los Angeles → Singapore",
         departure: "LAX",
         arrival: "SIN",
@@ -66,7 +66,7 @@ const FeaturedFlights = (): React.JSX.Element => {
                             <span className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></span>
                             FEATURED FLIGHTS
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
+                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
                             Best Flight Deals
                         </h2>
                         <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -95,7 +95,7 @@ const FeaturedFlights = (): React.JSX.Element => {
                                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                            
+
                                             {/* Badge */}
                                             <div className="absolute top-4 left-4">
                                                 <span className="bg-sky-100 text-sky-700 px-3 py-1 rounded-full text-sm font-semibold">

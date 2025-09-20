@@ -4,7 +4,7 @@ import Container from '@components/core/container';
 import ImageBlur from '@src/utils/blurImage';
 import renderStars from '@src/utils/renderStars';
 import { getFeatureIcon } from '@src/utils/featureIcon';
-import { MapPin, Heart, Share2, Wifi, Car, Coffee, Dumbbell, Waves, Utensils } from 'lucide-react';
+import { MapPin, Heart, Share2 } from 'lucide-react';
 import { DatePicker } from '@components/DatePicker';
 import { GuestSelector } from '@components/GuestSelector';
 import Link from 'next/link';
@@ -128,7 +128,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Enhanced Main Content */}
           <div className="lg:col-span-2">
-            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8 mb-8">
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8 mb-8">
               {/* Enhanced Hotel Info */}
               <div className="mb-8">
                 <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
@@ -136,7 +136,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                   LUXURY ACCOMMODATION
                 </div>
 
-                <h1 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                <h1 className="text-4xl lg:text-5xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
                   {hotel.name}
                 </h1>
 
@@ -155,20 +155,20 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
 
                 <div className="flex items-center gap-3">
                   <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                    ⭐ {hotel.rating} Excellent Rating
+                    {hotel.rating} Excellent Rating
                   </span>
                   <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                    🏆 Top Choice
+                    Top Choice
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Enhanced Description */}
-            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8 mb-8">
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8 mb-8">
               <div className="flex items-center gap-2 mb-6">
                 <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
-                <h2 className="text-3xl font-black text-gray-900 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">About This Hotel</h2>
+                <h2 className="text-3xl font-black  bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">About This Hotel</h2>
               </div>
               <p className="text-gray-600 leading-relaxed text-lg">
                 Experience luxury and comfort at {hotel.name}, located in the heart of {hotel.location}.
@@ -178,20 +178,26 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
             </div>
 
             {/* Enhanced Amenities */}
-            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8">
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8">
               <div className="flex items-center gap-2 mb-8">
                 <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                <h2 className="text-3xl font-black text-gray-900 bg-gradient-to-r from-gray-900 to-purple-600 bg-clip-text text-transparent">Premium Amenities</h2>
+                <h2 className="text-3xl font-black  bg-gradient-to-r from-gray-900 to-purple-600 bg-clip-text text-transparent">Premium Amenities</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {mockAmenities.map((amenity, index) => {
-                  const { icon, bg } = getFeatureIcon(amenity);
+                  const { icon, bg } = getFeatureIcon(amenity, "w-6 h-6");
                   return (
-                    <div key={amenity} className="group flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        {icon}
+                    <div key={amenity} className="group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-2xl border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-14 h-14 ${bg} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+                          <span className="text-4xl">{icon}</span>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">{amenity}</h3>
+                          <p className="text-sm text-gray-500 mt-1">Premium service</p>
+                        </div>
                       </div>
-                      <span className="font-semibold text-gray-900 group-hover:text-gray-700 transition-colors">{amenity}</span>
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
                     </div>
                   );
                 })}
@@ -202,14 +208,14 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
           {/* Enhanced Booking Card */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-100">
+              <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-0 md:p-8 shadow-2xl border border-gray-100">
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                     BEST PRICE GUARANTEED
                   </div>
                   <div className="mb-4">
-                    <span className="text-4xl font-black text-gray-900 bg-gradient-to-r from-gray-900 to-green-600 bg-clip-text text-transparent">
+                    <span className="text-4xl font-black  bg-gradient-to-r from-gray-900 to-green-600 bg-clip-text text-transparent">
                       ${hotel.actual_price}
                     </span>
                     <span className="text-gray-600 text-lg font-medium">/night</span>
@@ -226,7 +232,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                     <DatePicker
                       placeholder="Select check-in date"
                       value=""
-                      onChange={() => {}}
+                      onChange={() => { }}
                     />
                   </div>
                   <div>
@@ -237,7 +243,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                     <DatePicker
                       placeholder="Select check-out date"
                       value=""
-                      onChange={() => {}}
+                      onChange={() => { }}
                     />
                   </div>
                   <div>
@@ -247,7 +253,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                     </label>
                     <GuestSelector
                       value="2 Guests, 1 Room"
-                      onChange={() => {}}
+                      onChange={() => { }}
                     />
                   </div>
                 </div>

@@ -41,6 +41,8 @@ export type HotelFiltersContextValue = {
     priceRange: PriceRange;
     hotels_suppliers: Record<string, number>[] | any;
     toggleSupplier: (supplier: string) => void;
+    showFilters: boolean;
+    setShowFilters: (show: boolean) => void;
 };
 
 export interface HotelFiltersProviderProps {
@@ -81,6 +83,7 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
 }) => {
     const [filters, setFilters] = useState<HotelFilters>(initialFilters);
     const [useFilter, setUseFilter] = useState(false);
+    const [showFilters, setShowFilters] = useState(false);
 
     // ===== Initial Hotels (search) =====
     const {
@@ -222,9 +225,11 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
             total: useFilter ? filteredHotels?.total ?? 0 : initialHotels?.total ?? 0,
             isLoading: isPending || isInitialLoading,
             hotels_suppliers,
-            toggleSupplier
+            toggleSupplier,
+            showFilters,
+            setShowFilters
         }),
-        [filters, filteredHotels, useFilter, initialHotels, isPending, isInitialLoading]
+        [filters, filteredHotels, useFilter, initialHotels, isPending, isInitialLoading, showFilters]
     );
 
     return (

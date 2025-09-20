@@ -1,11 +1,11 @@
 'use client'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { 
-    Star, 
-    Clock, 
-    Users, 
-    MapPin, 
+import {
+    Star,
+    Clock,
+    Users,
+    MapPin,
     Calendar,
     Shield,
     Award,
@@ -41,7 +41,7 @@ const mockTour = {
     description: "Discover the magic of Paris with our expert local guide. Walk through historic neighborhoods, learn fascinating stories, and see iconic landmarks from a unique perspective.",
     highlights: [
         "Visit iconic Eiffel Tower viewpoints",
-        "Explore the historic Louvre district", 
+        "Explore the historic Louvre district",
         "Walk along the Seine River",
         "Discover hidden local gems",
         "Learn about Parisian history and culture",
@@ -99,7 +99,7 @@ const TourDetails = (): React.JSX.Element => {
                                     fill
                                     className="object-cover"
                                 />
-                                
+
                                 {/* Navigation Buttons */}
                                 <button
                                     onClick={prevImage}
@@ -120,9 +120,8 @@ const TourDetails = (): React.JSX.Element => {
                                         <button
                                             key={index}
                                             onClick={() => setCurrentImageIndex(index)}
-                                            className={`w-2 h-2 rounded-full transition-colors ${
-                                                index === currentImageIndex ? 'bg-white' : 'bg-white/50'
-                                            }`}
+                                            className={`w-2 h-2 rounded-full transition-colors ${index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                                                }`}
                                         />
                                     ))}
                                 </div>
@@ -144,7 +143,7 @@ const TourDetails = (): React.JSX.Element => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8"
+                            className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
                         >
                             {/* Header */}
                             <div className="mb-6">
@@ -158,12 +157,12 @@ const TourDetails = (): React.JSX.Element => {
                                         <span className="text-gray-500">({mockTour.reviews} reviews)</span>
                                     </div>
                                 </div>
-                                
-                                <h1 className="text-3xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+
+                                <h1 className="text-3xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
                                     {mockTour.name}
                                 </h1>
-                                
-                                <div className="flex items-center gap-4 text-gray-600">
+
+                                <div className="flex flex-col md:flex-row md:items-center gap-4 text-gray-600">
                                     <div className="flex items-center gap-1">
                                         <MapPin className="w-4 h-4" />
                                         <span>{mockTour.location}</span>
@@ -214,7 +213,7 @@ const TourDetails = (): React.JSX.Element => {
                                         ))}
                                     </ul>
                                 </div>
-                                
+
                                 <div>
                                     <h3 className="text-lg font-bold text-gray-900 mb-4">Not Included</h3>
                                     <ul className="space-y-2">
@@ -284,15 +283,15 @@ const TourDetails = (): React.JSX.Element => {
 
                             {/* Tour Details */}
                             <div className="space-y-3 text-sm">
-                                <div className="flex items-center justify-between">
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                                     <span className="text-gray-600">Meeting Point:</span>
                                     <span className="font-medium text-gray-900">{mockTour.meetingPoint}</span>
                                 </div>
-                                <div className="flex items-center justify-between">
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                                     <span className="text-gray-600">Languages:</span>
                                     <span className="font-medium text-gray-900">{mockTour.languages.join(', ')}</span>
                                 </div>
-                                <div className="flex items-center justify-between">
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                                     <span className="text-gray-600">Cancellation:</span>
                                     <span className="font-medium text-emerald-600">{mockTour.cancellation}</span>
                                 </div>

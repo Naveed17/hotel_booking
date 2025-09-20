@@ -102,6 +102,8 @@ const FlightsListing = (): React.JSX.Element => {
     const [showFilters, setShowFilters] = useState(false);
     const [selectedFlight, setSelectedFlight] = useState<any>(null);
     const [selectedClass, setSelectedClass] = useState('Economy');
+    const [activeTab, setActiveTab] = useState('general');
+    const [selectedBaggage, setSelectedBaggage] = useState('20kg');
     const router = useRouter()
     return (
         <div className="min-h-screen bg-gradient-to-br from-sky-50 to-blue-50 pt-20">
@@ -117,7 +119,7 @@ const FlightsListing = (): React.JSX.Element => {
                             <span className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></span>
                             FLIGHT SEARCH RESULTS
                         </div>
-                        <h1 className="text-4xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
+                        <h1 className="text-4xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
                             Available Flights
                         </h1>
                         <p className="text-gray-600">New York → Dubai • Mar 15, 2024 • 2 passengers</p>
@@ -336,105 +338,229 @@ const FlightsListing = (): React.JSX.Element => {
                                         </button>
                                     </div>
 
-                                    {/* Flight Info */}
-                                    <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                                        <div className="flex items-center gap-4 mb-4">
-                                            <img
-                                                src={selectedFlight.logo}
-                                                alt={selectedFlight.airline}
-                                                className="w-12 h-12 rounded-lg object-cover"
-                                            />
-                                            <div>
-                                                <h3 className="text-lg font-bold text-gray-900">{selectedFlight.airline}</h3>
-                                                <p className="text-gray-600">{selectedFlight.flightNumber} • {selectedFlight.aircraft}</p>
-                                            </div>
-                                            <div className="ml-auto flex items-center gap-1">
-                                                <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                                                <span className="font-semibold">{selectedFlight.rating}</span>
-                                            </div>
-                                        </div>
-
-                                        {/* Route */}
-                                        <div className="flex items-center justify-between">
-                                            <div className="text-center">
-                                                <p className="text-2xl font-bold text-gray-900">{selectedFlight.departure.time}</p>
-                                                <p className="font-semibold text-gray-700">{selectedFlight.departure.airport}</p>
-                                                <p className="text-sm text-gray-600">{selectedFlight.departure.city}</p>
-                                                <p className="text-xs text-gray-500">{selectedFlight.departure.terminal}</p>
-                                            </div>
-                                            <div className="flex-1 mx-6">
-                                                <div className="relative">
-                                                    <div className="h-px bg-gray-300 w-full"></div>
-                                                    <Plane className="w-5 h-5 text-sky-600 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-50" />
-                                                </div>
-                                                <div className="text-center mt-2">
-                                                    <p className="font-semibold text-gray-900">{selectedFlight.duration}</p>
-                                                    <p className="text-sm text-gray-600">Non-stop</p>
-                                                </div>
-                                            </div>
-                                            <div className="text-center">
-                                                <p className="text-2xl font-bold text-gray-900">{selectedFlight.arrival.time}</p>
-                                                <p className="font-semibold text-gray-700">{selectedFlight.arrival.airport}</p>
-                                                <p className="text-sm text-gray-600">{selectedFlight.arrival.city}</p>
-                                                <p className="text-xs text-gray-500">{selectedFlight.arrival.terminal}</p>
-                                            </div>
-                                        </div>
+                                    {/* Tab Navigation */}
+                                    <div className="flex border-b border-gray-200 mb-6">
+                                        <button
+                                            onClick={() => setActiveTab('general')}
+                                            className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'general'
+                                                    ? 'border-sky-500 text-sky-600'
+                                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                                                }`}
+                                        >
+                                            General
+                                        </button>
+                                        <button
+                                            onClick={() => setActiveTab('segments')}
+                                            className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'segments'
+                                                    ? 'border-sky-500 text-sky-600'
+                                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                                                }`}
+                                        >
+                                            Segments
+                                        </button>
+                                        <button
+                                            onClick={() => setActiveTab('baggage')}
+                                            className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'baggage'
+                                                    ? 'border-sky-500 text-sky-600'
+                                                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                                                }`}
+                                        >
+                                            Baggage
+                                        </button>
                                     </div>
 
-                                    {/* Class Selection */}
-                                    <div className="mb-6">
-                                        <h3 className="text-lg font-bold text-gray-900 mb-4">Select Class</h3>
-                                        <div className="space-y-3">
-                                            {selectedFlight.classes?.map((flightClass: any) => (
-                                                <div
-                                                    key={flightClass.name}
-                                                    className={`border-2 rounded-xl p-4 cursor-pointer transition-all duration-300 ${selectedClass === flightClass.name
-                                                        ? 'border-sky-500 bg-sky-50'
-                                                        : flightClass.available
-                                                            ? 'border-gray-200 hover:border-sky-300'
-                                                            : 'border-gray-200 opacity-50 cursor-not-allowed'
-                                                        }`}
-                                                    onClick={() => flightClass.available && setSelectedClass(flightClass.name)}
-                                                >
+                                    {/* Tab Content */}
+                                    {activeTab === 'general' && (
+                                        <>
+                                            {/* Flight Info */}
+                                            <div className="bg-gray-50 rounded-xl p-6 mb-6">
+                                                <div className="flex items-center gap-4 mb-4">
+                                                    <img
+                                                        src={selectedFlight.logo}
+                                                        alt={selectedFlight.airline}
+                                                        className="w-12 h-12 rounded-lg object-cover"
+                                                    />
+                                                    <div>
+                                                        <h3 className="text-lg font-bold text-gray-900">{selectedFlight.airline}</h3>
+                                                        <p className="text-gray-600">{selectedFlight.flightNumber} • {selectedFlight.aircraft}</p>
+                                                    </div>
+                                                    <div className="ml-auto flex items-center gap-1">
+                                                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                                                        <span className="font-semibold">{selectedFlight.rating}</span>
+                                                    </div>
+                                                </div>
+
+                                                {/* Route */}
+                                                <div className="flex items-center justify-between">
+                                                    <div className="text-center">
+                                                        <p className="text-2xl font-bold text-gray-900">{selectedFlight.departure.time}</p>
+                                                        <p className="font-semibold text-gray-700">{selectedFlight.departure.airport}</p>
+                                                        <p className="text-sm text-gray-600">{selectedFlight.departure.city}</p>
+                                                        <p className="text-xs text-gray-500">{selectedFlight.departure.terminal}</p>
+                                                    </div>
+                                                    <div className="flex-1 mx-6">
+                                                        <div className="relative">
+                                                            <div className="h-px bg-gray-300 w-full"></div>
+                                                            <Plane className="w-5 h-5 text-sky-600 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-50" />
+                                                        </div>
+                                                        <div className="text-center mt-2">
+                                                            <p className="font-semibold text-gray-900">{selectedFlight.duration}</p>
+                                                            <p className="text-sm text-gray-600">Non-stop</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-center">
+                                                        <p className="text-2xl font-bold text-gray-900">{selectedFlight.arrival.time}</p>
+                                                        <p className="font-semibold text-gray-700">{selectedFlight.arrival.airport}</p>
+                                                        <p className="text-sm text-gray-600">{selectedFlight.arrival.city}</p>
+                                                        <p className="text-xs text-gray-500">{selectedFlight.arrival.terminal}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Class Selection */}
+                                            <div className="mb-6">
+                                                <h3 className="text-lg font-bold text-gray-900 mb-4">Select Class</h3>
+                                                <div className="space-y-3">
+                                                    {selectedFlight.classes?.map((flightClass: any) => (
+                                                        <div
+                                                            key={flightClass.name}
+                                                            className={`border-2 rounded-xl p-4 cursor-pointer transition-all duration-300 ${selectedClass === flightClass.name
+                                                                ? 'border-sky-500 bg-sky-50'
+                                                                : flightClass.available
+                                                                    ? 'border-gray-200 hover:border-sky-300'
+                                                                    : 'border-gray-200 opacity-50 cursor-not-allowed'
+                                                                }`}
+                                                            onClick={() => flightClass.available && setSelectedClass(flightClass.name)}
+                                                        >
+                                                            <div className="flex justify-between items-center">
+                                                                <div>
+                                                                    <h4 className="font-semibold text-gray-900">{flightClass.name}</h4>
+                                                                    <p className="text-sm text-gray-600">
+                                                                        {flightClass.available ? 'Available' : 'Sold out'}
+                                                                    </p>
+                                                                </div>
+                                                                <div className="text-right">
+                                                                    <p className="text-xl font-bold text-gray-900">${flightClass.price}</p>
+                                                                    <p className="text-sm text-gray-600">per person</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            {/* Amenities */}
+                                            <div className="mb-6">
+                                                <h3 className="text-lg font-bold text-gray-900 mb-4">Amenities & Services</h3>
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <div className="flex items-center gap-2">
+                                                        <Wifi className="w-5 h-5 text-sky-600" />
+                                                        <span className="text-gray-700">Free WiFi</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <Monitor className="w-5 h-5 text-sky-600" />
+                                                        <span className="text-gray-700">Entertainment</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <Coffee className="w-5 h-5 text-sky-600" />
+                                                        <span className="text-gray-700">Meals</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <Luggage className="w-5 h-5 text-sky-600" />
+                                                        <span className="text-gray-700">Baggage: {selectedFlight.baggage?.carry} + {selectedFlight.baggage?.checked}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+
+                                    {activeTab === 'segments' && (
+                                        <div className="mb-6">
+                                            <h3 className="text-lg font-bold text-gray-900 mb-4">Flight Segments</h3>
+                                            <div className="bg-gray-50 rounded-xl p-6">
+                                                <div className="flex items-center gap-4 mb-4">
+                                                    <Plane className="w-6 h-6 text-sky-600" />
+                                                    <div>
+                                                        <h4 className="font-semibold text-gray-900">{selectedFlight.flightNumber}</h4>
+                                                        <p className="text-sm text-gray-600">{selectedFlight.aircraft}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="space-y-4">
                                                     <div className="flex justify-between items-center">
                                                         <div>
-                                                            <h4 className="font-semibold text-gray-900">{flightClass.name}</h4>
-                                                            <p className="text-sm text-gray-600">
-                                                                {flightClass.available ? 'Available' : 'Sold out'}
-                                                            </p>
+                                                            <p className="font-semibold text-gray-900">{selectedFlight.departure.time}</p>
+                                                            <p className="text-sm text-gray-600">{selectedFlight.departure.airport} - {selectedFlight.departure.city}</p>
+                                                            <p className="text-xs text-gray-500">{selectedFlight.departure.terminal}</p>
+                                                        </div>
+                                                        <div className="text-center">
+                                                            <p className="text-sm text-gray-600">{selectedFlight.duration}</p>
+                                                            <p className="text-xs text-gray-500">Non-stop</p>
                                                         </div>
                                                         <div className="text-right">
-                                                            <p className="text-xl font-bold text-gray-900">${flightClass.price}</p>
-                                                            <p className="text-sm text-gray-600">per person</p>
+                                                            <p className="font-semibold text-gray-900">{selectedFlight.arrival.time}</p>
+                                                            <p className="text-sm text-gray-600">{selectedFlight.arrival.airport} - {selectedFlight.arrival.city}</p>
+                                                            <p className="text-xs text-gray-500">{selectedFlight.arrival.terminal}</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            ))}
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
 
-                                    {/* Amenities */}
-                                    <div className="mb-6">
-                                        <h3 className="text-lg font-bold text-gray-900 mb-4">Amenities & Services</h3>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="flex items-center gap-2">
-                                                <Wifi className="w-5 h-5 text-sky-600" />
-                                                <span className="text-gray-700">Free WiFi</span>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <Monitor className="w-5 h-5 text-sky-600" />
-                                                <span className="text-gray-700">Entertainment</span>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <Coffee className="w-5 h-5 text-sky-600" />
-                                                <span className="text-gray-700">Meals</span>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <Luggage className="w-5 h-5 text-sky-600" />
-                                                <span className="text-gray-700">Baggage: {selectedFlight.baggage?.carry} + {selectedFlight.baggage?.checked}</span>
+                                    {activeTab === 'baggage' && (
+                                        <div className="mb-6">
+                                            <h3 className="text-lg font-bold text-gray-900 mb-4">Baggage Information</h3>
+                                            <div className="space-y-4">
+                                                <div className="bg-gray-50 rounded-xl p-6">
+                                                    <div className="flex items-center gap-3 mb-3">
+                                                        <Luggage className="w-5 h-5 text-sky-600" />
+                                                        <h4 className="font-semibold text-gray-900">Carry-on Baggage</h4>
+                                                    </div>
+                                                    <p className="text-gray-700 mb-2">Weight: {selectedFlight.baggage?.carry}</p>
+                                                    <p className="text-sm text-gray-600">Dimensions: 55cm x 40cm x 20cm</p>
+                                                </div>
+
+                                                {/* Checked Baggage Selection */}
+                                                <div className="bg-gray-50 rounded-xl p-6">
+                                                    <div className="flex items-center gap-3 mb-4">
+                                                        <Luggage className="w-5 h-5 text-sky-600" />
+                                                        <h4 className="font-semibold text-gray-900">Checked Baggage Options</h4>
+                                                    </div>
+                                                    <div className="space-y-3">
+                                                        {[
+                                                            { weight: '20kg', price: 0, description: 'Standard allowance' },
+                                                            { weight: '30kg', price: 75, description: 'Extra 10kg' },
+                                                            { weight: '40kg', price: 150, description: 'Extra 20kg' }
+                                                        ].map((option) => (
+                                                            <div
+                                                                key={option.weight}
+                                                                className={`border-2 rounded-xl p-4 cursor-pointer transition-all duration-300 ${selectedBaggage === option.weight
+                                                                        ? 'border-sky-500 bg-sky-50'
+                                                                        : 'border-gray-200 hover:border-sky-300 bg-white'
+                                                                    }`}
+                                                                onClick={() => setSelectedBaggage(option.weight)}
+                                                            >
+                                                                <div className="flex justify-between items-center">
+                                                                    <div>
+                                                                        <h5 className="font-semibold text-gray-900">{option.weight}</h5>
+                                                                        <p className="text-sm text-gray-600">{option.description}</p>
+                                                                    </div>
+                                                                    <div className="text-right">
+                                                                        <p className="text-lg font-bold text-gray-900">
+                                                                            {option.price === 0 ? 'Included' : `+$${option.price}`}
+                                                                        </p>
+                                                                        {option.price > 0 && (
+                                                                            <p className="text-sm text-gray-600">per person</p>
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    )}
 
                                     {/* Book Button */}
                                     <div className="border-t pt-6">

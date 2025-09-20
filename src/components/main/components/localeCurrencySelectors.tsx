@@ -31,7 +31,7 @@ function Dropdown({ label, items, value, onChange }: {
             <button
                 ref={refs.setReference}
                 {...getReferenceProps()}
-                className="flex items-center gap-1 text-travel-gray-600"
+                className="flex items-center gap-1 text-travel-gray-400"
             >
                 <span>{val}</span>
                 <ChevronDown className="w-3 h-3" />
@@ -86,7 +86,6 @@ export default function LocaleCurrencySelectors() {
     const dispatch = useAppDispatch();
     const { locale } = useLocale();
     const { currency } = useCurrency();
-    console.log('currency', currency)
     const [direction, setDirectionHandler] = useDirection();
     const changeLocale = useChangeLocale();
     const handleLanguageChange = (value: string) => {

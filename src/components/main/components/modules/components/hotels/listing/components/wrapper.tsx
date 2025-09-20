@@ -20,17 +20,16 @@ const Wrapper = (): React.JSX.Element => {
     const [selectedSort, setSelectedSort] = useState("");
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [openMap, setOpenMap] = useState(false)
-    const { data: hotels, total, isLoading, setSort, resetFilters } = useHotelFilters();
+    const { data: hotels, total, isLoading, setSort, resetFilters, showFilters, setShowFilters } = useHotelFilters();
     const handleSort = (value: string) => {
         setSelectedSort(value);
         setSort(value);
     }
-
     return (
         <>
             <div className="lg:hidden mb-4">
                 <button
-
+                    onClick={() => setShowFilters(!showFilters)}
                     className="flex items-center gap-2 px-4 py-3 bg-white border border-gray-200 rounded-lg font-medium text-text-primary hover:bg-gray-50 transition-colors w-full sm:w-auto"
                 >
                     <SlidersHorizontal className="h-4 w-4" />

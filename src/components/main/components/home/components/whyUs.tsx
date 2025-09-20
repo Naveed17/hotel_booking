@@ -7,13 +7,13 @@ import { Shield, Award, Users, Zap, Heart, ArrowRight } from "lucide-react";
 const WhyUs = (): React.JSX.Element => {
     const whyChooseUsFeatures = useAppSelector((state) => state?.appData.data?.our_services);
     const router = useRouter();
-    
+
     const getFeatureIcon = (index: number) => {
         const icons = [Shield, Award, Users, Zap, Heart];
         const Icon = icons[index % icons.length];
         return <Icon className="w-8 h-8" />;
     };
-    
+
     const getColorScheme = (index: number) => {
         const schemes = [
             { bg: 'from-purple-600 to-indigo-700', accent: 'bg-purple-100 text-purple-700' },
@@ -22,7 +22,7 @@ const WhyUs = (): React.JSX.Element => {
         ];
         return schemes[index % schemes.length];
     };
-    
+
     return (
         <section className="py-20 bg-gradient-to-br from-purple-50 to-indigo-50">
             <Container>
@@ -31,7 +31,7 @@ const WhyUs = (): React.JSX.Element => {
                         <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
                         WHY TRAVELERS CHOOSE US
                     </div>
-                    <h2 className="text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-purple-600 bg-clip-text text-transparent">
+                    <h2 className="text-4xl md:text-5xl  font-black  mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-purple-600 bg-clip-text text-transparent">
                         Why Choose Us
                     </h2>
                     <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
@@ -43,18 +43,18 @@ const WhyUs = (): React.JSX.Element => {
                     {whyChooseUsFeatures?.map((feature: any, index: number) => {
                         const colorScheme = getColorScheme(index);
                         return (
-                            <article 
-                                key={index} 
+                            <article
+                                key={index}
                                 className="group transform transition-all duration-500 hover:-translate-y-2"
                             >
                                 <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
                                     <div className={`h-2 bg-gradient-to-r ${colorScheme.bg}`}></div>
-                                    
+
                                     <div className="p-8 flex flex-col h-full">
                                         <div className={`w-16 h-16 ${colorScheme.accent} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                                             {getFeatureIcon(index)}
                                         </div>
-                                        
+
                                         <h3 className="text-2xl font-bold text-gray-900 mb-4 font-urbanist">
                                             {feature?.title}
                                         </h3>
@@ -78,7 +78,7 @@ const WhyUs = (): React.JSX.Element => {
                         );
                     })}
                 </div>
-                
+
                 <div className="text-center mt-16">
                     <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 max-w-2xl mx-auto">
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">

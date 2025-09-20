@@ -123,7 +123,7 @@ function FlightsMainSearch() {
             const departDate = dayjs(data.departDate, "MM/DD/YYYY").format("DD-MM-YYYY");
             const returnDate = data.returnDate ? dayjs(data.returnDate, "MM/DD/YYYY").format("DD-MM-YYYY") : "";
             const passengers = data.passengers.split(" ")[0];
-            
+
             const url = `/${locale}/flights/${data.from.code}/${data.to.code}/${departDate}${returnDate ? `/${returnDate}` : ''}/${passengers}/${data.class}/${data.tripType}`;
             router.push(url);
         } catch (error) {
@@ -136,7 +136,7 @@ function FlightsMainSearch() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
-            className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 w-full max-w-6xl mx-auto"
+            className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-4 sm:p-8 w-full max-w-6xl mx-auto"
         >
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* Enhanced Header */}
@@ -171,7 +171,7 @@ function FlightsMainSearch() {
                             <span className="text-sm font-medium text-gray-700">One Way</span>
                         </label>
                     </div>
-                    
+
                     <Controller
                         name="class"
                         control={control}
@@ -194,7 +194,7 @@ function FlightsMainSearch() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     {/* From Airport */}
                     <div className="relative">
-                        <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                        <label className="text-gray-700 text-sm font-semibold mb-3  flex items-center gap-2">
                             <Plane className="w-4 h-4 text-sky-500" />
                             From
                         </label>
@@ -207,15 +207,14 @@ function FlightsMainSearch() {
                                     setFromQuery(e.target.value);
                                     setFromOpen(e.target.value.length > 0);
                                 }}
-                                className={`w-full pl-4 pr-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                                    errors.from ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-sky-500'
-                                }`}
+                                className={`w-full pl-4 pr-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.from ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-sky-500'
+                                    }`}
                             />
                             <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
-                            
+
                             {fromOpen && (
                                 <div className="absolute z-50 w-full bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl mt-2 max-h-64 overflow-y-auto border border-gray-100">
-                                    {popularAirports.filter(airport => 
+                                    {popularAirports.filter(airport =>
                                         airport.city.toLowerCase().includes(fromQuery.toLowerCase()) ||
                                         airport.code.toLowerCase().includes(fromQuery.toLowerCase())
                                     ).map((airport) => (
@@ -241,7 +240,7 @@ function FlightsMainSearch() {
 
                     {/* To Airport */}
                     <div className="relative">
-                        <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                        <label className="text-gray-700 text-sm font-semibold mb-3  flex items-center gap-2">
                             <MapPin className="w-4 h-4 text-sky-500" />
                             To
                         </label>
@@ -254,9 +253,8 @@ function FlightsMainSearch() {
                                     setToQuery(e.target.value);
                                     setToOpen(e.target.value.length > 0);
                                 }}
-                                className={`w-full pl-4 pr-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                                    errors.to ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-sky-500'
-                                }`}
+                                className={`w-full pl-4 pr-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.to ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-sky-500'
+                                    }`}
                             />
                             <button
                                 type="button"
@@ -265,10 +263,10 @@ function FlightsMainSearch() {
                             >
                                 <ArrowRightLeft className="w-3 h-3 text-sky-600" />
                             </button>
-                            
+
                             {toOpen && (
                                 <div className="absolute z-50 w-full bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl mt-2 max-h-64 overflow-y-auto border border-gray-100">
-                                    {popularAirports.filter(airport => 
+                                    {popularAirports.filter(airport =>
                                         airport.city.toLowerCase().includes(toQuery.toLowerCase()) ||
                                         airport.code.toLowerCase().includes(toQuery.toLowerCase())
                                     ).map((airport) => (
@@ -294,7 +292,7 @@ function FlightsMainSearch() {
                 </div>
 
                 {/* Date and Passenger Selection */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-2 sm:mb-8">
                     {/* Departure Date */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">

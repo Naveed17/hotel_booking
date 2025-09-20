@@ -26,7 +26,7 @@ export default function Header({ ...props }: { dictionary: any }): React.JSX.Ele
     const { user, isLoading } = useUser();
     return (
         <>
-            <header className="fixed w-full top-0 z-50 px-4 pt-4">
+            <header className="fixed w-full top-0 z-50 pt-4">
                 <Container>
                     <div className="bg-white/95 backdrop-blur-lg border border-gray-200/50 rounded-2xl shadow-sm">
                         <div className="flex items-center justify-between h-16 px-6">
@@ -60,7 +60,7 @@ export default function Header({ ...props }: { dictionary: any }): React.JSX.Ele
 
 
                             {/* Right Side Actions */}
-                            <div className="flex items-center space-x-4">
+                            <div className={`flex items-center ${user ? 'space-x-4' : ''}`}>
                                 {/* Mobile Menu Button */}
                                 <button
                                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

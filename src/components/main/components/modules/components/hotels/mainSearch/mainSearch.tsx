@@ -222,7 +222,7 @@ function MainSearch() {
                 delay: 1.5,
                 ease: "easeOut"
             }}
-            className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 w-full max-w-6xl mx-auto"
+            className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-4 sm:p-8 w-full max-w-6xl mx-auto"
         >
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* Where to search */}
@@ -343,10 +343,10 @@ function MainSearch() {
                 </div>
 
                 {/* Date and Guest Selection */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-2 sm:mb-8">
                     {/* Check-in */}
                     <div>
-                        <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                        <label className="text-gray-700 text-sm font-semibold mb-3 flex items-center gap-2">
                             <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                             Check-in
                         </label>

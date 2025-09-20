@@ -101,7 +101,7 @@ function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -30 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-white text-5xl md:text-7xl lg:text-8xl font-black text-center max-w-6xl mx-auto mb-8 leading-tight bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent"
+                        className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-center max-w-6xl mx-auto mb-8 leading-tight bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent"
                     >
                         {tabContent[activeTab].title}
                     </motion.h1>
@@ -130,10 +130,10 @@ function Hero() {
                     {/* Tab Navigation */}
                     <div className="flex justify-center mb-6">
                         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-2 border border-white/20">
-                            <div className="flex gap-2">
+                            <div className="flex sm:gap-2">
                                 <button
                                     onClick={() => setActiveTab('hotels')}
-                                    className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${activeTab === 'hotels'
+                                    className={`flex items-center gap-2 px-3 sm:px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${activeTab === 'hotels'
                                         ? 'bg-white text-blue-600 shadow-lg'
                                         : 'text-white hover:bg-white/10'
                                         }`}

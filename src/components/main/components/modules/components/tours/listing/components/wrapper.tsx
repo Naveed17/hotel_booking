@@ -69,7 +69,7 @@ const ToursWrapper = (): React.JSX.Element => {
 
     return (
         <>
-            <div className="lg:hidden mb-4">
+            <div className="hidden mb-4">
                 <button className="flex items-center gap-2 px-4 py-3 bg-white border border-gray-200 rounded-lg font-medium text-text-primary hover:bg-gray-50 transition-colors w-full sm:w-auto">
                     <SlidersHorizontal className="h-4 w-4" />
                     Filters & Search

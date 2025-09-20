@@ -178,7 +178,7 @@ function ToursMainSearch() {
         const startDate = dayjs(data.startDate, "MM/DD/YYYY").format("DD-MM-YYYY");
         const endDate = dayjs(data.endDate, "MM/DD/YYYY").format("DD-MM-YYYY");
         const travelers = data.travelers.split(" ")[0];
-        
+
         setLoading(true);
         try {
             const locale = params?.locale ?? "en";
@@ -208,7 +208,7 @@ function ToursMainSearch() {
                 delay: 1.5,
                 ease: "easeOut"
             }}
-            className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 w-full max-w-6xl mx-auto"
+            className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-4 sm:p-8 w-full max-w-6xl mx-auto"
         >
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* Enhanced Header */}
@@ -222,7 +222,7 @@ function ToursMainSearch() {
                 </div>
 
                 <div className="mb-6">
-                    <label htmlFor="destination" className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
+                    <label htmlFor="destination" className="text-gray-700 text-sm font-semibold mb-3 flex items-center gap-2">
                         <MapPin className="w-4 h-4 text-emerald-500" />
                         Destination
                     </label>
@@ -315,7 +315,7 @@ function ToursMainSearch() {
                 </div>
 
                 {/* Date and Traveler Selection */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-2 sm:mb-8">
                     {/* Start Date */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">

@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { 
+import {
     Calendar,
     Users,
     CreditCard,
@@ -103,14 +103,14 @@ const TourBooking = (): React.JSX.Element => {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-8"
+                            className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-0 md:p-8"
                         >
                             <div className="mb-8">
                                 <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                                     <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
                                     BOOK YOUR TOUR
                                 </div>
-                                <h1 className="text-3xl font-black text-gray-900 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+                                <h1 className="text-3xl font-black  bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
                                     Complete Your Booking
                                 </h1>
                             </div>
@@ -173,9 +173,8 @@ const TourBooking = (): React.JSX.Element => {
                                             <input
                                                 {...register('firstName')}
                                                 type="text"
-                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                                                    errors.firstName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
-                                                }`}
+                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.firstName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
+                                                    }`}
                                                 placeholder="Enter your first name"
                                             />
                                             {errors.firstName && (
@@ -190,9 +189,8 @@ const TourBooking = (): React.JSX.Element => {
                                             <input
                                                 {...register('lastName')}
                                                 type="text"
-                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                                                    errors.lastName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
-                                                }`}
+                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.lastName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
+                                                    }`}
                                                 placeholder="Enter your last name"
                                             />
                                             {errors.lastName && (
@@ -207,9 +205,8 @@ const TourBooking = (): React.JSX.Element => {
                                             <input
                                                 {...register('email')}
                                                 type="email"
-                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                                                    errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
-                                                }`}
+                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
+                                                    }`}
                                                 placeholder="Enter your email"
                                             />
                                             {errors.email && (
@@ -224,9 +221,8 @@ const TourBooking = (): React.JSX.Element => {
                                             <input
                                                 {...register('phone')}
                                                 type="tel"
-                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                                                    errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
-                                                }`}
+                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
+                                                    }`}
                                                 placeholder="Enter your phone number"
                                             />
                                             {errors.phone && (

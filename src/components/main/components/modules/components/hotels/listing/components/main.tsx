@@ -3,6 +3,7 @@ import Container from '@components/core/container';
 import { useHotelFilters } from '@src/context/hotelFilterContext';
 import Filter from './filter';
 import { useMemo } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 const filterChips = [
 
     {
@@ -88,7 +89,7 @@ type ListingLayoutProps = {
 };
 
 export default function ListingLayout({ children, dict }: ListingLayoutProps) {
-    const { setQuickFilter, filters } = useHotelFilters();
+    const { setQuickFilter, filters, showFilters } = useHotelFilters();
     const handleQuickFilter = (filter: string) => {
         setQuickFilter(filter);
     };
@@ -122,9 +123,8 @@ export default function ListingLayout({ children, dict }: ListingLayoutProps) {
                                     <button
                                         onClick={() => handleQuickFilter(chip.label)}
                                         key={index}
-                                        className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 whitespace-nowrap flex-shrink-0 shadow-sm ${
-                                            isActive ? scheme.active : scheme.bg
-                                        }`}
+                                        className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 whitespace-nowrap flex-shrink-0 shadow-sm ${isActive ? scheme.active : scheme.bg
+                                            }`}
                                     >
                                         {chip.icon && <span className="text-base">{chip.icon}</span>}
                                         {chip.label}
@@ -137,19 +137,30 @@ export default function ListingLayout({ children, dict }: ListingLayoutProps) {
                 <Container className="mt-8 pb-20">
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                         {/* Enhanced Sidebar */}
-                        <aside className="lg:col-span-1">
-                            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 sticky top-24">
-                                <div className="flex items-center gap-2 mb-6">
-                                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                                    <h3 className="text-lg font-bold text-gray-900">Refine Your Search</h3>
-                                </div>
-                                <Filter dict={dict} />
-                            </div>
-                        </aside>
+                        <AnimatePresence>
+                            {showFilters && (
+                                <motion.aside
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                    className="lg:hidden overflow-hidden lg:col-span-1"
+                                >
 
+                                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 sticky top-24">
+                                        <div className="flex items-center gap-2 mb-6">
+                                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                            <h3 className="text-lg font-bold text-gray-900">Refine Your Search</h3>
+                                        </div>
+                                        <Filter dict={dict} />
+                                    </div>
+
+                                </motion.aside>
+                            )}
+                        </AnimatePresence>
                         {/* Enhanced Main Results */}
                         <main className="lg:col-span-3">
-                            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6">
+                            <div className="lg:bg-white/95 lg:backdrop-blur-xl lg:rounded-2xl lg:shadow-xl lg:border lg:border-gray-100 lg:p-6">
                                 {children}
                             </div>
                         </main>

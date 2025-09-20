@@ -486,7 +486,7 @@ export default function HotelFilters({
         isLoading,
         priceRange,
         hotels_suppliers,
-        toggleSupplier
+        toggleSupplier,
     } = useHotelFilters();
     // Debounce price updates to avoid spamming API
     const debouncedSetPriceRange = useMemo(() => {

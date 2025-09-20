@@ -17,7 +17,7 @@ function FeaturedDestination() {
                         <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
                         EXPLORE THE WORLD
                     </div>
-                    <h2 className="text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
                         Featured Destinations
                     </h2>
                     <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
@@ -28,7 +28,7 @@ function FeaturedDestination() {
                 {/* Enhanced Destinations Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                     {featured_tours.map((destination: any, index: number) => (
-                        <div 
+                        <div
                             key={destination.id}
                             className="transform transition-all duration-500"
                             style={{

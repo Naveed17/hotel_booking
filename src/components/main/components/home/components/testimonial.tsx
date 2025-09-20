@@ -28,7 +28,7 @@ const Testimonial = (): React.JSX.Element => {
             <span className="w-2 h-2 bg-pink-500 rounded-full animate-pulse"></span>
             REAL STORIES FROM REAL TRAVELERS
           </div>
-          <h2 className="text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-pink-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-black  mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-pink-600 bg-clip-text text-transparent">
             What Our Guests Are Saying
           </h2>
           <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">

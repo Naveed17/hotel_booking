@@ -63,7 +63,7 @@ export default function LoginForm() {
           <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
           WELCOME BACK
         </div>
-        <h1 className="text-3xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
           Sign In
         </h1>
         <p className="text-gray-600 text-lg">
@@ -86,7 +86,7 @@ export default function LoginForm() {
         )
       }
 
-      <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-gray-100">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 py-6 md:py-0 md:p-8 shadow-xl border border-gray-100">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Email */}
           <div className="space-y-3">

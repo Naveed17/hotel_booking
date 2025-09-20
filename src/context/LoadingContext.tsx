@@ -86,7 +86,7 @@ export const LoadingProvider = ({ children }: { children: React.ReactNode }) => 
                 <div
                     className={`fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-500 ${fadeClass}`}
                 >
-                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-8 flex flex-col items-center gap-6">
+                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-8 flex flex-col items-center m-3 gap-6">
                         {/* Enhanced Spinner */}
                         <div className="relative">
                             <div className="animate-spin rounded-full h-16 w-16 border-4 border-gray-200"></div>
@@ -95,7 +95,7 @@ export const LoadingProvider = ({ children }: { children: React.ReactNode }) => 
                                 <div className="w-6 h-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full animate-pulse"></div>
                             </div>
                         </div>
-                        
+
                         {/* Loading Text */}
                         <div className="text-center">
                             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-2">

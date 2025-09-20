@@ -20,7 +20,7 @@ function FeaturedHotels() {
                         <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                         HANDPICKED FOR YOU
                     </div>
-                    <h2 className="text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                    <h2 className="text-4xl md:text-5xl  font-black  mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
                         Featured Hotels
                     </h2>
                     <p className="text-gray-600 text-xl max-w-2xl mx-auto leading-relaxed">
@@ -31,7 +31,7 @@ function FeaturedHotels() {
                 {/* Enhanced Hotel Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                     {featured_hotels.map((hotel: any, index: number) => (
-                        <div 
+                        <div
                             key={hotel.id}
                             className="transform transition-all duration-500"
                             style={{
