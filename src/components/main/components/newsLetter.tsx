@@ -95,7 +95,7 @@ const Newsletter = (): React.JSX.Element => {
                                 </div>
                             </div>
 
-                            <div className="lg:w-3/5 p-8 lg:p-12">
+                            <div className="lg:w-3/5 p-8 px-6 lg:px-0 lg:p-12">
 
                                 {/* Newsletter Form */}
                                 <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -183,7 +183,7 @@ const Newsletter = (): React.JSX.Element => {
 
                                     {/* Additional Information */}
                                     <div className="mt-6 space-y-4">
-                                        <div className="flex items-center justify-center gap-6 text-sm text-gray-600">
+                                        <div className="flex flex-col md:flex-row md:items-center justify-center gap-6 text-sm text-gray-600">
                                             <div className="flex items-center gap-2">
                                                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                                                 <span>Weekly travel deals</span>
