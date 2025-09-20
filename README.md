@@ -1,37 +1,67 @@
-# TRAVEL BOOKING
+# Travel Booking Platform
 
-This project is a Next.js application using the App Router, TypeScript, Tailwind CSS, ESLint, and will include multi-language (Next-intel) support. It follows the latest Next.js best practices and recommended structure.
-
-## Features
-
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- ESLint
-- Multi-language support (next-intel)
-
-## Getting Started
-
-1. Install dependencies:
-
-   ```sh
-   npm install
-   ```
-
-2. Run the development server:
-
-   ```sh
-   npm run dev
-   ```
-
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Customization
-
-- Update the `src` directory for your app code.
-- Tailwind CSS is preconfigured for styling.
-- next-intel setup will be added in the next steps.
+A modern travel booking platform built with **Next.js 15**, **Tailwind CSS**, and **App Router**.  
+Includes hotel, flight, and tour booking modules, role-based dashboards, multi-language support, and SEO-ready pages.
 
 ---
 
-For more details, see the Next.js and Tailwind CSS documentation.
+## 🚀 Features
+
+- 🌍 Multi-language support (i18n) with `[lang]` routes
+- 🏨 Hotel, ✈️ Flight, and 🗺️ Tour booking modules
+- 🔑 Authentication system (Login, Signup, Forgot Password)
+- 📊 Role-based dashboards (Customer, Agent, Admin, Super Admin)
+- 🛠️ Mock APIs for Hotels, Flights, Tours, Locations, and Auth
+- ⚡ SEO-ready (Metadata, Sitemap, Robots.txt, Manifest)
+- 🎨 Responsive UI (Tailwind CSS, Framer Motion, Lucide icons)
+- 🗂️ Context providers for state management
+
+---
+
+## 🛠️ Project Structure
+
+```
+app/
+ ┣ (main)/          → Frontend pages (home, hotels, flights, tours)
+ ┣ (auth)/          → Auth pages (login, signup, forgot password)
+ ┣ (dashboard)/     → Role-based dashboards
+ ┣ api/             → Mock APIs (auth, hotels, tours, dictionary)
+ ┣ components/      → Reusable UI components
+ ┣ context/         → Global state (dashboard, filters)
+ ┣ lib/             → Utility functions
+ ┣ public/          → Static assets
+ ┗ styles/          → Global styles
+```
+
+---
+
+## 📊 Dashboards
+
+- **Customer Dashboard** – Manage bookings and profile
+- **Agent Dashboard** – Manage travel packages
+- **Admin Dashboard** – Platform settings and user management
+- **Super Admin Dashboard** – Full access to all modules
+
+---
+
+## 🔧 Customization
+
+- Update colors in `tailwind.config.js`
+- Replace mock APIs with your own backend (`/api/*`)
+- Extend i18n dictionaries for more languages
+
+---
+
+## 📄 License
+
+This project is provided for **Envato/CodeCanyon sale**.  
+For extended licenses, please refer to Envato terms.
+
+---
+
+## 📞 Support
+
+For support, please contact:  
+**Your Name / Company**  
+📧 your@email.com  
+🌐 yourwebsite.com
