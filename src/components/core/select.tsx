@@ -8,22 +8,24 @@ interface Option {
 
 interface CustomSelectProps extends Omit<SelectProps<Option>, 'styles'> {
   className?: string;
+  height?: string;
 }
 
-const customStyles: StylesConfig<Option> = {
+const customStyles = (height?: string): StylesConfig<Option> => ({
   control: (provided, state) => ({
     ...provided,
-    minHeight: '32px',
-    height: '32px',
-    border: '1px solid #d1d5db',
-    borderRadius: '8px',
-    backgroundColor: 'white',
+    minHeight: height || '32px',
+    height: height || '32px',
+    border: '1px solid #e5e7eb',
+    borderRadius: '12px',
+    backgroundColor: '#f9fafb',
     boxShadow: 'none',
     fontSize: '14px',
     '&:hover': {
-      borderColor: state.isFocused ? '#0ea5e9' : '#9ca3af',
+      backgroundColor: state.isFocused ? 'white' : '#f9fafb',
+      borderColor: state.isFocused ? '#3b82f6' : '#e5e7eb',
     },
-    borderColor: state.isFocused ? '#0ea5e9' : '#d1d5db',
+    borderColor: state.isFocused ? '#3b82f6' : '#e5e7eb',
     transition: 'all 0.2s ease',
   }),
   menu: (provided) => ({
@@ -69,12 +71,12 @@ const customStyles: StylesConfig<Option> = {
     ...provided,
     padding: '4px',
   }),
-};
+});
 
-export const Select: React.FC<CustomSelectProps> = ({ className, ...props }) => {
+export const Select: React.FC<CustomSelectProps> = ({ className, height, ...props }) => {
   return (
     <ReactSelect
-      styles={customStyles}
+      styles={customStyles(height)}
       className={className}
       classNamePrefix="react-select"
       {...props}

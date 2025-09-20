@@ -11,6 +11,7 @@ export interface UserContextValue {
   error: string | null;
   isLoading: boolean;
   checkSession?: () => Promise<void>;
+  logout?: () => Promise<void>;
 }
 
 export const UserContext = React.createContext<UserContextValue | undefined>(undefined);
@@ -42,6 +43,15 @@ export function UserProvider({ children }: UserProviderProps): React.JSX.Element
     }
   }, []);
 
+  const logout = React.useCallback(async (): Promise<void> => {
+    try {
+      await authClient.signOut();
+      setState((prev) => ({ ...prev, user: null, error: null, isLoading: false }));
+    } catch (err) {
+      setState((prev) => ({ ...prev, error: 'Logout failed', isLoading: false }));
+    }
+  }, []);
+
   React.useEffect(() => {
     checkSession().catch((err: unknown) => {
 
@@ -50,7 +60,7 @@ export function UserProvider({ children }: UserProviderProps): React.JSX.Element
     // eslint-disable-next-line react-hooks/exhaustive-deps -- Expected
   }, []);
 
-  return <UserContext.Provider value={{ ...state, checkSession }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ ...state, checkSession, logout }}>{children}</UserContext.Provider>;
 }
 
 export const UserConsumer = UserContext.Consumer;
