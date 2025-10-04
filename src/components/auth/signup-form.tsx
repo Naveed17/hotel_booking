@@ -87,18 +87,18 @@ function SignUpForm() {
         <div className="w-full max-w-lg mx-auto">
             {/* Enhanced Header */}
             <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                     JOIN THE ADVENTURE
                 </div>
-                <h1 className="text-3xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
                     Create Your Account
                 </h1>
                 <p className="text-gray-600 text-lg">
                     Already have an account?{' '}
                     <Link
                         href='/auth/sign-in'
-                        className="text-emerald-600 hover:text-emerald-700 font-semibold transition-colors"
+                        className="text-blue-600 hover:text-blue-700 font-semibold transition-colors"
                     >
                         Sign in here
                     </Link>
@@ -112,13 +112,13 @@ function SignUpForm() {
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-3">
                             <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-                                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                 First Name
                             </label>
                             <input
                                 id="firstName"
                                 {...register('firstName')}
-                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-emerald-300"
+                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-blue-300"
                                 placeholder="Enter first name"
                             />
                             {errors.firstName && (
@@ -146,7 +146,7 @@ function SignUpForm() {
                     {/* Enhanced Country */}
                     <div className="space-y-3">
                         <label htmlFor="country" className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-                            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Country
                         </label>
                         <Controller
@@ -174,14 +174,14 @@ function SignUpForm() {
                     {/* Enhanced Phone */}
                     <div className="space-y-3">
                         <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-                            <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Phone Number
                         </label>
                         <input
                             id="phone"
                             type="tel"
                             {...register('phone')}
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-orange-300"
+                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-blue-300"
                             placeholder="Enter your phone number"
                         />
                         {errors.phone && (
@@ -192,14 +192,14 @@ function SignUpForm() {
                     {/* Enhanced Email */}
                     <div className="space-y-3">
                         <label htmlFor="email" className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-                            <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Email Address
                         </label>
                         <input
                             id="email"
                             type="email"
                             {...register('email')}
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-cyan-300"
+                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-blue-300"
                             placeholder="Enter your email address"
                         />
                         {errors.email && (
@@ -210,7 +210,7 @@ function SignUpForm() {
                     {/* Enhanced Password */}
                     <div className="space-y-3">
                         <label htmlFor="password" className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-                            <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Password
                         </label>
                         <div className="relative">
@@ -218,7 +218,7 @@ function SignUpForm() {
                                 id="password"
                                 type={showPassword ? 'text' : 'password'}
                                 {...register('password')}
-                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-pink-300"
+                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-blue-300"
                                 placeholder="Create a secure password"
                             />
                             <button
@@ -241,20 +241,20 @@ function SignUpForm() {
                                 <input
                                     type="checkbox"
                                     {...register('acceptPrivacy')}
-                                    className="w-5 h-5 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500 mt-0.5 transition-colors"
+                                    className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-0.5 transition-colors"
                                 />
                                 <span className="ml-3 text-gray-700 text-sm leading-relaxed">
                                     I agree to the{' '}
                                     <button
                                         type="button"
-                                        className="text-emerald-600 hover:text-emerald-700 font-semibold transition-colors underline"
+                                        className="text-blue-600 hover:text-blue-700 font-semibold transition-colors underline"
                                     >
                                         Privacy Policy
                                     </button>{' '}
                                     and{' '}
                                     <button
                                         type="button"
-                                        className="text-emerald-600 hover:text-emerald-700 font-semibold transition-colors underline"
+                                        className="text-blue-600 hover:text-blue-700 font-semibold transition-colors underline"
                                     >
                                         Terms of Service
                                     </button>
@@ -270,7 +270,7 @@ function SignUpForm() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white py-3.5 px-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3.5 px-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isLoading ? (
                             <div className="flex items-center justify-center gap-2">

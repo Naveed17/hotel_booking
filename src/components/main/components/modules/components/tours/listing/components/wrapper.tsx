@@ -81,7 +81,7 @@ const ToursWrapper = (): React.JSX.Element => {
                     <div className="flex items-center gap-3 lg:gap-4">
                         <span className="text-text-muted font-medium text-sm lg:text-base">{total} tours found</span>
                         <button className="p-1.5 lg:p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                            <BarChart3 className="h-3 w-3 lg:h-4 lg:w-4 text-emerald-600" />
+                            <BarChart3 className="h-3 w-3 lg:h-4 lg:w-4 text-blue-600" />
                         </button>
                     </div>
                     <div className="flex items-center justify-between sm:justify-end gap-3 lg:gap-4">
@@ -105,7 +105,7 @@ const ToursWrapper = (): React.JSX.Element => {
                                 onClick={() => setViewMode('grid')}
                                 className={`p-2 hover:bg-gray-50 transition-colors ${viewMode === 'grid' ? 'bg-white border-r border-gray-300' : 'bg-gray-50'}`}
                             >
-                                <Grid className="h-3 w-3 lg:h-4 lg:w-4 text-emerald-600" />
+                                <Grid className="h-3 w-3 lg:h-4 lg:w-4 text-blue-600" />
                             </button>
                             <button
                                 onClick={() => setViewMode('list')}
@@ -162,8 +162,8 @@ const ToursWrapper = (): React.JSX.Element => {
                                     />
                                     {/* Animated Badge */}
                                     <div className="absolute top-4 left-4">
-                                        <div className="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg">
-                                            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                                        <div className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-lg">
+                                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                                             {tour.category}
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@ const ToursWrapper = (): React.JSX.Element => {
                                     <div className="space-y-4">
                                         <div className={`${viewMode === "list" ? "flex items-start justify-between" : "space-y-2"}`}>
                                             <div className={viewMode === "list" ? "flex-1 pr-4" : ""}>
-                                                <h3 className="bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent text-xl font-bold leading-tight">
+                                                <h3 className="text-xl font-bold leading-tight">
                                                     {tour.name}
                                                 </h3>
                                                 <div className="flex items-center gap-2 mt-2">
@@ -210,7 +210,7 @@ const ToursWrapper = (): React.JSX.Element => {
                                         {/* Highlights */}
                                         <div className="flex flex-wrap gap-2">
                                             {tour.highlights.slice(0, 3).map((highlight, index) => (
-                                                <span key={index} className="bg-emerald-50 text-emerald-700 px-2 py-1 rounded-lg text-xs font-medium">
+                                                <span key={index} className="bg-blue-50 text-blue-700 px-2 py-1 rounded-lg text-xs font-medium">
                                                     {highlight}
                                                 </span>
                                             ))}
@@ -226,13 +226,13 @@ const ToursWrapper = (): React.JSX.Element => {
                                                 <span className="text-gray-500 text-sm">/person</span>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                                                <span className="text-emerald-600 text-sm font-medium">Available</span>
+                                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                                <span className="text-green-600 text-sm font-medium">Available</span>
                                             </div>
                                         </div>
 
                                         <Link href={`/${lang}/tours/${tour.id}`} className="block">
-                                            <button className="w-full bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                            <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                                                 Book Tour
                                             </button>
                                         </Link>

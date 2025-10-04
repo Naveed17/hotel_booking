@@ -63,15 +63,15 @@ const Newsletter = (): React.JSX.Element => {
     };
 
     return (
-        <section className="py-20 bg-gradient-to-br from-cyan-50 to-blue-50">
+        <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
             <Container>
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-12">
-                        <div className="inline-flex items-center gap-2 bg-cyan-100 text-cyan-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                            <span className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></span>
+                        <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                             STAY IN THE LOOP
                         </div>
-                        <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-cyan-600 bg-clip-text text-transparent">
+                        <h2 className="text-4xl lg:text-5xl font-black mb-6 font-urbanist">
                             Your Travel Journey Starts Here
                         </h2>
                         <p className="text-gray-600 text-xl max-w-2xl mx-auto leading-relaxed">
@@ -88,7 +88,7 @@ const Newsletter = (): React.JSX.Element => {
                                         alt="Travel journey"
                                         className="w-full h-full object-cover"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/20 to-blue-600/20" />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-700/20" />
                                     <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg">
                                         <span className="text-sm font-semibold text-gray-900">🌍 50K+ Subscribers</span>
                                     </div>
@@ -176,7 +176,7 @@ const Newsletter = (): React.JSX.Element => {
                                     <button
                                         type="submit"
                                         disabled={mutation.isPending}
-                                        className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {mutation.isPending ? "Subscribing..." : "Subscribe Now"}
                                     </button>
@@ -185,15 +185,15 @@ const Newsletter = (): React.JSX.Element => {
                                     <div className="mt-6 space-y-4">
                                         <div className="flex flex-col md:flex-row md:items-center justify-center gap-6 text-sm text-gray-600">
                                             <div className="flex items-center gap-2">
-                                                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                                 <span>Weekly travel deals</span>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                                <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
                                                 <span>Destination guides</span>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                                <span className="w-2 h-2 bg-blue-700 rounded-full"></span>
                                                 <span>Travel tips</span>
                                             </div>
                                         </div>

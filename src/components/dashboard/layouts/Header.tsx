@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Bell, Search, Menu, LogOut, User, ChevronDown, X } from 'lucide-react';
 import { useDashboard } from '@src/context/dashboardContext';
 import { useUser } from '@hooks/use-user';
@@ -16,12 +16,34 @@ const Header = () => {
   const params = useParams();
   const lang = params?.lang as string || 'en';
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const notificationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+      if (notificationRef.current && !notificationRef.current.contains(event.target as Node)) {
+        setIsNotificationOpen(false);
+      }
+    };
+
+    if (isDropdownOpen || isNotificationOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDropdownOpen, isNotificationOpen]);
 
   const handleLogout = async () => {
     if (logout) {
       await logout();
-      router.push(``);
+      router.refresh()
     }
   };
 
@@ -48,12 +70,42 @@ const Header = () => {
 
             <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-4">
 
-              <button className="p-1 text-gray-400 hover:text-gray-500 relative">
-                <Bell className="h-5 w-5" />
-                <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
-              </button>
+              <div className="relative" ref={notificationRef}>
+                <button 
+                  onClick={() => setIsNotificationOpen(!isNotificationOpen)}
+                  className="p-1 text-gray-400 hover:text-gray-500 relative"
+                >
+                  <Bell className="h-5 w-5" />
+                  <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+                </button>
 
-              <div className="relative">
+                {isNotificationOpen && (
+                  <div className="fixed right-16 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-[60] backdrop-blur-sm">
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <h3 className="text-sm font-medium text-gray-900">Notifications</h3>
+                    </div>
+                    <div className="max-h-96 overflow-y-auto">
+                      <div className="px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                        <p className="text-sm text-gray-900">New booking received</p>
+                        <p className="text-xs text-gray-500 mt-1">2 minutes ago</p>
+                      </div>
+                      <div className="px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                        <p className="text-sm text-gray-900">Payment confirmed</p>
+                        <p className="text-xs text-gray-500 mt-1">1 hour ago</p>
+                      </div>
+                      <div className="px-4 py-3 hover:bg-gray-50">
+                        <p className="text-sm text-gray-900">System maintenance scheduled</p>
+                        <p className="text-xs text-gray-500 mt-1">3 hours ago</p>
+                      </div>
+                    </div>
+                    <div className="px-4 py-2 border-t border-gray-100">
+                      <button className="text-xs text-blue-600 hover:text-blue-800">View all notifications</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="flex items-center space-x-1 sm:space-x-2 p-1 sm:p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -67,7 +119,7 @@ const Header = () => {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <div className="fixed right-4 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-[60] backdrop-blur-sm">
                     <div className="px-4 py-2 border-b border-gray-100">
                       <p className="text-sm font-medium text-gray-900">{user?.name}</p>
                       <p className="text-xs text-gray-500 capitalize">{user?.role}</p>

@@ -57,11 +57,11 @@ export default function ForgetPasswordForm() {
     <div className="w-full max-w-lg mx-auto">
       {/* Enhanced Header */}
       <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-          <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
           RESET YOUR PASSWORD
         </div>
-        <h1 className="text-3xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-orange-600 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
           Forgot Password?
         </h1>
         <p className="text-gray-600 text-lg">
@@ -90,7 +90,7 @@ export default function ForgetPasswordForm() {
               htmlFor="email"
               className="block text-sm font-semibold text-gray-700 flex items-center gap-2"
             >
-              <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+              <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
               Email Address
             </label>
             <div className="relative">
@@ -102,13 +102,13 @@ export default function ForgetPasswordForm() {
                     {...field}
                     type="email"
                     placeholder="Enter your email address"
-                    className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-orange-300"
+                    className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-blue-300"
                   />
                 )}
               />
               <div className="absolute inset-y-0 left-0 flex items-center pl-4">
                 <svg
-                  className="w-5 h-5 text-orange-500"
+                  className="w-5 h-5 text-blue-500"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -136,7 +136,7 @@ export default function ForgetPasswordForm() {
             <button
               type="submit"
               disabled={isSubmitting || loading}
-              className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white py-3.5 px-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3.5 px-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               <div className="flex items-center justify-center gap-2">
                 {isSubmitting || loading ? (

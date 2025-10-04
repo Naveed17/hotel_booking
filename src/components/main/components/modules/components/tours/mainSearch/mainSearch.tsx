@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useMemo, useEffect } from 'react'
 import { DatePicker } from "@components/DatePicker";
-import { GuestSelector } from "@components/GuestSelector";
+import { TravelerSelector } from "@components/TravelerSelector";
 import {
     ChevronDown,
     MapPin,
@@ -213,8 +213,8 @@ function ToursMainSearch() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* Enhanced Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                        <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                         DISCOVER AMAZING TOURS
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Where would you like to explore?</h3>
@@ -223,7 +223,7 @@ function ToursMainSearch() {
 
                 <div className="mb-6">
                     <label htmlFor="destination" className="text-gray-700 text-sm font-semibold mb-3 flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-emerald-500" />
+                        <MapPin className="w-4 h-4 text-blue-500" />
                         Destination
                     </label>
                     <div className="relative" ref={wrapperRef}>
@@ -237,7 +237,7 @@ function ToursMainSearch() {
                             onChange={(e) => handleSearch(e.target.value)}
                             className={`w-full pl-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.destination
                                 ? 'border-red-500 focus:ring-red-500'
-                                : 'border-gray-200 focus:ring-emerald-500 hover:border-emerald-300'
+                                : 'border-gray-200 focus:ring-blue-500 hover:border-blue-300'
                                 }`}
                         />
                         <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
@@ -319,7 +319,7 @@ function ToursMainSearch() {
                     {/* Start Date */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Start Date
                         </label>
                         <Controller
@@ -342,7 +342,7 @@ function ToursMainSearch() {
                     {/* End Date */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             End Date
                         </label>
                         <Controller
@@ -365,21 +365,16 @@ function ToursMainSearch() {
                     {/* Travelers */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Travelers
                         </label>
                         <Controller
                             name="travelers"
                             control={control}
                             render={({ field }) => (
-                                <GuestSelector
+                                <TravelerSelector
                                     value={field.value}
-                                    onChange={(value) => {
-                                        const guests = value.split(',')
-                                        const adults = parseInt(guests[0]);
-                                        const children = parseInt(guests[1]);
-                                        setValue('travelers', `${adults + children} ${adults + children === 1 ? 'Traveler' : 'Travelers'}`)
-                                    }}
+                                    onChange={field.onChange}
                                     className={errors.travelers ? 'border-red-500' : ''}
                                 />
                             )}
@@ -392,13 +387,13 @@ function ToursMainSearch() {
                     {/* Enhanced Search Button */}
                     <div className="md:self-end">
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Ready to explore?
                         </label>
                         <button
                             type="submit"
                             disabled={isSubmitting || loading}
-                            className="w-full h-12 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                            className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
                         >
                             {isSubmitting || loading ? (
                                 <>

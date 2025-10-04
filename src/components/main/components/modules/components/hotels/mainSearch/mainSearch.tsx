@@ -347,7 +347,7 @@ function MainSearch() {
                     {/* Check-in */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 flex items-center gap-2">
-                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Check-in
                         </label>
                         <Controller
@@ -370,7 +370,7 @@ function MainSearch() {
                     {/* Check-out */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Check-out
                         </label>
                         <Controller
@@ -393,7 +393,7 @@ function MainSearch() {
                     {/* Guests */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Guests & Rooms
                         </label>
                         <Controller
@@ -423,13 +423,13 @@ function MainSearch() {
                     {/* Enhanced Search Button */}
                     <div className="md:self-end">
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Ready to explore?
                         </label>
                         <button
                             type="submit"
                             disabled={isSubmitting || loading}
-                            className="w-full h-12 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                            className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
                         >
                             {isSubmitting || loading ? (
                                 <>

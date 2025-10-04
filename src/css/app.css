@@ -13,7 +13,7 @@
     --accent: oklch(0.269 0 0);
     --accent-foreground: oklch(0.985 0 0);
     --color-travel-blue: #163c8c;
-    --text-primary: #112233CC;
+    --text-primary: #112D4E;
     --color-travel-blue-50: #e5ecff;
     --color-travel-blue-100: #c7d5ff;
     --color-travel-blue-200: #9fb5ff;
@@ -38,9 +38,9 @@
     --color-travel-gray-700: #343a40;
     --color-travel-gray-800: #212529;
     --color-travel-gray-900: #0f172b;
-    --color-travel-green: #00a63e;
-    --color-travel-orange: #fe9a00;
-    --color-travel-purple: #8b5cf6;
+    --color-travel-blue-light: #3b82f6;
+    --color-travel-blue-accent: #1e40af;
+    --color-travel-blue-dark: #1e3a8a;
     --color-popover: var(--popover);
     --color-popover-foreground: var(--popover-foreground);
     --color-muted: var(--muted);
@@ -124,7 +124,27 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    color: var(--text-primary)
+    color: var(--text-primary);
+}
+
+/* Primary color class */
+.text-primary-color {
+    color: var(--text-primary);
+}
+
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--text-primary);
+    }
+}
+
+/* Allow gradient text only in hero section */
+.hero-gradient-text {
+    color: transparent !important;
+}
+
+body {
+    color: var(--text-primary);
 }
 
 body {

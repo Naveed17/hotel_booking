@@ -82,7 +82,7 @@ const TourDetails = (): React.JSX.Element => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 pb-8 pt-30">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 pb-8 pt-30">
             <Container>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Main Content */}
@@ -149,7 +149,7 @@ const TourDetails = (): React.JSX.Element => {
                             {/* Header */}
                             <div className="mb-6">
                                 <div className="flex items-center gap-2 mb-4">
-                                    <div className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                    <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
                                         {mockTour.category}
                                     </div>
                                     <div className="flex items-center gap-1">
@@ -159,7 +159,7 @@ const TourDetails = (): React.JSX.Element => {
                                     </div>
                                 </div>
 
-                                <h1 className="text-3xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+                                <h1 className="text-3xl font-black mb-4">
                                     {mockTour.name}
                                 </h1>
 
@@ -191,7 +191,7 @@ const TourDetails = (): React.JSX.Element => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                     {mockTour.highlights.map((highlight, index) => (
                                         <div key={index} className="flex items-center gap-3">
-                                            <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                                             <span className="text-gray-700">{highlight}</span>
                                         </div>
                                     ))}
@@ -202,13 +202,13 @@ const TourDetails = (): React.JSX.Element => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
                                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <Shield className="w-5 h-5 text-emerald-600" />
+                                        <Shield className="w-5 h-5 text-blue-600" />
                                         What's Included
                                     </h3>
                                     <ul className="space-y-2">
                                         {mockTour.included.map((item, index) => (
                                             <li key={index} className="flex items-center gap-2 text-gray-600">
-                                                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                                                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
                                                 {item}
                                             </li>
                                         ))}
@@ -277,7 +277,7 @@ const TourDetails = (): React.JSX.Element => {
 
                             {/* Book Button */}
                             <Link href={`/${lang}/tours/${mockTour.id}/booking`}>
-                                <button className="w-full bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white py-4 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mb-4">
+                                <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mb-4">
                                     Book This Tour
                                 </button>
                             </Link>
@@ -294,7 +294,7 @@ const TourDetails = (): React.JSX.Element => {
                                 </div>
                                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                                     <span className="text-gray-600">Cancellation:</span>
-                                    <span className="font-medium text-emerald-600">{mockTour.cancellation}</span>
+                                    <span className="font-medium text-blue-600">{mockTour.cancellation}</span>
                                 </div>
                             </div>
 

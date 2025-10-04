@@ -90,10 +90,10 @@ const TourBooking = (): React.JSX.Element => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 pb-8 pt-30">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 pb-8 pt-30">
             <Container>
                 {/* Back Button */}
-                <Link href={`/${lang}/tours/${mockTour.id}`} className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 mb-6">
+                <Link href={`/${lang}/tours/${mockTour.id}`} className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6">
                     <ChevronLeft className="w-4 h-4" />
                     Back to Tour Details
                 </Link>
@@ -107,11 +107,11 @@ const TourBooking = (): React.JSX.Element => {
                             className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8"
                         >
                             <div className="mb-8">
-                                <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                                    <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                                     BOOK YOUR TOUR
                                 </div>
-                                <h1 className="text-3xl font-black  bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+                                <h1 className="text-3xl font-black">
                                     Complete Your Booking
                                 </h1>
                             </div>
@@ -120,7 +120,7 @@ const TourBooking = (): React.JSX.Element => {
                                 {/* Tour Selection */}
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <Calendar className="w-5 h-5 text-emerald-600" />
+                                        <Calendar className="w-5 h-5 text-blue-600" />
                                         Tour Details
                                     </h3>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -163,7 +163,7 @@ const TourBooking = (): React.JSX.Element => {
                                 {/* Personal Information */}
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <Users className="w-5 h-5 text-emerald-600" />
+                                        <Users className="w-5 h-5 text-blue-600" />
                                         Personal Information
                                     </h3>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -174,7 +174,7 @@ const TourBooking = (): React.JSX.Element => {
                                             <input
                                                 {...register('firstName')}
                                                 type="text"
-                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.firstName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
+                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.firstName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-blue-500'
                                                     }`}
                                                 placeholder="Enter your first name"
                                             />
@@ -190,7 +190,7 @@ const TourBooking = (): React.JSX.Element => {
                                             <input
                                                 {...register('lastName')}
                                                 type="text"
-                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.lastName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
+                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.lastName ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-blue-500'
                                                     }`}
                                                 placeholder="Enter your last name"
                                             />
@@ -206,7 +206,7 @@ const TourBooking = (): React.JSX.Element => {
                                             <input
                                                 {...register('email')}
                                                 type="email"
-                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
+                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-blue-500'
                                                     }`}
                                                 placeholder="Enter your email"
                                             />
@@ -222,7 +222,7 @@ const TourBooking = (): React.JSX.Element => {
                                             <input
                                                 {...register('phone')}
                                                 type="tel"
-                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-emerald-500'
+                                                className={`w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-blue-500'
                                                     }`}
                                                 placeholder="Enter your phone number"
                                             />
@@ -241,7 +241,7 @@ const TourBooking = (): React.JSX.Element => {
                                     <textarea
                                         {...register('specialRequests')}
                                         rows={4}
-                                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+                                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                                         placeholder="Any special requirements or requests..."
                                     />
                                 </div>
@@ -250,7 +250,7 @@ const TourBooking = (): React.JSX.Element => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                 >
                                     {isSubmitting ? (
                                         <>
@@ -318,22 +318,22 @@ const TourBooking = (): React.JSX.Element => {
                             <div className="border-t border-gray-200 pt-4">
                                 <div className="flex justify-between items-center mb-4">
                                     <span className="text-xl font-bold text-gray-900">Total:</span>
-                                    <span className="text-2xl font-black text-emerald-600">${totalPrice}</span>
+                                    <span className="text-2xl font-black text-blue-600">${totalPrice}</span>
                                 </div>
                             </div>
 
                             {/* Trust Badges */}
                             <div className="space-y-3 text-sm">
                                 <div className="flex items-center gap-2 text-gray-600">
-                                    <Check className="w-4 h-4 text-emerald-600" />
+                                    <Check className="w-4 h-4 text-blue-600" />
                                     <span>Free cancellation up to 24h</span>
                                 </div>
                                 <div className="flex items-center gap-2 text-gray-600">
-                                    <Shield className="w-4 h-4 text-emerald-600" />
+                                    <Shield className="w-4 h-4 text-blue-600" />
                                     <span>Secure payment processing</span>
                                 </div>
                                 <div className="flex items-center gap-2 text-gray-600">
-                                    <Star className="w-4 h-4 text-emerald-600" />
+                                    <Star className="w-4 h-4 text-blue-600" />
                                     <span>Best price guarantee</span>
                                 </div>
                             </div>

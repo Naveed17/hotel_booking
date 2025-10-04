@@ -84,7 +84,7 @@ const Footer = (): React.JSX.Element => {
                         <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
                         TRUSTED BY 100K+ TRAVELERS
                     </div>
-                    <h3 className="text-4xl font-black mb-4 font-urbanist bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                    <h3 className="hero-gradient-text text-4xl font-black mb-4 font-urbanist bg-gradient-to-r from-white via-blue-200 to-blue-300 bg-clip-text text-transparent">
                         Travels Website
                     </h3>
                     <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -120,7 +120,7 @@ const Footer = (): React.JSX.Element => {
 
                         <div className="group">
                             <h4 className="font-bold text-white mb-6 text-lg flex items-center gap-2">
-                                <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
+                                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
                                 Support
                             </h4>
                             <ul className="space-y-4">
@@ -128,7 +128,7 @@ const Footer = (): React.JSX.Element => {
                                     <li key={i}>
                                         <Link
                                             href={`/${item.slug_url}`}
-                                            className="text-gray-300 hover:text-emerald-400 transition-all duration-300 capitalize hover:translate-x-1 inline-block"
+                                            className="text-gray-300 hover:text-blue-400 transition-all duration-300 capitalize hover:translate-x-1 inline-block"
                                         >
                                             {item.page_name}
                                         </Link>
@@ -139,7 +139,7 @@ const Footer = (): React.JSX.Element => {
 
                         <div className="group">
                             <h4 className="font-bold text-white mb-6 text-lg flex items-center gap-2">
-                                <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
                                 Company
                             </h4>
                             <ul className="space-y-4">
@@ -147,7 +147,7 @@ const Footer = (): React.JSX.Element => {
                                     <li key={i}>
                                         <Link
                                             href={`/${item.slug_url}`}
-                                            className="text-gray-300 hover:text-purple-400 transition-all duration-300 capitalize hover:translate-x-1 inline-block"
+                                            className="text-gray-300 hover:text-blue-400 transition-all duration-300 capitalize hover:translate-x-1 inline-block"
                                         >
                                             {item.page_name}
                                         </Link>
@@ -158,12 +158,12 @@ const Footer = (): React.JSX.Element => {
 
                         <div className="group">
                             <h4 className="font-bold text-white mb-6 text-lg flex items-center gap-2">
-                                <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
                                 Downloads
                             </h4>
                             <ul className="space-y-4">
-                                <li><a href="#" className="text-gray-300 hover:text-pink-400 transition-all duration-300 hover:translate-x-1 inline-block">iOS App</a></li>
-                                <li><a href="#" className="text-gray-300 hover:text-pink-400 transition-all duration-300 hover:translate-x-1 inline-block">Android App</a></li>
+                                <li><a href="#" className="text-gray-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-1 inline-block">iOS App</a></li>
+                                <li><a href="#" className="text-gray-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-1 inline-block">Android App</a></li>
                             </ul>
                         </div>
                     </div>
@@ -171,7 +171,7 @@ const Footer = (): React.JSX.Element => {
                     <div className="md:col-span-2">
 
                         <h4 className="font-bold text-white mb-4 text-lg flex items-center gap-2">
-                            <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
                             Stay Connected
                         </h4>
 
@@ -212,7 +212,7 @@ const Footer = (): React.JSX.Element => {
                                         {...field}
                                         type="email"
                                         placeholder="Enter your email"
-                                        className={`w-full h-12 rounded-full border ${errors.email ? "border-red-500" : "border-gray-200"
+                                        className={`w-full h-12 rounded-full border ${errors.email ? "border-blue-500" : "border-gray-200"
                                             } px-4 focus:outline-none focus:ring-2 focus:ring-blue-500`}
                                     />
                                 )}
@@ -224,7 +224,7 @@ const Footer = (): React.JSX.Element => {
                             <button
                                 type="submit"
                                 disabled={mutation.isPending}
-                                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
+                                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
                             >
                                 {mutation.isPending ? "Submitting..." : "Join Now"}
                             </button>
@@ -246,16 +246,16 @@ const Footer = (): React.JSX.Element => {
                             <a href={data?.app?.social_facebook || "#"} className="w-10 h-10 bg-white/10 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
                                 <Facebook className="w-5 h-5 text-gray-300 group-hover:text-white" />
                             </a>
-                            <a href={data?.app?.social_twitter || "#"} className="w-10 h-10 bg-white/10 hover:bg-sky-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                            <a href={data?.app?.social_twitter || "#"} className="w-10 h-10 bg-white/10 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
                                 <Twitter className="w-5 h-5 text-gray-300 group-hover:text-white" />
                             </a>
-                            <a href={data?.app?.social_instagram || "#"} className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                            <a href={data?.app?.social_instagram || "#"} className="w-10 h-10 bg-white/10 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
                                 <Instagram className="w-5 h-5 text-gray-300 group-hover:text-white" />
                             </a>
                             <a href={data?.app?.social_linkedin || "#"} className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
                                 <Linkedin className="w-5 h-5 text-gray-300 group-hover:text-white" />
                             </a>
-                            <a href={data?.app?.social_youtube || "#"} className="w-10 h-10 bg-white/10 hover:bg-red-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+                            <a href={data?.app?.social_youtube || "#"} className="w-10 h-10 bg-white/10 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group">
                                 <Youtube className="w-5 h-5 text-gray-300 group-hover:text-white" />
                             </a>
                         </div>

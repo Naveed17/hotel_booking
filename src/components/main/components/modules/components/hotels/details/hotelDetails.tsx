@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import Container from '@components/core/container';
 import ImageBlur from '@src/utils/blurImage';
 import renderStars from '@src/utils/renderStars';
@@ -35,25 +35,16 @@ const mockAmenities = ['WiFi', 'Parking', 'Restaurant', 'Gym', 'Pool', 'Room Ser
 export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
   const params = useParams();
   const lang = params?.lang as string || 'en';
-  const [hotel, setHotel] = useState<Hotel | null>(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchHotel = async () => {
-      try {
-        const response = await fetch('/api/mock/hotels', { method: 'POST' });
-        const data = await response.json();
-        const foundHotel = data.response.find((h: Hotel) => h.hotel_id === hotelId);
-        setHotel(foundHotel || null);
-      } catch (error) {
-        console.error('Error fetching hotel:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchHotel();
-  }, [hotelId]);
+  const { data: hotel, isLoading: loading, error } = useQuery({
+    queryKey: ['hotel', hotelId],
+    queryFn: async () => {
+      const response = await fetch('/api/mock/hotels', { method: 'POST' });
+      const data = await response.json();
+      const foundHotel = data.response.find((h: Hotel) => h.hotel_id === hotelId);
+      return foundHotel || null;
+    },
+  });
 
   if (loading) {
     return (
@@ -76,7 +67,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
     );
   }
 
-  if (!hotel) {
+  if (error || !hotel) {
     return (
       <div className="min-h-screen bg-bg-page flex items-center justify-center">
         <div className="text-center">
@@ -136,7 +127,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                   LUXURY ACCOMMODATION
                 </div>
 
-                <h1 className="text-4xl lg:text-5xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                <h1 className="text-4xl lg:text-5xl font-black mb-4">
                   {hotel.name}
                 </h1>
 
@@ -154,10 +145,10 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                 <p className="text-gray-600 mb-6 text-lg leading-relaxed">{hotel.address}</p>
 
                 <div className="flex items-center gap-3">
-                  <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                     {hotel.rating} Excellent Rating
                   </span>
-                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  <span className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                     Top Choice
                   </span>
                 </div>
@@ -167,8 +158,8 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
             {/* Enhanced Description */}
             <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8 mb-8">
               <div className="flex items-center gap-2 mb-6">
-                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
-                <h2 className="text-3xl font-black  bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">About This Hotel</h2>
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <h2 className="text-3xl font-black">About This Hotel</h2>
               </div>
               <p className="text-gray-600 leading-relaxed text-lg">
                 Experience luxury and comfort at {hotel.name}, located in the heart of {hotel.location}.
@@ -180,8 +171,8 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
             {/* Enhanced Amenities */}
             <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 pt-8 md:pt-8 md:p-8">
               <div className="flex items-center gap-2 mb-8">
-                <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                <h2 className="text-3xl font-black  bg-gradient-to-r from-gray-900 to-purple-600 bg-clip-text text-transparent">Premium Amenities</h2>
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <h2 className="text-3xl font-black">Premium Amenities</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {mockAmenities.map((amenity, index) => {
@@ -210,17 +201,17 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
             <div className="sticky top-8">
               <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-2xl border border-gray-100">
                 <div className="text-center mb-8">
-                  <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                  <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                     BEST PRICE GUARANTEED
                   </div>
                   <div className="mb-4">
-                    <span className="text-4xl font-black  bg-gradient-to-r from-gray-900 to-green-600 bg-clip-text text-transparent">
+                    <span className="text-4xl font-black">
                       ${hotel.actual_price}
                     </span>
                     <span className="text-gray-600 text-lg font-medium">/night</span>
                   </div>
-                  <p className="text-sm text-green-600 font-medium">Taxes and fees included</p>
+                  <p className="text-sm text-blue-600 font-medium">Taxes and fees included</p>
                 </div>
 
                 <div className="space-y-6 mb-8">
@@ -237,7 +228,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Check-out Date
                     </label>
                     <DatePicker
@@ -248,7 +239,7 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Number of Guests
                     </label>
                     <GuestSelector
@@ -259,13 +250,13 @@ export default function HotelDetails({ hotelId, dict }: HotelDetailsProps) {
                 </div>
 
                 <Link href={`/${lang}/hotels/${hotel.hotel_id}/booking`}>
-                  <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg mb-6">
+                  <button className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg mb-6">
                     Book Your Stay Now
                   </button>
                 </Link>
 
                 <div className="text-center space-y-2">
-                  <p className="text-sm text-green-600 font-medium">
+                  <p className="text-sm text-blue-600 font-medium">
                     Free cancellation until 24h before
                   </p>
                   <p className="text-xs text-gray-500">

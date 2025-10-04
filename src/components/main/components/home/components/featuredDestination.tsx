@@ -9,15 +9,15 @@ function FeaturedDestination() {
     const { data } = useAppSelector((state) => state?.appData);
     const featured_tours = data?.featured_tours || [];
     return (
-        <section id="destinations" className="py-20 bg-gradient-to-br from-emerald-50 to-green-50">
+        <section id="destinations" className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
             <Container>
                 {/* Enhanced Section Header */}
                 <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                        <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                         EXPLORE THE WORLD
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-black mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 font-urbanist">
                         Featured Destinations
                     </h2>
                     <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
@@ -49,7 +49,7 @@ function FeaturedDestination() {
                         <p className="text-gray-600 mb-6">
                             Browse our complete collection of 500+ destinations across 80+ countries
                         </p>
-                        <button className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                             View All Destinations
                         </button>
                     </div>

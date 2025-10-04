@@ -20,7 +20,7 @@ function FeaturedHotels() {
                         <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                         HANDPICKED FOR YOU
                     </div>
-                    <h2 className="text-4xl md:text-5xl  font-black  mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 font-urbanist">
                         Featured Hotels
                     </h2>
                     <p className="text-gray-600 text-xl max-w-2xl mx-auto leading-relaxed">
@@ -52,7 +52,7 @@ function FeaturedHotels() {
                         <p className="text-gray-600 mb-6">
                             Explore our complete collection of over 1,000+ premium hotels worldwide
                         </p>
-                        <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                             View All Hotels
                         </button>
                     </div>

@@ -96,19 +96,16 @@ export default function ListingLayout({ children, dict }: ListingLayoutProps) {
     return (
         <div className="flex flex-col gap-4 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
             <div className="w-full">
-                <div className="bg-white/95 backdrop-blur-xl border-b border-gray-100/50 shadow-sm">
-                    <Container className="py-6">
-                        <div className="text-center mb-8">
-                            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                                <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50">
+                    <Container className="py-3">
+                        <div className="text-center mb-4">
+                            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-2">
+                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
                                 FIND YOUR PERFECT MATCH
                             </div>
-                            <h2 className="text-3xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                            <h2 className="text-lg font-bold mb-2">
                                 Quick Filters
                             </h2>
-                            <p className="text-gray-600 max-w-2xl mx-auto">
-                                Discover hotels that match your preferences with our smart filtering system
-                            </p>
                         </div>
                         <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide justify-center">
                             {filterChips.map((chip, index) => {
@@ -134,7 +131,7 @@ export default function ListingLayout({ children, dict }: ListingLayoutProps) {
                         </div>
                     </Container>
                 </div>
-                <Container className="mt-8 pb-20">
+                <Container className="mt-6 pb-20">
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                         {/* Enhanced Sidebar */}
                         <AnimatePresence>
@@ -147,7 +144,7 @@ export default function ListingLayout({ children, dict }: ListingLayoutProps) {
                                     className="overflow-hidden lg:col-span-1"
                                 >
 
-                                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 sticky">
+                                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-6 sticky top-8">
                                         <div className="flex items-center gap-2 mb-6">
                                             <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                             <h3 className="text-lg font-bold text-gray-900">Refine Your Search</h3>

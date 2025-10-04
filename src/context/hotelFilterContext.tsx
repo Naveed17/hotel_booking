@@ -116,7 +116,7 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
 
 
 
-    const hotels_suppliers = getSuppliersWithQty(initialHotels as any);
+    const hotels_suppliers = useMemo(() => getSuppliersWithQty(initialHotels as any), [initialHotels]);
 
     // ===== Filtered Hotels =====
     const { mutate, data: filteredHotels, isPending } = useMutation({
@@ -130,83 +130,88 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
     });
 
 
-    const setSearch = (search: string) =>
-        setFilters((prev) => ({ ...prev, search }));
+    const setSearch = useMemo(() => (search: string) =>
+        setFilters((prev) => ({ ...prev, search })), []);
 
-    const setPriceRange = (min: number, max: number) =>
-        setFilters((prev) => ({ ...prev, price: { min, max } }));
+    const setPriceRange = useMemo(() => (min: number, max: number) =>
+        setFilters((prev) => ({ ...prev, price: { min, max } })), []);
 
-    const toggleStar = (star: number) =>
+    const toggleStar = useMemo(() => (star: number) =>
         setFilters((prev) => ({
             ...prev,
             stars: prev.stars.includes(star)
                 ? prev.stars.filter((s) => s !== star)
                 : [...prev.stars, star],
-        }));
+        })), []);
 
-    const setGuestRating = (rating: number | null) =>
-        setFilters((prev) => ({ ...prev, guestRating: rating }));
+    const setGuestRating = useMemo(() => (rating: number | null) =>
+        setFilters((prev) => ({ ...prev, guestRating: rating })), []);
 
-    const toggleAmenity = (amenity: string) =>
+    const toggleAmenity = useMemo(() => (amenity: string) =>
         setFilters((prev) => ({
             ...prev,
             amenities: prev.amenities.includes(amenity)
                 ? prev.amenities.filter((a) => a !== amenity)
                 : [...prev.amenities, amenity],
-        }));
-    const toggleSupplier = (supplier: string) =>
+        })), []);
+    
+    const toggleSupplier = useMemo(() => (supplier: string) =>
         setFilters((prev) => ({
             ...prev,
             suppliers: prev.suppliers.includes(supplier)
                 ? prev.suppliers.filter((a) => a !== supplier)
                 : [...prev.suppliers, supplier],
-        }));
+        })), []);
 
 
 
 
-    const applyFilter = () => {
+    const applyFilter = useMemo(() => () => {
         setUseFilter(true);
         mutate({ slug, filter: filters });
-    };
+    }, [mutate, slug, filters]);
 
-    const setQuickFilter = (quickFilter: string) => {
+    const applyFilterWith = useMemo(() => (newFilters: HotelFilters) => {
+        setUseFilter(true);
+        mutate({ slug, filter: newFilters });
+    }, [mutate, slug]);
+
+    const setQuickFilter = useMemo(() => (quickFilter: string) => {
         setFilters((prev) => {
             const newFilters = { ...prev, quickFilter };
             applyFilterWith(newFilters);
             return newFilters;
         });
-    };
+    }, [applyFilterWith]);
 
-    const setSort = (sort: string) => {
+    const setSort = useMemo(() => (sort: string) => {
         setFilters((prev) => {
             const newFilters = { ...prev, sort };
             applyFilterWith(newFilters);
             return newFilters;
         });
-    };
-
-    const applyFilterWith = (newFilters: HotelFilters) => {
-        setUseFilter(true);
-        mutate({ slug, filter: newFilters });
-    };
-    const hotelsData = initialHotels?.data ?? [];
-
-    const prices = hotelsData.map((h: any) => Number(h?.actual_price)).filter(Number.isFinite);
-
-    const priceRange = {
-        min: Math.min(...prices),
-        max: Math.max(...prices),
-    };
-    const resetFilters = () => {
+    }, [applyFilterWith]);
+    const priceRange = useMemo(() => {
+        const hotelsData = initialHotels?.data ?? [];
+        const prices = hotelsData.map((h: any) => Number(h?.actual_price)).filter(Number.isFinite);
+        
+        if (prices.length === 0) {
+            return { min: 0, max: 1000 };
+        }
+        
+        return {
+            min: Math.min(...prices),
+            max: Math.max(...prices),
+        };
+    }, [initialHotels?.data]);
+    const resetFilters = useMemo(() => () => {
         setUseFilter(false);
         setFilters({
             ...initialFilters,
             price: priceRange,
-        })
-
+        });
         refetch();
-    };
+    }, [priceRange, refetch]);
     const contextValue: HotelFiltersContextValue = useMemo(
         () => ({
             filters,
@@ -229,7 +234,27 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
             showFilters,
             setShowFilters
         }),
-        [filters, filteredHotels, useFilter, initialHotels, isPending, isInitialLoading, showFilters]
+        [
+            filters,
+            setSearch,
+            setPriceRange,
+            toggleStar,
+            setGuestRating,
+            toggleAmenity,
+            resetFilters,
+            applyFilter,
+            setQuickFilter,
+            setSort,
+            toggleSupplier,
+            filteredHotels,
+            useFilter,
+            initialHotels,
+            isPending,
+            isInitialLoading,
+            showFilters,
+            priceRange,
+            hotels_suppliers
+        ]
     );
 
     return (

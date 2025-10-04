@@ -120,8 +120,8 @@ function HotelCard({ ...props }: any): React.JSX.Element {
                                         <span className="text-sm text-gray-600">/night</span>
                                     </div>
 
-                                    <Link href={`/${lang}/hotels/${hotel.hotel_id || hotel.id}`}>
-                                        <button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                    <Link href={`/hotels/${hotel.hotel_id || hotel.id}`}>
+                                        <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                                             Book Now
                                         </button>
                                     </Link>
@@ -139,14 +139,14 @@ function HotelCard({ ...props }: any): React.JSX.Element {
             <div className="relative bg-white/95 backdrop-blur-xl rounded-2xl overflow-hidden shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                 {/* Enhanced Badges */}
                 <div className="absolute top-4 left-4 z-10">
-                    <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                        <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                         {mockData.discount}
                     </div>
                 </div>
 
                 <div className="absolute top-4 right-4 z-10">
-                    <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                         <Award className="w-3 h-3" />
                         {mockData.badge}
                     </div>
@@ -206,7 +206,7 @@ function HotelCard({ ...props }: any): React.JSX.Element {
 
                     {/* Enhanced Availability */}
                     <div className="flex items-center gap-2 mb-4">
-                        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold">
+                        <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
                             <Clock className="w-3 h-3" />
                             {mockData.availability}
                         </div>
@@ -227,7 +227,7 @@ function HotelCard({ ...props }: any): React.JSX.Element {
                         </div>
 
                         <Link href={`/${lang}/hotels/${hotel.hotel_id || hotel.id}`}>
-                            <button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                                 Book Now
                             </button>
                         </Link>
@@ -256,10 +256,12 @@ function HotelCard({ ...props }: any): React.JSX.Element {
                             </li>
                         </ul>
                         <Link href={`/${lang}/hotels/${hotel.hotel_id || hotel.id}`}>
-                            <button className="w-full bg-white text-blue-600 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <button className="w-full cursor-pointer bg-white text-blue-600 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                                 Book Now
                             </button>
                         </Link>
+
+
                     </div>
                 </div>
             </div>

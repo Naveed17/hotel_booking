@@ -95,9 +95,10 @@ export default {
           800: "#212529",
           900: "#0F172B",
         },
-        "travel-green": "#00A63E",
-        "travel-orange": "#FE9A00",
-        "travel-purple": "#8B5CF6",
+        "travel-blue-light": "#3B82F6",
+        "travel-blue-accent": "#1E40AF",
+        "travel-blue-dark": "#1E3A8A",
+        "primary-text": "#112D4E",
       },
       borderRadius: {
         lg: "var(--radius)",

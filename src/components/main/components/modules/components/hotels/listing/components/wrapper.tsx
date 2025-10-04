@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import { useHotelFilters } from '@src/context/hotelFilterContext';
 import { HotelCardLoading } from '@components/core/components';
 import { formatPrice } from '@src/utils/formatNumber';
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@components/drawer";
+import { Drawer } from '@components/core/components';
 import { HotelsMap } from '@components/hotelMap';
 import ImageBlur from '@src/utils/blurImage';
 import { useUser } from '@hooks/use-user';
@@ -72,22 +72,20 @@ const Wrapper = (): React.JSX.Element => {
                             >
                                 <List className="h-3 w-3 lg:h-4 lg:w-4 text-text-secondary" />
                             </button>
-                            <Drawer open={openMap} onOpenChange={setOpenMap}>
-                                <DrawerTitle />
-                                <DrawerTrigger asChild>
-                                    <button
-                                        onClick={() => setOpenMap(!openMap)}
-                                        className={`p-2 hover:bg-gray-50 transition-colors ${openMap ? 'bg-white' : 'bg-gray-50 border-l border-gray-300'}`}
-                                    >
-                                        <MapIcon className="h-3 w-3 lg:h-4 lg:w-4 text-text-secondary" />
-                                    </button>
-                                </DrawerTrigger>
-
-                                <DrawerContent
-                                    className="fixed inset-y-0 right-0 h-full w-full max-w-[600px] rounded-l-[10px] border bg-background"
-                                >
-                                    <HotelsMap />
-                                </DrawerContent>
+                            <button
+                                onClick={() => setOpenMap(!openMap)}
+                                className={`p-2 hover:bg-gray-50 transition-colors ${openMap ? 'bg-white' : 'bg-gray-50 border-l border-gray-300'}`}
+                            >
+                                <MapIcon className="h-3 w-3 lg:h-4 lg:w-4 text-text-secondary" />
+                            </button>
+                            <Drawer
+                                isOpen={openMap}
+                                onClose={() => setOpenMap(false)}
+                                placement="right"
+                                width={600}
+                                title="Hotels Map"
+                            >
+                                <HotelsMap />
                             </Drawer>
 
                         </div>
@@ -163,7 +161,7 @@ const Wrapper = (): React.JSX.Element => {
                                         <div className="space-y-4">
                                             <div className={`${viewMode === "list" ? "flex items-start justify-between" : "space-y-2"}`}>
                                                 <div className={viewMode === "list" ? "flex-1 pr-4" : ""}>
-                                                    <h3 className="bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent text-xl font-bold leading-tight">
+                                                    <h3 className="text-xl font-bold leading-tight">
                                                         {hotel.name}
                                                     </h3>
                                                     <div className="flex items-center gap-2 mt-2">
@@ -181,11 +179,9 @@ const Wrapper = (): React.JSX.Element => {
 
                                             {user && user.user_type === "Admin" && (
                                                 <div className="inline-flex items-center gap-2 bg-gray-50 rounded-full px-3 py-1.5 text-sm font-medium border border-gray-200">
-                                                    <img
-                                                        src="https://via.placeholder.com/24"
-                                                        alt="supplier"
-                                                        className="h-5 w-5 rounded-full object-cover"
-                                                    />
+                                                    <div className="h-5 w-5 rounded-full bg-blue-100 flex items-center justify-center">
+                                                        <span className="text-blue-600 text-xs font-bold">{hotel.supplier_name?.charAt(0) || 'S'}</span>
+                                                    </div>
                                                     <span className="text-gray-700">{hotel.supplier_name}</span>
                                                 </div>
                                             )}

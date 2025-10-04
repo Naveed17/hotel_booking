@@ -13,7 +13,7 @@ export default async function Layout({
     const dict = await getDictionary(lang)
     
     return (
-        <div className='w-full h-full bg-gradient-to-br from-emerald-50 to-green-50 pt-40'>
+        <div className='w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 pt-40'>
             <ToursMain>
                 {children}
             </ToursMain>

@@ -116,18 +116,18 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100 pt-20">
       <Container className="py-8">
         {/* Enhanced Success Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-6 py-3 rounded-full text-sm font-semibold mb-8">
-            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-6 py-3 rounded-full text-sm font-semibold mb-8">
+            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
             BOOKING CONFIRMED SUCCESSFULLY
           </div>
-          <div className="w-20 h-20 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-            <CheckCircle className="w-10 h-10 text-emerald-600" />
+          <div className="w-20 h-20 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <CheckCircle className="w-10 h-10 text-blue-600" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-black mb-4">
             Booking Confirmed!
           </h1>
           <p className="text-gray-600 text-xl max-w-2xl mx-auto">
@@ -142,18 +142,16 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
               {/* Confirmation Details */}
               <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-xl border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                  <span className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
-                  <span className="bg-gradient-to-r from-gray-900 to-emerald-600 bg-clip-text text-transparent">
-                    Booking Details
-                  </span>
+                  <span className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></span>
+                  Booking Details
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Confirmation Number
                     </label>
-                    <p className="text-lg font-bold text-emerald-600 bg-emerald-50 px-4 py-2 rounded-xl">{bookingData.confirmationNumber}</p>
+                    <p className="text-lg font-bold text-blue-600 bg-blue-50 px-4 py-2 rounded-xl">{bookingData.confirmationNumber}</p>
                   </div>
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
@@ -164,40 +162,40 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
                   </div>
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Check-in Date
                     </label>
                     <p className="text-gray-900 font-semibold flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-green-500" />
+                      <Calendar className="w-4 h-4 text-blue-500" />
                       {new Date(bookingData.checkIn).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Check-out Date
                     </label>
                     <p className="text-gray-900 font-semibold flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-red-500" />
+                      <Calendar className="w-4 h-4 text-blue-500" />
                       {new Date(bookingData.checkOut).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Number of Guests
                     </label>
                     <p className="text-gray-900 font-semibold flex items-center gap-2">
-                      <Users className="w-4 h-4 text-purple-500" />
+                      <Users className="w-4 h-4 text-blue-500" />
                       {bookingData.guests} Guests
                     </p>
                   </div>
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-500 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       Total Amount Paid
                     </label>
-                    <p className="text-2xl font-black text-gray-900 bg-gradient-to-r from-yellow-100 to-orange-100 px-4 py-2 rounded-xl">${bookingData.totalAmount.toFixed(2)}</p>
+                    <p className="text-2xl font-black text-gray-900 bg-gradient-to-r from-blue-100 to-blue-200 px-4 py-2 rounded-xl">${bookingData.totalAmount.toFixed(2)}</p>
                   </div>
                 </div>
               </div>
@@ -205,10 +203,8 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
               {/* Contact Information */}
               <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-xl border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                  <span className="w-3 h-3 bg-cyan-500 rounded-full animate-pulse"></span>
-                  <span className="bg-gradient-to-r from-gray-900 to-cyan-600 bg-clip-text text-transparent">
-                    Contact Information
-                  </span>
+                  <span className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></span>
+                  Contact Information
                 </h2>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 p-4 bg-cyan-50 rounded-xl border border-cyan-100">
@@ -226,9 +222,7 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 pt-8 md:pt-8 md:p-8 border border-blue-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                   <span className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></span>
-                  <span className="bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
-                    What's Next?
-                  </span>
+                  What's Next?
                 </h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20">
@@ -275,8 +269,8 @@ export default function BookingComplete({ hotelId, dict }: BookingCompleteProps)
             <div className="lg:col-span-1">
               <div className="sticky top-8">
                 <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 pt-8 md:pt-8 md:p-8 shadow-2xl border border-gray-100">
-                  <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                  <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                     YOUR HOTEL
                   </div>
 

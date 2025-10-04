@@ -16,22 +16,22 @@ const WhyUs = (): React.JSX.Element => {
 
     const getColorScheme = (index: number) => {
         const schemes = [
-            { bg: 'from-purple-600 to-indigo-700', accent: 'bg-purple-100 text-purple-700' },
-            { bg: 'from-orange-500 to-red-600', accent: 'bg-orange-100 text-orange-700' },
-            { bg: 'from-teal-500 to-cyan-600', accent: 'bg-teal-100 text-teal-700' }
+            { bg: 'from-blue-600 to-blue-700', accent: 'bg-blue-100 text-blue-700' },
+            { bg: 'from-blue-500 to-blue-600', accent: 'bg-blue-100 text-blue-600' },
+            { bg: 'from-blue-700 to-blue-800', accent: 'bg-blue-100 text-blue-800' }
         ];
         return schemes[index % schemes.length];
     };
 
     return (
-        <section className="py-20 bg-gradient-to-br from-purple-50 to-indigo-50">
+        <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
             <Container>
                 <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                         WHY TRAVELERS CHOOSE US
                     </div>
-                    <h2 className="text-4xl md:text-5xl  font-black  mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-purple-600 bg-clip-text text-transparent">
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 font-urbanist">
                         Why Choose Us
                     </h2>
                     <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
@@ -87,7 +87,7 @@ const WhyUs = (): React.JSX.Element => {
                         <p className="text-gray-600 mb-6">
                             Join over 100,000+ satisfied travelers who chose us for their perfect getaway
                         </p>
-                        <button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                             Start Your Journey
                         </button>
                     </div>

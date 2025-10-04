@@ -119,7 +119,7 @@ const FlightsListing = (): React.JSX.Element => {
                             <span className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></span>
                             FLIGHT SEARCH RESULTS
                         </div>
-                        <h1 className="text-4xl font-black  mb-4 bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
+                        <h1 className="text-4xl font-black mb-4">
                             Available Flights
                         </h1>
                         <p className="text-gray-600">New York → Dubai • Mar 15, 2024 • 2 passengers</p>

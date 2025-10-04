@@ -121,7 +121,7 @@ export default function LoginForm() {
               htmlFor="password"
               className="block text-sm font-semibold text-gray-700 flex items-center gap-2"
             >
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+              <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
               Password
             </label>
             <Controller
@@ -194,7 +194,7 @@ export default function LoginForm() {
           <button
             type="submit"
             disabled={isSubmitting || loading}
-            className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white py-3.5 px-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-3.5 px-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting || loading ? (
               <div className="flex items-center justify-center gap-2">

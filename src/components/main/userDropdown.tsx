@@ -60,58 +60,105 @@ export default function UserDropdown() {
     }, [checkSession, router]);
 
     return (
-        <div className="relative inline-block text-left leading-0">
-            {/* Enhanced Avatar Button */}
+        <div className="relative inline-block text-left">
+            {/* Avatar Button */}
             <button
                 ref={refs.setReference}
                 onClick={() => setOpen((prev) => !prev)}
-                className="w-12 h-12 rounded-full border-2 border-white shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-110 hover:shadow-xl"
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 p-0.5 hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl"
                 {...getReferenceProps()}
             >
-                <img
-                    src="https://i.pravatar.cc/100"
-                    alt="User Avatar"
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="w-full h-full rounded-full bg-white p-0.5">
+                    <img
+                        src="https://i.pravatar.cc/100"
+                        alt="User Avatar"
+                        className="w-full h-full object-cover rounded-full"
+                    />
+                </div>
             </button>
 
-            {/* Enhanced Dropdown */}
+            {/* Dropdown Menu */}
             {open && (
                 <div
                     ref={refs.setFloating}
                     style={floatingStyles}
-                    className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl shadow-2xl z-50 min-w-[220px] overflow-hidden"
+                    className="bg-white/95 backdrop-blur-xl border border-gray-100 rounded-2xl shadow-xl z-50 min-w-[280px] overflow-hidden"
                     {...getFloatingProps()}
                 >
-                    {/* User Info Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-4 text-white">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                                <span className="text-sm font-bold">👤</span>
+                    {/* User Profile Section */}
+                    <div className="p-4 border-b border-gray-100">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 p-0.5">
+                                <div className="w-full h-full rounded-full bg-white p-0.5">
+                                    <img
+                                        src="https://i.pravatar.cc/100"
+                                        alt="User Avatar"
+                                        className="w-full h-full object-cover rounded-full"
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <p className="font-semibold text-sm">{(user as any)?.email || 'User'}</p>
-                                <p className="text-xs text-blue-100">Premium Member</p>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-sm font-semibold text-gray-900 truncate">
+                                    {(user as any)?.email?.split('@')[0] || 'User'}
+                                </p>
+                                <p className="text-xs text-gray-500 truncate">
+                                    {(user as any)?.email || 'user@example.com'}
+                                </p>
+                                <div className="inline-flex items-center gap-1 mt-1">
+                                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                    <span className="text-xs text-blue-600 font-medium">Active</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    {/* Menu Items */}
                     <div className="p-2">
                         <button
-                            onClick={() => router.push('/dashboard/settings')}
-                            className="flex items-center w-full px-4 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl transition-all duration-300 group"
+                            onClick={() => {
+                                router.push('/dashboard');
+                                setOpen(false);
+                            }}
+                            className="flex items-center w-full px-2 py-1 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-colors group"
                         >
-                            <div className="w-8 h-8 bg-blue-100 group-hover:bg-blue-200 rounded-lg flex items-center justify-center mr-3 transition-colors">
-                                <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div className="w-9 h-9 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center mr-3 transition-colors">
+                                <svg className="w-4 h-4 text-gray-600 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
+                                </svg>
+                            </div>
+                            <span className="font-medium">Dashboard</span>
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                router.push('/dashboard/bookings');
+                                setOpen(false);
+                            }}
+                            className="flex items-center w-full px-2 py-1 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-colors group"
+                        >
+                            <div className="w-9 h-9 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center mr-3 transition-colors">
+                                <svg className="w-4 h-4 text-gray-600 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+                            <span className="font-medium">My Bookings</span>
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                router.push('/dashboard/system');
+                                setOpen(false);
+                            }}
+                            className="flex items-center w-full px-2 py-1 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-colors group"
+                        >
+                            <div className="w-9 h-9 bg-gray-100 group-hover:bg-blue-100 rounded-lg flex items-center justify-center mr-3 transition-colors">
+                                <svg className="w-4 h-4 text-gray-600 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </div>
-                            <div className="text-left">
-                                <p className="font-medium">Account Settings</p>
-                                <p className="text-xs text-gray-500">Manage your profile</p>
-                            </div>
+                            <span className="font-medium">Settings</span>
                         </button>
 
                         <div className="border-t border-gray-100 my-2"></div>
@@ -119,9 +166,9 @@ export default function UserDropdown() {
                         <button
                             onClick={handleSignOut}
                             disabled={loading}
-                            className="flex items-center w-full px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300 group disabled:opacity-50"
+                            className="flex items-center w-full px-2 py-1 text-sm text-red-600 hover:bg-red-50 rounded-xl transition-colors group disabled:opacity-50"
                         >
-                            <div className="w-8 h-8 bg-red-100 group-hover:bg-red-200 rounded-lg flex items-center justify-center mr-3 transition-colors">
+                            <div className="w-9 h-9 bg-red-50 group-hover:bg-red-100 rounded-lg flex items-center justify-center mr-3 transition-colors">
                                 {loading ? (
                                     <div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
                                 ) : (
@@ -130,10 +177,7 @@ export default function UserDropdown() {
                                     </svg>
                                 )}
                             </div>
-                            <div className="text-left">
-                                <p className="font-medium">{loading ? 'Signing out...' : 'Sign Out'}</p>
-                                <p className="text-xs text-red-400">End your session</p>
-                            </div>
+                            <span className="font-medium">{loading ? 'Signing out...' : 'Sign Out'}</span>
                         </button>
                     </div>
                 </div>

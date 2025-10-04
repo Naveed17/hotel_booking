@@ -65,7 +65,7 @@ const ToursFilter = ({ onFilterChange }: FilterProps): React.JSX.Element => {
             <div className="lg:hidden mb-4">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center justify-between w-full px-4 py-3 bg-emerald-50 text-emerald-700 rounded-xl font-semibold"
+                    className="flex items-center justify-between w-full px-4 py-3 bg-blue-50 text-blue-700 rounded-xl font-semibold"
                 >
                     <div className="flex items-center gap-2">
                         <Filter className="w-4 h-4" />
@@ -78,14 +78,14 @@ const ToursFilter = ({ onFilterChange }: FilterProps): React.JSX.Element => {
             {/* Filter Header */}
             <div className="hidden lg:flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
-                    <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-semibold">
-                        <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                         FILTERS
                     </div>
                 </div>
                 <button
                     onClick={clearFilters}
-                    className="text-gray-500 hover:text-emerald-600 text-sm font-medium flex items-center gap-1"
+                    className="text-gray-500 hover:text-blue-600 text-sm font-medium flex items-center gap-1"
                 >
                     <X className="w-4 h-4" />
                     Clear All
@@ -103,7 +103,7 @@ const ToursFilter = ({ onFilterChange }: FilterProps): React.JSX.Element => {
                         {/* Price Range */}
                         <div>
                             <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                 Price Range (per person)
                             </label>
                             <div className="space-y-3">
@@ -113,7 +113,7 @@ const ToursFilter = ({ onFilterChange }: FilterProps): React.JSX.Element => {
                                         placeholder="Min"
                                         value={filters.priceRange[0]}
                                         onChange={(e) => handleFilterChange('priceRange', [parseInt(e.target.value) || 0, filters.priceRange[1]])}
-                                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
                                     <span className="text-gray-400">to</span>
                                     <input
@@ -121,7 +121,7 @@ const ToursFilter = ({ onFilterChange }: FilterProps): React.JSX.Element => {
                                         placeholder="Max"
                                         value={filters.priceRange[1]}
                                         onChange={(e) => handleFilterChange('priceRange', [filters.priceRange[0], parseInt(e.target.value) || 500])}
-                                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
                                 </div>
                             </div>
@@ -140,7 +140,7 @@ const ToursFilter = ({ onFilterChange }: FilterProps): React.JSX.Element => {
                                         onClick={() => handleFilterChange('rating', rating === filters.rating ? '' : rating)}
                                         className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                                             filters.rating === rating
-                                                ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                                                ? 'bg-blue-100 text-blue-700 border border-blue-200'
                                                 : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
                                         }`}
                                     >
@@ -163,7 +163,7 @@ const ToursFilter = ({ onFilterChange }: FilterProps): React.JSX.Element => {
                                         onClick={() => handleFilterChange('duration', duration === filters.duration ? '' : duration)}
                                         className={`w-full px-3 py-2 rounded-lg text-sm font-medium text-left transition-colors ${
                                             filters.duration === duration
-                                                ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                                                ? 'bg-blue-100 text-blue-700 border border-blue-200'
                                                 : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
                                         }`}
                                     >
@@ -176,7 +176,7 @@ const ToursFilter = ({ onFilterChange }: FilterProps): React.JSX.Element => {
                         {/* Category */}
                         <div>
                             <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                                <MapPin className="w-4 h-4 text-purple-500" />
+                                <MapPin className="w-4 h-4 text-blue-500" />
                                 Category
                             </label>
                             <div className="grid grid-cols-2 gap-2">

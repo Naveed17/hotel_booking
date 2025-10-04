@@ -52,9 +52,9 @@ export default function PriceRangeSlider({
                     <p className="text-xs text-blue-600">Min</p>
                 </div>
 
-                <div className="bg-emerald-50 px-4 py-2 rounded-xl flex items-center gap-1">
-                    <span className="text-sm font-bold text-emerald-700">${maxVal}</span>
-                    <p className="text-xs text-emerald-600">Max</p>
+                <div className="bg-blue-50 px-4 py-2 rounded-xl flex items-center gap-1">
+                    <span className="text-sm font-bold text-blue-700">${maxVal}</span>
+                    <p className="text-xs text-blue-600">Max</p>
                 </div>
             </div>
 
@@ -85,7 +85,7 @@ export default function PriceRangeSlider({
                     max={max}
                     value={maxVal}
                     onChange={onMaxChange}
-                    className="absolute top-1.5 w-full h-4 appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-emerald-600 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:mt-0 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-emerald-600 [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none"
+                    className="absolute top-1.5 w-full h-4 appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:mt-0 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-600 [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none"
                     style={{ zIndex: maxVal < minVal ? 25 : 20 }}
                 />
             </div>

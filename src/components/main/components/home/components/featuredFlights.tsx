@@ -52,7 +52,7 @@ const featuredFlights = [
 
 const FeaturedFlights = (): React.JSX.Element => {
     return (
-        <section className="py-20 bg-gradient-to-br from-sky-50 to-blue-50">
+        <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
             <div className="container mx-auto px-4">
                 <div className="max-w-7xl mx-auto">
                     {/* Section Header */}
@@ -62,11 +62,11 @@ const FeaturedFlights = (): React.JSX.Element => {
                         viewport={{ once: true }}
                         className="text-center mb-16"
                     >
-                        <div className="inline-flex items-center gap-2 bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                            <span className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></span>
+                        <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                             FEATURED FLIGHTS
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
+                        <h2 className="text-4xl md:text-5xl font-black mb-6 font-urbanist">
                             Best Flight Deals
                         </h2>
                         <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -98,7 +98,7 @@ const FeaturedFlights = (): React.JSX.Element => {
 
                                             {/* Badge */}
                                             <div className="absolute top-4 left-4">
-                                                <span className="bg-sky-100 text-sky-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                                <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
                                                     {flight.badge}
                                                 </span>
                                             </div>
@@ -145,7 +145,7 @@ const FeaturedFlights = (): React.JSX.Element => {
 
                                             {/* Duration */}
                                             <div className="flex items-center gap-2 mb-4">
-                                                <Clock className="w-4 h-4 text-sky-600" />
+                                                <Clock className="w-4 h-4 text-blue-600" />
                                                 <span className="text-sm text-gray-600">{flight.duration}</span>
                                             </div>
 
@@ -158,7 +158,7 @@ const FeaturedFlights = (): React.JSX.Element => {
                                                     </div>
                                                     <p className="text-sm text-gray-600">per person</p>
                                                 </div>
-                                                <div className="flex items-center gap-2 text-sky-600 group-hover:gap-3 transition-all duration-300">
+                                                <div className="flex items-center gap-2 text-blue-600 group-hover:gap-3 transition-all duration-300">
                                                     <span className="text-sm font-semibold">Book Now</span>
                                                     <ArrowRight className="w-4 h-4" />
                                                 </div>
@@ -179,7 +179,7 @@ const FeaturedFlights = (): React.JSX.Element => {
                         className="text-center mt-12"
                     >
                         <Link href="/en/flights">
-                            <button className="bg-gradient-to-r from-sky-600 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-sky-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            <button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                                 View All Flights
                             </button>
                         </Link>

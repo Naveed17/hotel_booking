@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useMemo, useEffect } from 'react'
 import { DatePicker } from "@components/DatePicker";
-import { GuestSelector } from "@components/GuestSelector";
+import { PassengerSelector } from "@components/PassengerSelector";
 import {
     ChevronDown,
     MapPin,
@@ -141,8 +141,8 @@ function FlightsMainSearch() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* Enhanced Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-2 bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                        <span className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                         FLY TO YOUR DREAMS
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Where would you like to fly?</h3>
@@ -157,7 +157,7 @@ function FlightsMainSearch() {
                                 type="radio"
                                 value="roundtrip"
                                 {...control.register('tripType')}
-                                className="text-sky-600 focus:ring-sky-500"
+                                className="text-blue-600 focus:ring-blue-500"
                             />
                             <span className="text-sm font-medium text-gray-700">Round Trip</span>
                         </label>
@@ -166,7 +166,7 @@ function FlightsMainSearch() {
                                 type="radio"
                                 value="oneway"
                                 {...control.register('tripType')}
-                                className="text-sky-600 focus:ring-sky-500"
+                                className="text-blue-600 focus:ring-blue-500"
                             />
                             <span className="text-sm font-medium text-gray-700">One Way</span>
                         </label>
@@ -195,7 +195,7 @@ function FlightsMainSearch() {
                     {/* From Airport */}
                     <div className="relative">
                         <label className="text-gray-700 text-sm font-semibold mb-3  flex items-center gap-2">
-                            <Plane className="w-4 h-4 text-sky-500" />
+                            <Plane className="w-4 h-4 text-blue-500" />
                             From
                         </label>
                         <div className="relative">
@@ -207,7 +207,7 @@ function FlightsMainSearch() {
                                     setFromQuery(e.target.value);
                                     setFromOpen(e.target.value.length > 0);
                                 }}
-                                className={`w-full pl-4 pr-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.from ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-sky-500'
+                                className={`w-full pl-4 pr-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.from ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-blue-500'
                                     }`}
                             />
                             <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 pointer-events-none" />
@@ -223,8 +223,8 @@ function FlightsMainSearch() {
                                             onClick={() => handleSelectAirport(airport, 'from')}
                                             className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 cursor-pointer"
                                         >
-                                            <div className="w-8 h-8 bg-sky-100 rounded-full flex items-center justify-center">
-                                                <Plane className="w-4 h-4 text-sky-600" />
+                                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                                <Plane className="w-4 h-4 text-blue-600" />
                                             </div>
                                             <div>
                                                 <p className="font-medium text-gray-900">{airport.code}</p>
@@ -241,7 +241,7 @@ function FlightsMainSearch() {
                     {/* To Airport */}
                     <div className="relative">
                         <label className="text-gray-700 text-sm font-semibold mb-3  flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-sky-500" />
+                            <MapPin className="w-4 h-4 text-blue-500" />
                             To
                         </label>
                         <div className="relative">
@@ -253,15 +253,15 @@ function FlightsMainSearch() {
                                     setToQuery(e.target.value);
                                     setToOpen(e.target.value.length > 0);
                                 }}
-                                className={`w-full pl-4 pr-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.to ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-sky-500'
+                                className={`w-full pl-4 pr-10 h-12 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.to ? 'border-red-500 focus:ring-red-500' : 'border-gray-200 focus:ring-blue-500'
                                     }`}
                             />
                             <button
                                 type="button"
                                 onClick={handleSwapAirports}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-sky-100 rounded-full flex items-center justify-center hover:bg-sky-200 transition-colors"
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center hover:bg-blue-200 transition-colors"
                             >
-                                <ArrowRightLeft className="w-3 h-3 text-sky-600" />
+                                <ArrowRightLeft className="w-3 h-3 text-blue-600" />
                             </button>
 
                             {toOpen && (
@@ -275,8 +275,8 @@ function FlightsMainSearch() {
                                             onClick={() => handleSelectAirport(airport, 'to')}
                                             className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 cursor-pointer"
                                         >
-                                            <div className="w-8 h-8 bg-sky-100 rounded-full flex items-center justify-center">
-                                                <MapPin className="w-4 h-4 text-sky-600" />
+                                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                                <MapPin className="w-4 h-4 text-blue-600" />
                                             </div>
                                             <div>
                                                 <p className="font-medium text-gray-900">{airport.code}</p>
@@ -296,7 +296,7 @@ function FlightsMainSearch() {
                     {/* Departure Date */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Departure
                         </label>
                         <Controller
@@ -318,7 +318,7 @@ function FlightsMainSearch() {
                     {watchedValues.tripType === 'roundtrip' && (
                         <div>
                             <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                                <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                 Return
                             </label>
                             <Controller
@@ -339,21 +339,16 @@ function FlightsMainSearch() {
                     {/* Passengers */}
                     <div>
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Passengers
                         </label>
                         <Controller
                             name="passengers"
                             control={control}
                             render={({ field }) => (
-                                <GuestSelector
+                                <PassengerSelector
                                     value={field.value}
-                                    onChange={(value) => {
-                                        const guests = value.split(',');
-                                        const adults = parseInt(guests[0]);
-                                        const children = parseInt(guests[1]);
-                                        setValue('passengers', `${adults + children} ${adults + children === 1 ? 'Passenger' : 'Passengers'}`);
-                                    }}
+                                    onChange={field.onChange}
                                     className={errors.passengers ? 'border-red-500' : ''}
                                 />
                             )}
@@ -364,13 +359,13 @@ function FlightsMainSearch() {
                     {/* Search Button */}
                     <div className="md:self-end">
                         <label className="text-gray-700 text-sm font-semibold mb-3 block flex items-center gap-2">
-                            <span className="w-2 h-2 bg-sky-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                             Ready to fly?
                         </label>
                         <button
                             type="submit"
                             disabled={isSubmitting || loading}
-                            className="w-full h-12 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                            className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
                         >
                             {isSubmitting || loading ? (
                                 <>

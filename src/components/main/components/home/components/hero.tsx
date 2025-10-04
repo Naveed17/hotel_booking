@@ -75,8 +75,8 @@ function Hero() {
 
                 {/* Floating Elements */}
                 <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400/10 rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute bottom-20 right-10 w-48 h-48 bg-purple-400/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-                <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-cyan-400/10 rounded-full blur-xl animate-pulse delay-500"></div>
+                <div className="absolute bottom-20 right-10 w-48 h-48 bg-blue-400/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-blue-400/10 rounded-full blur-xl animate-pulse delay-500"></div>
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
@@ -90,7 +90,7 @@ function Hero() {
                         animate="visible"
                         custom={0}
                     >
-                        <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+                        <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
                         TRUSTED BY 100K+ TRAVELERS WORLDWIDE
                     </motion.div>
 
@@ -101,7 +101,7 @@ function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -30 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-center max-w-6xl mx-auto mb-8 leading-tight bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent"
+                        className="hero-gradient-text text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-center max-w-6xl mx-auto mb-8 leading-tight bg-gradient-to-r from-white via-blue-200 to-blue-300 bg-clip-text text-transparent"
                     >
                         {tabContent[activeTab].title}
                     </motion.h1>
@@ -144,7 +144,7 @@ function Hero() {
                                 <button
                                     onClick={() => setActiveTab('tours')}
                                     className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${activeTab === 'tours'
-                                        ? 'bg-white text-emerald-600 shadow-lg'
+                                        ? 'bg-white text-blue-600 shadow-lg'
                                         : 'text-white hover:bg-white/10'
                                         }`}
                                 >
@@ -154,7 +154,7 @@ function Hero() {
                                 <button
                                     onClick={() => setActiveTab('flights')}
                                     className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${activeTab === 'flights'
-                                        ? 'bg-white text-sky-600 shadow-lg'
+                                        ? 'bg-white text-blue-600 shadow-lg'
                                         : 'text-white hover:bg-white/10'
                                         }`}
                                 >

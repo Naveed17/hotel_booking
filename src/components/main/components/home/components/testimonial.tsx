@@ -20,15 +20,15 @@ const Testimonial = (): React.JSX.Element => {
   const testimonials = useAppSelector((state) => state?.appData.data?.testimonials);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-pink-50 to-rose-50">
+    <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
       <Container>
         {/* Enhanced Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-pink-100 text-pink-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            <span className="w-2 h-2 bg-pink-500 rounded-full animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
             REAL STORIES FROM REAL TRAVELERS
           </div>
-          <h2 className="text-4xl md:text-5xl font-black  mb-6 font-urbanist bg-gradient-to-r from-gray-900 to-pink-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-black mb-6 font-urbanist">
             What Our Guests Are Saying
           </h2>
           <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">

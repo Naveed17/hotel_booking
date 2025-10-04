@@ -107,7 +107,7 @@ const FlightBooking = (): React.JSX.Element => {
                             <span className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></span>
                             FLIGHT BOOKING
                         </div>
-                        <h1 className="text-4xl font-black text-gray-900 mb-4 bg-gradient-to-r from-gray-900 to-sky-600 bg-clip-text text-transparent">
+                        <h1 className="text-4xl font-black mb-4">
                             Complete Your Booking
                         </h1>
                         <p className="text-gray-600">Just a few more steps to secure your flight</p>

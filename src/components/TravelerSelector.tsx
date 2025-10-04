@@ -1,17 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { Users, ChevronDown, Plus, Minus } from 'lucide-react';
 
-interface GuestSelectorProps {
+interface TravelerSelectorProps {
   value: string;
   onChange: (value: string) => void;
   className?: string;
 }
 
-export function GuestSelector({ value, onChange }: GuestSelectorProps) {
+export function TravelerSelector({ value, onChange }: TravelerSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
-  const [rooms, setRooms] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,22 +25,16 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
   }, []);
 
   useEffect(() => {
-    const totalAdults = adults;
-    const adultText = totalAdults === 1 ? 'Adult' : 'Adults';
-    const totalChildren = children;
-    const childText = totalChildren === 1 ? 'Child' : 'Children';
-    const roomText = rooms === 1 ? 'Room' : 'Rooms';
-    onChange(`${totalAdults} ${adultText}, ${totalChildren} ${childText}, ${rooms} ${roomText}`);
-  }, [adults, children, rooms]);
+    const totalTravelers = adults + children;
+    const travelerText = totalTravelers === 1 ? 'Traveler' : 'Travelers';
+    onChange(`${totalTravelers} ${travelerText}`);
+  }, [adults, children, onChange]);
 
   const incrementAdults = () => setAdults(prev => Math.min(prev + 1, 10));
   const decrementAdults = () => setAdults(prev => Math.max(prev - 1, 1));
 
   const incrementChildren = () => setChildren(prev => Math.min(prev + 1, 10));
   const decrementChildren = () => setChildren(prev => Math.max(prev - 1, 0));
-
-  const incrementRooms = () => setRooms(prev => Math.min(prev + 1, 5));
-  const decrementRooms = () => setRooms(prev => Math.max(prev - 1, 1));
 
   return (
     <div className="relative" ref={containerRef}>
@@ -60,17 +53,17 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-6 z-50 min-w-[320px]">
-          {/* Enhanced Header */}
+        <div className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 p-6 z-50 min-w-[300px]">
+          {/* Header */}
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-2">
               <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-              CUSTOMIZE YOUR STAY
+              SELECT TRAVELERS
             </div>
-            <h3 className="text-lg font-bold text-gray-900">Select Guests & Rooms</h3>
+            <h3 className="text-lg font-bold text-gray-900">How many travelers?</h3>
           </div>
 
-          {/* Enhanced Adults */}
+          {/* Adults */}
           <div className="flex items-center justify-between py-4 px-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl mb-4">
             <div>
               <div className="font-bold text-gray-900 flex items-center gap-2">
@@ -98,8 +91,8 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
             </div>
           </div>
 
-          {/* Enhanced Children */}
-          <div className="flex items-center justify-between py-4 px-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl mb-4">
+          {/* Children */}
+          <div className="flex items-center justify-between py-4 px-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl mb-6">
             <div>
               <div className="font-bold text-gray-900 flex items-center gap-2">
                 <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
@@ -126,35 +119,7 @@ export function GuestSelector({ value, onChange }: GuestSelectorProps) {
             </div>
           </div>
 
-          {/* Enhanced Rooms */}
-          <div className="flex items-center justify-between py-4 px-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl mb-6">
-            <div>
-              <div className="font-bold text-gray-900 flex items-center gap-2">
-                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                Rooms
-              </div>
-              <div className="text-sm text-blue-600 font-medium">Accommodation units</div>
-            </div>
-            <div className="flex items-center gap-4">
-              <button
-                onClick={decrementRooms}
-                disabled={rooms <= 1}
-                className="w-10 h-10 rounded-full bg-white border-2 border-blue-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-110"
-              >
-                <Minus className="w-4 h-4 text-blue-600" />
-              </button>
-              <span className="w-8 text-center font-bold text-lg text-gray-900">{rooms}</span>
-              <button
-                onClick={incrementRooms}
-                disabled={rooms >= 5}
-                className="w-10 h-10 rounded-full bg-white border-2 border-blue-200 flex items-center justify-center hover:bg-blue-50 hover:border-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-110"
-              >
-                <Plus className="w-4 h-4 text-blue-600" />
-              </button>
-            </div>
-          </div>
-
-          {/* Enhanced Done Button */}
+          {/* Done Button */}
           <button
             onClick={() => setIsOpen(false)}
             className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 px-6 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
