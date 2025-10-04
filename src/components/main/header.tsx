@@ -28,10 +28,10 @@ export default function Header({ ...props }: { dictionary: any }): React.JSX.Ele
         <>
             <header className="fixed w-full top-0 z-50 pt-4">
                 <Container>
-                    <div className="bg-white/95 backdrop-blur-lg border border-gray-200/50 rounded-2xl shadow-sm">
-                        <div className="flex items-center justify-between h-16 px-6">
+                    <div className="bg-white/95 backdrop-blur-lg border border-gray-200/50 rounded-full shadow-sm">
+                        <div className="flex items-center justify-between h-16 px-3">
                             {/* Logo */}
-                            <div className="flex-shrink-0 cursor-pointer" onClick={() => router.push('/')}>
+                            <div className="flex-shrink-0 cursor-pointer ps-5" onClick={() => router.push('/')}>
                                 <h1 className="text-2xl font-black text-gray-900 tracking-tight hover:text-blue-600 transition-colors duration-300">
                                     Travel
                                 </h1>

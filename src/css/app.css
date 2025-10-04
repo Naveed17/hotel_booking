@@ -133,7 +133,13 @@ body {
 }
 
 @layer base {
-    h1, h2, h3, h4, h5, h6 {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         color: var(--text-primary);
     }
 }
@@ -150,6 +156,10 @@ body {
 body {
     overscroll-behavior: none;
     overscroll-behavior-y: contain;
+}
+
+button {
+    cursor: pointer;
 }
 
 .logo {
