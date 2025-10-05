@@ -93,7 +93,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       siteName: 'TravelNext',
       images: [
         {
-          url: header_logo_img || '/images/logo.png',
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}/images/logo.png`,
           width: 1200,
           height: 630,
           alt: 'TravelNext - Travel Booking Platform'
@@ -106,7 +106,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       card: 'summary_large_image',
       title: 'TravelNext - Next Generation Travel Booking',
       description: 'Book hotels, flights, and tours with ease. Your next adventure starts here.',
-      images: [header_logo_img || '/images/travelnext-twitter.jpg'],
+      images: [header_logo_img || `${process.env.NEXT_PUBLIC_SITE_URL}/images/logo.png`],
       creator: '@TravelNext',
       site: '@TravelNext'
     },
