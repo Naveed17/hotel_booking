@@ -33,7 +33,7 @@ export default function Header({ ...props }: { dictionary: any }): React.JSX.Ele
                         <div className="flex items-center justify-between h-16 px-3">
                             {/* Logo */}
                             <div className="flex-shrink-0 cursor-pointer md:ps-5" onClick={() => router.push('/home')}>
-                                <Logo logoWidth={100} />
+                                <Logo logoWidth={120} />
                             </div>
 
                             {/* Desktop Navigation - Centered */}
