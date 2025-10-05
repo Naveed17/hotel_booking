@@ -24,7 +24,7 @@ export default function DocumentationPage() {
           >
             <Link href="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition-colors">
               <ArrowLeft className="w-4 h-4" />
-              Back to Showcase
+              Back
             </Link>
             <h1 className="text-6xl font-black bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent mb-6">
               Complete Documentation
