@@ -336,7 +336,7 @@ export default function ShowcasePage() {
                             </div>
                         </div>
                         <div className="border-t border-white/10 pt-8 text-center">
-                            <p className="text-white/60">© 2024 TravelNext. Premium CodeCanyon Template. All rights reserved.</p>
+                            <p className="text-white/60">© {new Date().getFullYear()} TravelNext. Premium CodeCanyon Template. All rights reserved.</p>
                         </div>
                     </motion.footer>
                 </div>
