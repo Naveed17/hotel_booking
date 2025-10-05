@@ -34,10 +34,6 @@ export const generateMetadata = async (): Promise<Metadata> => {
     };
   }
   const {
-    business_name,
-    home_title,
-    site_url,
-    meta_description,
     header_logo_img,
     favicon_img,
   } = meta_data;
@@ -54,9 +50,9 @@ export const generateMetadata = async (): Promise<Metadata> => {
       },
     },
     icons: {
-      icon: favicon_img,
-      shortcut: favicon_img,
-      apple: favicon_img,
+      icon: '/images/logo.png',
+      shortcut: '/images/logo.png',
+      apple: '/images/logo.png',
     },
     keywords: [
       'TravelNext',
@@ -97,7 +93,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       siteName: 'TravelNext',
       images: [
         {
-          url: header_logo_img || '/images/travelnext-og.jpg',
+          url: header_logo_img || '/images/logo.png',
           width: 1200,
           height: 630,
           alt: 'TravelNext - Travel Booking Platform'
