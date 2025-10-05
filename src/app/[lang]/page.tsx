@@ -4,7 +4,7 @@ import { Star, Users, Shield, Zap, Globe, Code, Smartphone, Award, Gem, Download
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function ShowcasePage({ params }: { params: { lang: string } }) {
+export default function ShowcasePage() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
