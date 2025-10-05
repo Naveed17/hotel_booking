@@ -1,7 +1,7 @@
-# Travel Booking Platform
+# TravelNext - Next Generation Travel Booking Platform
 
 A modern travel booking platform built with **Next.js 15**, **Tailwind CSS**, and **App Router**.  
-Includes hotel, flight, and tour booking modules, role-based dashboards, multi-language support, and SEO-ready pages.
+TravelNext includes hotel, flight, and tour booking modules, role-based dashboards, multi-language support, and SEO-ready pages.
 
 ---
 

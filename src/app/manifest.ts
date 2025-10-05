@@ -4,9 +4,9 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
   const base_url = process.env.NEXT_PUBLIC_SITE_URL;
 
   return {
-    name: "demo.com",
-    short_name: "demo",
-    description: "desc",
+    name: "TravelNext - Next Generation Travel Booking",
+    short_name: "TravelNext",
+    description: "Book hotels, flights, and tours with TravelNext - Your next adventure starts here",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

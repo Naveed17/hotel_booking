@@ -8,8 +8,24 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: [
+          "/api/",
+          "/dashboard/",
+          "/_next/",
+          "/admin/"
+        ]
       },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: [
+          "/api/",
+          "/dashboard/",
+          "/admin/"
+        ]
+      }
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl
   };
 }

@@ -1,0 +1,108 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+>>
+>>
+>>
+endobj
+
+4 0 obj
+<<
+/Length 2000
+>>
+stream
+BT
+/F1 24 Tf
+50 750 Td
+(TopTier Travel - Complete Documentation) Tj
+0 -50 Td
+/F1 16 Tf
+(Next.js 15 Travel Booking Platform) Tj
+0 -100 Td
+/F1 14 Tf
+(Table of Contents:) Tj
+0 -30 Td
+(1. Installation & Setup) Tj
+0 -20 Td
+(2. Project Structure) Tj
+0 -20 Td
+(3. Configuration) Tj
+0 -20 Td
+(4. Features Overview) Tj
+0 -20 Td
+(5. Customization Guide) Tj
+0 -20 Td
+(6. API Integration) Tj
+0 -20 Td
+(7. Deployment) Tj
+0 -20 Td
+(8. Troubleshooting) Tj
+0 -50 Td
+/F1 12 Tf
+(This is a comprehensive guide for setting up and customizing) Tj
+0 -15 Td
+(the TopTier Travel booking platform. The platform includes:) Tj
+0 -30 Td
+(- Hotel Booking System with advanced search) Tj
+0 -15 Td
+(- Flight Booking Engine with multi-city support) Tj
+0 -15 Td
+(- Tour Package Manager with custom itineraries) Tj
+0 -15 Td
+(- Multi-role Dashboard System) Tj
+0 -15 Td
+(- Multi-language Support (i18n)) Tj
+0 -15 Td
+(- Enterprise-grade Security) Tj
+0 -30 Td
+(For complete documentation, visit: codecanyon.net) Tj
+ET
+endstream
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000274 00000 n 
+0000002326 00000 n 
+trailer
+<<
+/Size 6
+/Root 1 0 R
+>>
+startxref
+2404
+%%EOF

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+// TravelNext - Next Generation Travel Booking Platform Sitemap
+
 // Utility to escape XML special characters
 const escapeXml = (unsafe: string): string =>
   unsafe.replace(/[<>&'"]/g, (c) => {
@@ -21,25 +23,39 @@ const escapeXml = (unsafe: string): string =>
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+  const currentDate = new Date().toISOString();
 
-  // Static support routes
-  const supportRoutes = ["/privacy-policy", "/contact-us", "/about-us"];
+  // Main travel booking pages
+  const mainRoutes = [
+    { path: '', priority: 1.0, changeFreq: 'daily' as const },
+    { path: '/hotels', priority: 0.9, changeFreq: 'daily' as const },
+    { path: '/flights', priority: 0.9, changeFreq: 'daily' as const },
+    { path: '/tours', priority: 0.9, changeFreq: 'daily' as const },
+    { path: '/auth/sign-in', priority: 0.7, changeFreq: 'monthly' as const },
+    { path: '/auth/signup', priority: 0.7, changeFreq: 'monthly' as const },
+  ];
 
-  return [
-    // Home route
-    {
-      url: escapeXml(baseUrl),
-      lastModified: new Date().toISOString(),
-      alternates: {
-        languages: {
-          en: escapeXml(baseUrl),
-          ar: escapeXml(`${baseUrl}/ar`),
-        },
+  // Support and info pages
+  const supportRoutes = [
+    { path: '/privacy-policy', priority: 0.5, changeFreq: 'yearly' as const },
+    { path: '/contact-us', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/about-us', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/terms-of-service', priority: 0.5, changeFreq: 'yearly' as const },
+    { path: '/help', priority: 0.6, changeFreq: 'monthly' as const },
+  ];
+
+  const allRoutes = [...mainRoutes, ...supportRoutes];
+
+  return allRoutes.map(route => ({
+    url: escapeXml(`${baseUrl}${route.path}`),
+    lastModified: currentDate,
+    changeFrequency: route.changeFreq,
+    priority: route.priority,
+    alternates: {
+      languages: {
+        en: escapeXml(`${baseUrl}/en${route.path}`),
+        ar: escapeXml(`${baseUrl}/ar${route.path}`),
       },
     },
-    ...supportRoutes.map((route) => ({
-      url: escapeXml(`${baseUrl}/support${route}`),
-      lastModified: new Date().toISOString(),
-    })),
-  ];
+  }));
 }

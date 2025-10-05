@@ -58,31 +58,69 @@ export const generateMetadata = async (): Promise<Metadata> => {
       shortcut: favicon_img,
       apple: favicon_img,
     },
-    keywords: 'some keyword',
-    title: home_title || business_name,
-    authors: [],
-    robots: '',
-    applicationName: business_name,
-    creator: business_name,
-    publisher: business_name,
+    keywords: [
+      'TravelNext',
+      'travel booking',
+      'hotel booking',
+      'flight booking',
+      'tour booking',
+      'next.js travel app',
+      'travel platform',
+      'vacation booking',
+      'trip planning',
+      'travel deals',
+      'accommodation booking',
+      'airline tickets',
+      'travel packages',
+      'holiday booking',
+      'travel website',
+      'online travel booking',
+      'travel reservation system',
+      'next generation travel'
+    ].join(', '),
+    title: {
+      default: 'TravelNext - Next Generation Travel Booking Platform',
+      template: '%s | TravelNext'
+    },
+    authors: [{ name: 'TravelNext Team' }],
+    robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    applicationName: 'TravelNext',
+    creator: 'TravelNext',
+    publisher: 'TravelNext',
     generator: 'Next.js',
     referrer: 'origin-when-cross-origin',
-    description: meta_description,
+    description: 'TravelNext - Book hotels, flights, and tours with ease. Next generation travel booking platform built with Next.js. Find the best deals on accommodations, flights, and vacation packages worldwide.',
     openGraph: {
-      title: home_title || business_name,
-      description: meta_description,
+      title: 'TravelNext - Next Generation Travel Booking Platform',
+      description: 'Book hotels, flights, and tours with TravelNext. Find the best travel deals and plan your perfect vacation with our advanced booking platform.',
       url: process.env.NEXT_PUBLIC_SITE_URL!,
-      siteName: site_url || business_name,
+      siteName: 'TravelNext',
       images: [
         {
-          url: header_logo_img,
+          url: header_logo_img || '/images/travelnext-og.jpg',
           width: 1200,
           height: 630,
+          alt: 'TravelNext - Travel Booking Platform'
         },
       ],
       locale: 'en_US',
       type: 'website',
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'TravelNext - Next Generation Travel Booking',
+      description: 'Book hotels, flights, and tours with ease. Your next adventure starts here.',
+      images: [header_logo_img || '/images/travelnext-twitter.jpg'],
+      creator: '@TravelNext',
+      site: '@TravelNext'
+    },
+    verification: {
+      google: 'your-google-verification-code',
+      yandex: 'your-yandex-verification-code',
+      yahoo: 'your-yahoo-verification-code'
+    },
+    category: 'travel',
+    classification: 'Travel & Tourism'
   };
 };
 export async function generateStaticParams() {

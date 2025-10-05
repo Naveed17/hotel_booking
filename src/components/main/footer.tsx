@@ -85,7 +85,7 @@ const Footer = (): React.JSX.Element => {
                         TRUSTED BY 100K+ TRAVELERS
                     </div>
                     <h3 className="hero-gradient-text text-4xl font-black mb-4 font-urbanist bg-gradient-to-r from-white via-blue-200 to-blue-300 bg-clip-text text-transparent">
-                        Travels Website
+                        TravelNext
                     </h3>
                     <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
                         Your gateway to extraordinary adventures. We curate the world's finest experiences,
@@ -236,7 +236,7 @@ const Footer = (): React.JSX.Element => {
                 {/* === Bottom Bar === */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
                     <p className="text-center md:text-left text-sm text-gray-400">
-                        © 2025 Travels Website. All rights reserved. Made with ❤️ for travelers worldwide.
+                        © 2025 TravelNext. All rights reserved. Made with ❤️ for travelers worldwide.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-6">
