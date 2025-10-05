@@ -14,8 +14,7 @@ interface LogoProps extends CommonProps {
 
 const Logo = (props: LogoProps) => {
     const {
-        type = 'full',
-        mode = 'light',
+
         className,
         imgClass,
         style,

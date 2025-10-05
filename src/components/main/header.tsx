@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import UserDropdown from "./userDropdown";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import Logo from "@components/core/logo";
 export default function Header({ ...props }: { dictionary: any }): React.JSX.Element {
     const { dictionary } = props;
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,9 +33,7 @@ export default function Header({ ...props }: { dictionary: any }): React.JSX.Ele
                         <div className="flex items-center justify-between h-16 px-3">
                             {/* Logo */}
                             <div className="flex-shrink-0 cursor-pointer md:ps-5" onClick={() => router.push('/home')}>
-                                <h1 className="text-2xl font-black text-gray-900 tracking-tight hover:text-blue-600 transition-colors duration-300">
-                                    Travel
-                                </h1>
+                                <Logo logoWidth={100} />
                             </div>
 
                             {/* Desktop Navigation - Centered */}
