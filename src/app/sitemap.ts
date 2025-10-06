@@ -39,7 +39,6 @@ const travelTags = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")!;
   const lastModified = new Date().toISOString();
-
   const travelLandingPages = travelTags
     .map((tag) =>
       destinations.map((destination) => ({
@@ -50,53 +49,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }))
     )
     .flat() as MetadataRoute.Sitemap;
-
-  // Main static pages
-  const staticPages = [
-    {
-      url: `${baseUrl}`,
-      lastModified,
-      changeFrequency: "daily" as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/hotels`,
-      lastModified,
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/flights`,
-      lastModified,
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tours`,
-      lastModified,
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/about-us`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/contact-us`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/privacy-policy`,
-      lastModified,
-      changeFrequency: "yearly" as const,
-      priority: 0.5,
-    },
-    ...travelLandingPages,
+  // Main travel booking pages
+  const mainRoutes = [
+    { url: "", priority: 1.0, changeFrequency: "daily" as const },
+    { url: "/home", priority: 0.9, changeFrequency: "daily" as const },
+    { url: "/hotels", priority: 0.9, changeFrequency: "daily" as const },
+    { url: "/flights", priority: 0.9, changeFrequency: "daily" as const },
+    { url: "/tours", priority: 0.9, changeFrequency: "daily" as const },
+    { url: "/auth/sign-in", priority: 0.7, changeFrequency: "weekly" as const },
+    { url: "/auth/signup", priority: 0.7, changeFrequency: "weekly" as const },
   ];
 
-  return staticPages;
+  // Support and info pages
+  const supportRoutes = [
+    {
+      url: "/privacy-policy",
+      priority: 0.5,
+      changeFrequency: "yearly" as const,
+    },
+    { url: "/contact-us", priority: 0.6, changeFrequency: "monthly" as const },
+    { url: "/about-us", priority: 0.6, changeFrequency: "monthly" as const },
+    {
+      url: "/terms-of-service",
+      priority: 0.5,
+      changeFrequency: "yearly" as const,
+    },
+    { url: "/help", priority: 0.6, changeFrequency: "monthly" as const },
+  ];
+
+  const allRoutes = [...mainRoutes, ...supportRoutes];
+  const sitemap = allRoutes
+    .map((route): MetadataRoute.Sitemap[number] => ({
+      url: `${baseUrl}${route.url}`,
+      lastModified,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+    }))
+    .flat() as MetadataRoute.Sitemap;
+  return sitemap;
 }
