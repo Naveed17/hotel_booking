@@ -123,7 +123,7 @@ export default function ShowcasePage() {
                     >
                         <h2 className="text-4xl font-bold text-center text-white mb-4">Enterprise-Grade Technology Stack</h2>
                         <p className="text-white/60 text-center mb-16 max-w-2xl mx-auto">Built with cutting-edge technologies for maximum performance, scalability, and developer experience</p>
-                        <div className="grid md:grid-cols-4 lg:grid-cols-8 gap-6">
+                        <div className="grid md:grid-cols-4 lg:grid-cols-8 grid-cols-3 gap-6">
                             {[
                                 { name: "Next.js 15", icon: Layers },
                                 { name: "TypeScript", icon: FileCode },
