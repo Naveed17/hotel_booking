@@ -1,7 +1,9 @@
 import { FeaturedDestinations, Hero, FeaturedHotels, FeaturedFlights, WhyUs, Newsletter, Testimonials } from "@components/main";
+import InstallDialog from "@components/InstallDialog";
 
 export default function Page(): React.JSX.Element {
     return <>
+        <InstallDialog />
         {/* Hero Section */}
         <Hero />
         {/* Featured Destinations */}

@@ -4,7 +4,7 @@ import { Bell, Search, Menu, LogOut, User, ChevronDown, X } from 'lucide-react';
 import { useDashboard } from '@src/context/dashboardContext';
 import { useUser } from '@hooks/use-user';
 import { useParams, useRouter } from 'next/navigation';
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from '@src/components/drawer';
+import Drawer from '@components/core/components/drawer/drawer';
 import Link from 'next/link';
 import { LayoutDashboard, Building, MapPin, Plane, Users, Settings, BookOpen, BarChart3, Shield } from 'lucide-react';
 import Container from '@components/core/container';
@@ -138,60 +138,58 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Drawer */}
-          <Drawer open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <DrawerContent className="w-80 bg-white">
-              <DrawerHeader className="border-b border-gray-200">
-                <DrawerTitle className="text-xl font-bold text-gray-900">Dashboard</DrawerTitle>
-                <DrawerClose className="absolute right-4 top-4 text-gray-400 hover:text-gray-600">
-                  <X className="h-6 w-6" />
-                </DrawerClose>
-              </DrawerHeader>
+          <Drawer 
+            isOpen={isMobileMenuOpen} 
+            onClose={() => setIsMobileMenuOpen(false)}
+            title="Dashboard"
+            width={320}
+            placement="left"
+            bodyClass="p-0"
+          >
+            <nav className="p-4 flex-1">
+              <div className="space-y-1">
+                {getNavigationItems(user?.role).map((item) => {
+                  const isActive = window.location.pathname === item.href || window.location.pathname.startsWith(item.href + '/');
+                  const Icon = item.icon;
 
-              <nav className="p-4 flex-1">
-                <div className="space-y-1">
-                  {getNavigationItems(user?.role).map((item) => {
-                    const isActive = window.location.pathname === item.href || window.location.pathname.startsWith(item.href + '/');
-                    const Icon = item.icon;
-
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${isActive
-                          ? 'bg-blue-50 text-blue-700'
-                          : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                          }`}
-                      >
-                        <Icon className={`mr-3 h-5 w-5 ${isActive ? 'text-blue-700' : 'text-gray-400'}`} />
-                        {item.name}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </nav>
-
-              <div className="p-4 border-t border-gray-200">
-                <div className="flex items-center mb-4">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-sm font-medium text-blue-700">
-                      {user?.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900">{user?.name}</p>
-                    <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
-                  </div>
-                </div>
-                <button
-                  onClick={handleLogout}
-                  className="w-full flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                >
-                  <LogOut className="h-4 w-4 mr-2" />
-                  Logout
-                </button>
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${isActive
+                        ? 'bg-blue-50 text-blue-700'
+                        : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                        }`}
+                    >
+                      <Icon className={`mr-3 h-5 w-5 ${isActive ? 'text-blue-700' : 'text-gray-400'}`} />
+                      {item.name}
+                    </Link>
+                  );
+                })}
               </div>
-            </DrawerContent>
+            </nav>
+
+            <div className="p-4 border-t border-gray-200 mt-auto">
+              <div className="flex items-center mb-4">
+                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span className="text-sm font-medium text-blue-700">
+                    {user?.name.charAt(0)}
+                  </span>
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+                  <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
+                </div>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Logout
+              </button>
+            </div>
           </Drawer>
         </div>
       </Container>
