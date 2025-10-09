@@ -57,12 +57,10 @@ export const LoadingProvider = ({ children }: { children: React.ReactNode }) => 
     // Alternative approach: Listen to browser navigation events
     useEffect(() => {
         const handleStart = () => {
-            console.log('Navigation started'); // Debug log
             setLoading(true);
         };
 
         const handleComplete = () => {
-            console.log('Navigation completed'); // Debug log
             setLoading(false);
         };
 

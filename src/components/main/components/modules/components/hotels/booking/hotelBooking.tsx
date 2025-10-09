@@ -72,10 +72,7 @@ export default function HotelBooking({ hotelId, dict }: HotelBookingProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle booking submission
-    console.log('Booking submitted:', formData);
-    // Redirect to confirmation page
-    router.push(`/${lang}/hotels/${hotelId}/booking/complete`);
+    router.push(`/hotels/${hotelId}/booking/complete`);
   };
 
   if (loading) {

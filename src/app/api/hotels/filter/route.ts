@@ -113,7 +113,6 @@ export async function POST(request: Request) {
         if (filter.price) {
           const min = Number(filter.price.min);
           const max = Number(filter.price.max);
-          console.log("Checking price:", price, "Range:", filter.price);
           if (Number.isFinite(price) && (price < min || price > max)) {
             return false;
           }
