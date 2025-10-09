@@ -13,15 +13,35 @@ export default function InstallDialog() {
   const [isInstalling, setIsInstalling] = useState(false)
 
   useEffect(() => {
-    // Multiple checks for installed PWA
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches
-    const isIOSStandalone = (window.navigator as any).standalone === true
-    const isInWebAppiOS = window.matchMedia('(display-mode: fullscreen)').matches
-    const isInstalled = isStandalone || isIOSStandalone || isInWebAppiOS
+    const checkInstalled = () => {
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+      const isIOSStandalone = (window.navigator as any).standalone === true
+      const isInWebAppiOS = window.matchMedia('(display-mode: fullscreen)').matches
+      const isInstalled = isStandalone || isIOSStandalone || isInWebAppiOS
+      
+      console.log('Install check:', { isStandalone, isIOSStandalone, isInWebAppiOS, isInstalled })
+      
+      if (isInstalled) {
+        console.log('App is installed, hiding dialog')
+        setShowDialog(false)
+        return true
+      }
+      return false
+    }
 
-    if (isInstalled) {
+    if (checkInstalled()) {
       return // Don't show dialog if already installed
     }
+
+    // Listen for display mode changes
+    const standaloneQuery = window.matchMedia('(display-mode: standalone)')
+    const handleDisplayModeChange = () => {
+      if (checkInstalled()) {
+        setShowDialog(false)
+      }
+    }
+    
+    standaloneQuery.addEventListener('change', handleDisplayModeChange)
 
     const handler = (e: Event) => {
       e.preventDefault()
@@ -48,6 +68,7 @@ export default function InstallDialog() {
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handler)
+      standaloneQuery.removeEventListener('change', handleDisplayModeChange)
       clearTimeout(timer)
     }
   }, [])
