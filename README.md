@@ -52,16 +52,9 @@ app/
 
 ---
 
-## 📄 License
-
-This project is provided for **Envato/CodeCanyon sale**.  
-For extended licenses, please refer to Envato terms.
-
----
-
 ## 📞 Support
 
 For support, please contact:  
 **Your Name / Company**  
-📧 your@email.com  
-🌐 yourwebsite.com
+📧 naveed07786@gmail.com  
+🌐 https://hotel-booking-alpha-murex.vercel.app/
