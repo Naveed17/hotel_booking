@@ -119,7 +119,7 @@ export default function ShowcasePage() {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-6 md:p-12 mb-20"
+                        className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl py-12 p-6 md:p-12 mb-20"
                     >
                         <h2 className="text-4xl font-bold text-center text-white mb-4">Enterprise-Grade Technology Stack</h2>
                         <p className="text-white/60 text-center mb-16 max-w-2xl mx-auto">Built with cutting-edge technologies for maximum performance, scalability, and developer experience</p>
@@ -237,7 +237,7 @@ export default function ShowcasePage() {
                         transition={{ duration: 0.8, delay: 1.0 }}
                         className="relative mb-20"
                     >
-                        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
+                        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl py-16 p-8 md:p-16 text-center relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-full">
                                 <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
                                 <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full animate-pulse delay-1000"></div>
