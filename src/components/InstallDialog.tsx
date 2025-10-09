@@ -18,11 +18,10 @@ export default function InstallDialog() {
       const isIOSStandalone = (window.navigator as any).standalone === true
       const isInWebAppiOS = window.matchMedia('(display-mode: fullscreen)').matches
       const isInstalled = isStandalone || isIOSStandalone || isInWebAppiOS
-      
-      console.log('Install check:', { isStandalone, isIOSStandalone, isInWebAppiOS, isInstalled })
-      
+
+
       if (isInstalled) {
-        console.log('App is installed, hiding dialog')
+
         setShowDialog(false)
         return true
       }
@@ -40,7 +39,7 @@ export default function InstallDialog() {
         setShowDialog(false)
       }
     }
-    
+
     standaloneQuery.addEventListener('change', handleDisplayModeChange)
 
     const handler = (e: Event) => {

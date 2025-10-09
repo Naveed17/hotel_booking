@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Users, UserPlus, Shield, Activity, Search, Filter, Edit, Trash2, Eye, ChevronUp, ChevronDown, X } from 'lucide-react';
 import { useDashboard } from '@src/context/dashboardContext';
 import StatsCard from '@src/components/dashboard/shared/widgets/StatsCard';
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerFooter, DrawerClose } from '@src/components/drawer';
+import Drawer from '@components/core/components/drawer/drawer';
 import Select from '@src/components/core/select';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -364,17 +364,16 @@ const UserDrawer = ({ title, user, onClose, onSave, open }: {
   };
 
   return (
-    <Drawer open={open} onOpenChange={onClose}>
-      <DrawerContent className="w-96 bg-white">
-        <DrawerHeader className="border-b border-gray-200">
-          <DrawerTitle className="text-xl font-bold text-gray-900">{title}</DrawerTitle>
-          <DrawerClose className="absolute right-4 top-4 text-gray-400 hover:text-gray-600">
-            <X className="h-6 w-6" />
-          </DrawerClose>
-        </DrawerHeader>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="flex-1 flex flex-col">
-          <div className="p-6 overflow-y-auto flex-1 space-y-6">
+    <Drawer 
+      isOpen={open} 
+      onClose={onClose}
+      title={title}
+      width={384}
+      placement="right"
+      bodyClass="p-0"
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="flex-1 flex flex-col h-full">
+        <div className="p-6 overflow-y-auto flex-1 space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-900 mb-2">Name</label>
               <Controller
@@ -452,25 +451,24 @@ const UserDrawer = ({ title, user, onClose, onSave, open }: {
             </div>
           </div>
 
-          <DrawerFooter className="border-t border-gray-200">
-            <div className="flex gap-3">
-              <button
-                type="button"
-                onClick={onClose}
-                className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors font-medium"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium"
-              >
-                {user ? 'Update User' : 'Create User'}
-              </button>
-            </div>
-          </DrawerFooter>
-        </form>
-      </DrawerContent>
+        <div className="border-t border-gray-200 p-6">
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors font-medium"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium"
+            >
+              {user ? 'Update User' : 'Create User'}
+            </button>
+          </div>
+        </div>
+      </form>
     </Drawer>
   );
 };
@@ -478,16 +476,15 @@ const UserDrawer = ({ title, user, onClose, onSave, open }: {
 // View User Drawer Component
 const ViewUserDrawer = ({ user, onClose, open }: { user: User; onClose: () => void; open: boolean }) => {
   return (
-    <Drawer open={open} onOpenChange={onClose}>
-      <DrawerContent className="w-96 bg-white">
-        <DrawerHeader className="border-b border-gray-200">
-          <DrawerTitle className="text-xl font-bold text-gray-900">User Details</DrawerTitle>
-          <DrawerClose className="absolute right-4 top-4 text-gray-400 hover:text-gray-600">
-            <X className="h-6 w-6" />
-          </DrawerClose>
-        </DrawerHeader>
-
-        <div className="p-6 flex-1">
+    <Drawer 
+      isOpen={open} 
+      onClose={onClose}
+      title="User Details"
+      width={384}
+      placement="right"
+      bodyClass="p-0"
+    >
+      <div className="p-6 flex-1">
           <div className="text-center mb-8">
             <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-3xl mx-auto mb-4">
               {user.name.charAt(0)}
@@ -537,15 +534,14 @@ const ViewUserDrawer = ({ user, onClose, open }: { user: User; onClose: () => vo
           </div>
         </div>
 
-        <DrawerFooter className="border-t border-gray-200">
-          <button
-            onClick={onClose}
-            className="w-full px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium"
-          >
-            Close
-          </button>
-        </DrawerFooter>
-      </DrawerContent>
+      <div className="border-t border-gray-200 p-6">
+        <button
+          onClick={onClose}
+          className="w-full px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+        >
+          Close
+        </button>
+      </div>
     </Drawer>
   );
 };
