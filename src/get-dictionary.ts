@@ -8,7 +8,7 @@ const dictionaries = {
     import("./dictionaries/ar/ar.json").then((module) => module.default),
 };
 
-export const getDictionary = async (locale: Locale) => {
+export const getDictionary = async (locale: string) => {
   const dictLoader = dictionaries[locale as keyof typeof dictionaries];
   if (dictLoader) {
     return await dictLoader();

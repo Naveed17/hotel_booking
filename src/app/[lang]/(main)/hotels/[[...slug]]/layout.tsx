@@ -9,7 +9,7 @@ export default async function Layout({
     params,
 }: {
     children: React.ReactNode;
-    params: Promise<{ lang: 'en' | 'ar'; slug: string[] }>;
+    params: Promise<{ lang: string; slug: string[] }>;
 
 
 }) {

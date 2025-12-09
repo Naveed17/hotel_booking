@@ -5,7 +5,7 @@ import { HotelsList } from '@components/main/components/modules';
 
 
 interface Props {
-  params: Promise<{ slug: string[]; lang: 'en' | 'ar' }>; // params is now a Promise
+  params: Promise<{ slug: string[]; lang: 'en' | 'ar' }>;
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
@@ -18,7 +18,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 };
 
 const Page = async ({ params }: Props): Promise<React.JSX.Element> => {
-  const { slug, lang } = await params; // Await params before using it
+  const { slug, lang } = await params;
   const dict = await getDictionary(lang);
   return (
     <HotelsList />
