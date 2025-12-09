@@ -2,7 +2,7 @@ import Main from '@components/main/layout'
 import { getDictionary } from '@src/get-dictionary';
 import React from 'react';
 import InstallDialog from "@components/InstallDialog";
-const MainLayout = async ({ children, params }: { children: React.ReactNode; params: Promise<{ lang: 'en' | 'ar' }> }) => {
+const MainLayout = async ({ children, params }: { children: React.ReactNode; params: Promise<{ lang: string }> }) => {
     const { lang } = await params
     const dict = await getDictionary(lang)
     return (

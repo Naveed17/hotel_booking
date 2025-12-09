@@ -7,11 +7,11 @@ export default async function Layout({
     params,
 }: {
     children: React.ReactNode;
-    params: Promise<{ lang: 'en' | 'ar'; slug: string[] }>;
+    params: Promise<{ lang: string }>;
 }) {
-    const { lang, slug } = await params;
+    const { lang } = await params;
     const dict = await getDictionary(lang)
-    
+
     return (
         <div className='w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 pt-40'>
             <ToursMain>

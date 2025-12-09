@@ -47,7 +47,7 @@ export type HotelFiltersContextValue = {
 
 export interface HotelFiltersProviderProps {
     children: ReactNode;
-    slug: string[];
+    slug: string[] | null;
 }
 
 // ===== Initial State =====
@@ -92,7 +92,7 @@ export const HotelFiltersProvider: React.FC<HotelFiltersProviderProps> = ({
         refetch,
     } = useQuery({
         queryKey: ["hotels", slug],
-        queryFn: () => hotels_search(slug),
+        queryFn: () => hotels_search(slug || []),
         select: (res) => ({
             data: res?.response ?? [],     // normalize to "data"
             total: res?.total ?? res?.response?.length ?? 0, // normalize to "total"
