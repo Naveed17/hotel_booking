@@ -17,7 +17,7 @@
     "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -68,7 +68,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "tailwind.config.cjs"
+    "tailwind.config.cjs",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
