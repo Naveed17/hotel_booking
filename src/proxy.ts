@@ -3,7 +3,7 @@ import { locales, defaultLocale } from "../next-intl";
 import type { NextRequest } from "next/server";
 import { updateSession } from "@lib/auth/session";
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const hostname = request.nextUrl.hostname;
   await updateSession(request);
   // Use next-intl's middleware to handle locales
