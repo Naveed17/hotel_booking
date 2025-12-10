@@ -17,11 +17,11 @@ export function GuestGuard({ children }: GuestGuardProps): React.JSX.Element | n
 
   React.useEffect(() => {
     const verifyGuestAccess = async () => {
-      if (isLoading) return;
-
-      if (error) {
-        setIsChecking(false);
-        return;
+      if (!isLoading) {
+        if (error) {
+          setIsChecking(false);
+          return;
+        }
       }
 
       if (user) {

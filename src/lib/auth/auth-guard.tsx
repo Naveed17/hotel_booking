@@ -17,6 +17,9 @@ export function AuthGuard({ children }: AuthGuardProps): React.JSX.Element | nul
   const [isChecking, setIsChecking] = React.useState(true);
 
   React.useEffect(() => {
+    if (isChecking) {
+      return;
+    }
     if (!isLoading) {
       if (error) {
         setIsChecking(false);
